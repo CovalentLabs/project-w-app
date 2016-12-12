@@ -1,14 +1,12 @@
-# angular2-webpack
-
-[![Dependency Status](https://david-dm.org/preboot/angular2-webpack/status.svg)](https://david-dm.org/preboot/angular2-webpack#info=dependencies) [![devDependency Status](https://david-dm.org/preboot/angular2-webpack/dev-status.svg)](https://david-dm.org/preboot/angular2-webpack#info=devDependencies)
-[![Join the chat at https://gitter.im/preboot/angular2-webpack](https://badges.gitter.im/preboot/angular2-webpack.svg)](https://gitter.im/preboot/angular2-webpack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-**Note: This guide is following the Angular's [Style Guide](http://angular.io/styleguide) so I will be changing conventions here and there eventually. You are free to use your own conventions with this starter.**
-**Note 2: There is no conventions yet for RC5 on the style guide so there will be a future update here for that.**
+# Frontend Cordova
 
 A complete, yet simple, starter for Angular 2 using Webpack.
 
-This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast. Using [Webpack](http://webpack.github.io/) for building our files and assisting with boilerplate. We're also using Protractor for our end-to-end story and Karma for our unit tests.
+
+This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast.
+Using [Webpack](http://webpack.github.io/) for building our files and assisting with boilerplate.
+_We're also using Protractor for our end-to-end story and Karma for our unit tests._
+
 * Best practices in file and application organization for [Angular 2](https://angular.io/).
 * Ready to go build system using [Webpack](https://webpack.github.io/docs/) for working with [TypeScript](http://www.typescriptlang.org/).
 * Testing Angular 2 code with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/).
@@ -20,27 +18,63 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 
 >Warning: Make sure you're using the latest version of Node.js and NPM
 
-[Is Angular 2 Ready Yet?](http://splintercode.github.io/is-angular-2-ready/)
-
 ### Quick start
 
-> Clone/Download the repo then edit `app.ts` inside [`/src/app/app.component.ts`](/src/app/app.component.ts)
+> Clone/Download the repo
 
 ```bash
 # clone our repo
-$ git clone https://github.com/preboot/angular2-webpack.git my-app
+git clone https://github.com/CovalentLabs/project-w-app.git project-w-app
 
-# change directory to your app
-$ cd my-app
+# change directory to the app
+cd project-w-app
 
 # install the dependencies with npm
-$ npm install
+npm install
+
+# start the server with hot module reloading, or
+npm run start:hmr
 
 # start the server
-$ npm start
+npm start
 ```
 go to [http://localhost:8080](http://localhost:8080) in your browser.
 
+> Deploy to device
+
+Set up your computer with `cordova` and the JDK and Android SDK for deploying to Android.
+https://cordova.apache.org/docs/en/latest/guide/platforms/android/
+
+```bash
+# change directory to the app
+cd project-w-app
+
+# Must have this directory available in order to use cordova!
+mkdir www
+
+# add cordova platform android or ios
+cordova platform add android
+
+# build and deploy files with cordova, or
+npm run deploy
+
+# if you'd like faster deployment, we can skip optimization plugins using:
+set "ENV=skipOpti" && npm run deploy
+# or on unix:
+ENV=skipOpti npm run deploy
+
+# build files to ./www, then
+npm run build
+
+# ensure adb is running with devcies connected
+adb devices
+
+# deploy to cordova either emulator or connected device
+# if this command fails, try deleting the platforms directory and re-initializing the android platform
+cordova run android
+```
+
+> The following was included information from the boilerplate starter that this is based off of.
 # Table of Contents
 
 * [Getting Started](#getting-started)
@@ -51,7 +85,6 @@ go to [http://localhost:8080](http://localhost:8080) in your browser.
     * [Production](#production)
     * [Documentation](#documentation)
 * [Frequently asked questions](#faq)
-* [TypeScript](#typescript)
 * [License](#license)
 
 # Getting Started
@@ -138,19 +171,6 @@ And in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/v
 import 'bootstrap/dist/css/bootstrap.css';
 ```
 
-# TypeScript
-
-> To take full advantage of TypeScript with autocomplete you would have to use an editor with the correct TypeScript plugins.
-
-## Use a TypeScript-aware editor
-
-We have good experience using these editors:
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Webstorm 11+](https://www.jetbrains.com/webstorm/download/)
-* [Atom](https://atom.io/) with [TypeScript plugin](https://atom.io/packages/atom-typescript)
-* [Sublime Text](http://www.sublimetext.com/3) with [Typescript-Sublime-Plugin](https://github.com/Microsoft/Typescript-Sublime-plugin#installation)
-
 # License
 
-[MIT](/LICENSE)
+[(c) CovalentLabs](/LICENSE)
