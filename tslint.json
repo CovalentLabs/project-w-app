@@ -10,7 +10,7 @@
     ],
     "curly": true,
     "eofline": true,
-    "forin": true,
+    "forin": false,
     "indent": [
       true,
       "spaces"
@@ -61,14 +61,9 @@
       "check-else",
       "check-whitespace"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
+    // "quotemark": [ true, "single" ],
     "radix": true,
-    "semicolon": [
-      "always"
-    ],
+    // "semicolon": [ "always" ],
     "triple-equals": [
       true,
       "allow-null-check"
@@ -106,8 +101,8 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "directive-selector-prefix": [true, "my"],
-    "component-selector-prefix": [true, "my"],
-    "pipe-naming": [true, "camelCase", "my"]
+    "directive-selector-prefix": [true, "pw"],
+    "component-selector-prefix": [true, "pw"],
+    "pipe-naming": [true, "camelCase", "pw"]
   }
 }
