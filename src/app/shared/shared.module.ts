@@ -15,12 +15,13 @@ import { FormsModule }         from '@angular/forms';
 // A lazy loaded module that imports that shared module will make
 // its own copy of the service.
 
+import { CelebrationModalComponent } from './celebration-modal/celebration-modal.component';
+
 // import { AwesomePipe }         from './awesome.pipe';
 // import { HighlightDirective }  from './highlight.directive';
 @NgModule({
   imports:      [ CommonModule ],
-  declarations: [ /*InterestBlockComponent, CtaButtonComponent*/ ],
-  exports:      [ /*InterestBlockComponent, CtaButtonComponent, */
-                  CommonModule, FormsModule ]
+  declarations: [ CelebrationModalComponent, ],
+  exports:      [ CelebrationModalComponent, CommonModule, FormsModule ]
 })
 export class SharedModule { }

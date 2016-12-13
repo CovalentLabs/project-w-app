@@ -12,9 +12,5 @@
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
-  },
-  "exclude": [
-    "./templates/**",
-    "**/node_modules/**"
-  ]
+  }
 }

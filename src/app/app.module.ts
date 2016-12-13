@@ -12,20 +12,14 @@ import { AboutComponent } from './about/about.component';
 import { SharedModule } from './shared/shared.module';
 
 /* Feature Modules */
+import { LoginModule } from './login/login.module';
 /*
 import { LobbyModule } from './lobby/lobby.module';
 
-import { StatusModule } from './status/status.module'
-import { ConfigureSearchModule } from './configure-search/configure-search.module'
-import { ConfigureRankModule } from './configure-rank/configure-rank.module'
-import { LoginModule } from './login/login.module'
-import { HistoryModule } from './history/history.module'
-// import { RouteUndefinedModule } from './route-undefined/route-undefined.module'
-import { BetaSignupModule } from './beta-signup/beta-signup.module'
-
+*/
 
 import { CoreModule } from './core/core.module';
-*/
+
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 
@@ -38,6 +32,9 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     BrowserModule,
     CommonModule,
     SharedModule,
+
+    // Feature Routes
+    LoginModule,
 /*
     // Feature Routes
     StatusModule,
@@ -47,11 +44,12 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     HistoryModule,
     BetaSignupModule,
     LobbyModule,
+*/
 
     // CoreModule defines everything that needs to be imported once,
     // and app-wide singletons such as the DeviceStateService
     CoreModule.forRoot(),
-*/
+
     AppRoutingModule
   ],
   declarations: [

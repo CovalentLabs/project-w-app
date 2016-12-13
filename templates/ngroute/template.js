@@ -1,3 +1,5 @@
+const {exec} = require('child_process')
+
 module.exports = {
   variables: [
     { name: "routesDir" },
@@ -7,7 +9,7 @@ module.exports = {
     },
   ],
   outDir: "./src/app",
-  onComplete: (vars) => {
+  onComplete: (vars, renderedfiles) => {
     const s = vars["routename"]
     const c = vars.RouteName
     console.log(
@@ -21,7 +23,16 @@ import { ${c}Module } from './${s}/${s}.module';
   imports: [
     // Feature Routes
     ${c}Module,
+
+    View your new route at
+    http://localhost:8080/#/${s}
     `)
+
+    // find component to open in vscode
+    const component = renderedfiles.find(({filename}) => /\.component\.ts$/.test(filename))
+    const componentFilepath = component.baseDir + '/' + component.filename
+
+    exec(`code "${componentFilepath}"`)
   }
 }
 
