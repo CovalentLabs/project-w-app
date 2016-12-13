@@ -20,6 +20,11 @@ var isTestWatch = ENV === 'test-watch';
 var isTest = ENV === 'test' || isTestWatch;
 var isProd = ENV === 'build';
 
+var skipOpti = /skipOpti/i.test(process.env.ENV);
+if (skipOpti) {
+  console.warn("Skipping optimization through $ENV=skipOpti")
+}
+
 module.exports = function makeWebpackConfig() {
   /**
    * Config
@@ -59,7 +64,6 @@ module.exports = function makeWebpackConfig() {
    */
   config.output = isTest ? {} : {
     path: root('www'),
-    publicPath: isProd ? '/' : 'http://localhost:8080/',
     filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
     chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
   };
@@ -108,26 +112,26 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.css$/,
-        exclude: root('src', 'app'),
+        exclude: root('src/app'),
         loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader'},
+      {test: /\.css$/, include: root('src/app'), loader: 'raw-loader!postcss-loader'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
       // all css in src/style will be bundled in an external css file
       {
         test: /\.(scss|sass)$/,
-        exclude: root('src', 'app'),
+        exclude: root('src/app'),
         loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.(scss|sass)$/, exclude: root('src', 'style'), loader: 'raw-loader!postcss-loader!sass-loader'},
+      {test: /\.(scss|sass)$/, exclude: root('src/style'), loader: 'raw-loader!postcss-loader!sass-loader'},
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw-loader',  exclude: root('src', 'public')}
+      {test: /\.html$/, loader: 'raw-loader',  exclude: root('src/public')}
     ]
   };
 
@@ -237,25 +241,29 @@ module.exports = function makeWebpackConfig() {
 
   // Add build specific plugins
   if (isProd) {
+    if (!skipOpti) {
+      config.plugins.push(
+        // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
+        // Only emit files when there are no errors
+        new webpack.NoErrorsPlugin(),
+
+        // // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
+        // // Dedupe modules in the output
+        // new webpack.optimize.DedupePlugin(),
+
+        // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+        // Minify all javascript, switch loaders to minimizing mode
+        new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }})
+      )
+    }
+
     config.plugins.push(
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-      // Only emit files when there are no errors
-      new webpack.NoErrorsPlugin(),
-
-      // // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      // // Dedupe modules in the output
-      // new webpack.optimize.DedupePlugin(),
-
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-      // Minify all javascript, switch loaders to minimizing mode
-      new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
-
       // Copy assets from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin([{
         from: root('src/public')
       }])
-    );
+    )
   }
 
   /**

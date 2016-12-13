@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "0.0.0",
+  "name": "project-w-app",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf node_modules doc www && npm cache clean",
@@ -24,6 +24,9 @@
     "start": "npm run server",
     "start:hmr": "npm run server -- --hot",
     "postinstall": "npm run webdriver-update"
+  },
+  "engines": {
+    "node": "6"
   },
   "dependencies": {
     "@angular/common": "2.3.0",
@@ -51,6 +54,7 @@
     "awesome-typescript-loader": "^2.2.4",
     "codelyzer": "1.0.0-beta.3",
     "copy-webpack-plugin": "^4.0.0",
+    "cordova": "^6.4.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",

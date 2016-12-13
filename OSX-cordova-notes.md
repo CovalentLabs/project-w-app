@@ -24,6 +24,12 @@ export ANDROID_HOME=/Users/colelawrence/Library/Android/sdk
 
 in my `~/.zshrc` file.
 
+I didn't have my Android set up with OSX to do anything yet, so I immediately sought
+the https://developers.google.com/web/tools/chrome-devtools/remote-debugging/ article
+to get the right drivers without getting the wrong virus.
+
+JK, I just needed to enable USB debugging, no driver needed.
+
 ## IOS Deploy with XCode
 
 Following https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
