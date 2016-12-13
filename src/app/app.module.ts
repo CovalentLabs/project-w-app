@@ -5,23 +5,14 @@ import { CommonModule }      from '@angular/common';
 
 /* App Root */
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 
 /* Shared Modules */
 import { SharedModule } from './shared/shared.module';
 
-/* Feature Modules */
-import { LoginModule } from './login/login.module';
-/*
-import { LobbyModule } from './lobby/lobby.module';
-
-*/
-
 import { CoreModule } from './core/core.module';
 
 /* Routing Module */
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routes/app-routing.module';
 
 
 // import { DeviceStateService } from './core/device-state.service'
@@ -33,19 +24,6 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     CommonModule,
     SharedModule,
 
-    // Feature Routes
-    LoginModule,
-/*
-    // Feature Routes
-    StatusModule,
-    ConfigureSearchModule,
-    ConfigureRankModule,
-    LoginModule,
-    HistoryModule,
-    BetaSignupModule,
-    LobbyModule,
-*/
-
     // CoreModule defines everything that needs to be imported once,
     // and app-wide singletons such as the DeviceStateService
     CoreModule.forRoot(),
@@ -53,9 +31,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent
+    AppComponent
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
