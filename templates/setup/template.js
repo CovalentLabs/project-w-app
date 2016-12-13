@@ -1,3 +1,13 @@
+/**
+ * This template is for setting up the secrets files.
+ * You may also use the *.example files to guide you,
+ * but configuring all the files through this may be
+ * the easier way to go.
+ *
+ * just `npm i -g undergen`
+ * and run `under gen setup`
+ */
+
 module.exports = {
   variables: [
     { name: "APP_ID", default: () => "social.covalent.project-w" },

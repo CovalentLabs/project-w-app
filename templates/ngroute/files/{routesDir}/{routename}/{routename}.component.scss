@@ -1,0 +1,15 @@
+// <%=RouteName%>Component Styles
+<%_ // random color for fun
+ var color = Math.random() _%>
+
+:host {
+  display: block;
+  padding: 4px;
+  color: black;
+  background: #<%= color.toString(16).slice(2,8) %>;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
