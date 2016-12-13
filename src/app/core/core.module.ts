@@ -6,6 +6,8 @@ import { CommonModule }      from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+import { ACTIONS } from './action/actions'
+
 // import { DeviceStateService }from './device-state.service';
 
 // import actions
@@ -20,7 +22,7 @@ import { FormsModule } from '@angular/forms';
   providers:    [
     // DeviceStateService,
 
-    // ...ACTIONS
+    ...ACTIONS
 
     // LoginWriter,
 

@@ -9,7 +9,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+var CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 
 /**
  * Env
@@ -216,7 +216,7 @@ module.exports = function makeWebpackConfig() {
 
   if (!isTest && !isTestWatch) {
     config.plugins.push(
-      new ForkCheckerPlugin(),
+      new CheckerPlugin(),
 
       // Generate common chunks if necessary
       // Reference: https://webpack.github.io/docs/code-splitting.html
