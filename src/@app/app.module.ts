@@ -4,18 +4,18 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CommonModule }      from '@angular/common';
 
 /* App Root */
-import { AppComponent } from './app.component';
+import { AppComponent } from '@app/app.component';
 
 /* Shared Modules */
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '@app/shared';
 
-import { CoreModule } from './core/core.module';
+import { CoreModule } from '@app/core';
 
 /* Routing Module */
-import { AppRoutingModule } from './routes/app-routing.module';
+import { AppRoutingModule } from '@app/routes/app-routing.module';
 
 
-// import { DeviceStateService } from './core/device-state.service'
+// import { DeviceStateService } from '@app/core/device-state.service'
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 @NgModule({

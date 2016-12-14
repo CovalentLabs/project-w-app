@@ -6,7 +6,7 @@ import { CommonModule }      from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { ACTIONS } from './action/actions'
+import { ACTIONS } from './action'
 
 // import { DeviceStateService }from './device-state.service';
 

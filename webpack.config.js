@@ -75,6 +75,11 @@ module.exports = function makeWebpackConfig() {
   config.resolve = {
     // only discover files that have those extensions
     extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
+
+    modules: ["node_modules"],
+    alias: {
+      "@app": root("src/app")
+    }
   };
 
   var atlOptions = '';

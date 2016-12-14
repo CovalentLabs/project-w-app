@@ -1,4 +1,4 @@
-export * from './action/actions'
+export * from './action/'
 export * from './model/model'
 
 export * from './core.module'
