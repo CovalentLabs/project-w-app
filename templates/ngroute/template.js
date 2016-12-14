@@ -2,7 +2,6 @@ const {exec} = require('child_process')
 
 module.exports = {
   variables: [
-    { name: "routesDir" },
     { name: "routename", description: "filename and foldername in snakecase, example: 'configure-search', 'about'" },
     { name: "RouteName"
     , default: ({routename}) => capitallize(routename)
