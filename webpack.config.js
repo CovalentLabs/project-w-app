@@ -78,7 +78,7 @@ module.exports = function makeWebpackConfig() {
 
     modules: ["node_modules"],
     alias: {
-      "@app": root("src/app")
+      "@app": root("src/@app")
     }
   };
 
@@ -117,21 +117,21 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.css$/,
-        exclude: root('src/app'),
+        exclude: root('src/@app'),
         loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
       },
-      // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src/app'), loader: 'raw-loader!postcss-loader'},
+      // all css required in src/@app files will be merged in js files
+      {test: /\.css$/, include: root('src/@app'), loader: 'raw-loader!postcss-loader'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
       // all css in src/style will be bundled in an external css file
       {
         test: /\.(scss|sass)$/,
-        exclude: root('src/app'),
+        exclude: root('src/@app'),
         loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
       },
-      // all css required in src/app files will be merged in js files
+      // all css required in src/@app files will be merged in js files
       {test: /\.(scss|sass)$/, exclude: root('src/style'), loader: 'raw-loader!postcss-loader!sass-loader'},
 
       // support for .html as raw text

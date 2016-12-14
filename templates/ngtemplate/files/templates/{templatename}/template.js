@@ -8,7 +8,7 @@ module.exports = {
     , default: ({<%=compnamevar%>}) => capitallize(<%=compnamevar%>)
     },
   ],
-  outDir: "./src/app",
+  outDir: "./src/@app",
   onComplete: (vars, renderedfiles) => {
     // renderedfiles: { baseDir: string, filename: string, contents: string }[]
     const s = vars["<%=compnamevar%>"]

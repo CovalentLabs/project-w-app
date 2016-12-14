@@ -8,7 +8,7 @@ module.exports = {
     , default: ({routename}) => capitallize(routename)
     },
   ],
-  outDir: "./src/app",
+  outDir: "./src/@app",
   onComplete: (vars, renderedfiles) => {
     const s = vars["routename"]
     const c = vars.RouteName

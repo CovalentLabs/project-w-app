@@ -6,6 +6,8 @@ type Model = {
   Login: Login
 }
 
+
+// PartialModel for defining update functions
 export
 type PartialModel = {
   [P in keyof Model]?: Partial<Model[P]>

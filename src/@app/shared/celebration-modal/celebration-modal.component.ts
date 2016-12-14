@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router'
-
-import { Profile } from '@app/core/model/shared'
+import { LoginAction } from '@app/core'
 
 @Component({
   selector: 'pw-celebration-modal',
@@ -12,9 +10,13 @@ import { Profile } from '@app/core/model/shared'
   ]
 })
 export class CelebrationModalComponent implements OnInit {
-  constructor() {}
+  constructor(private _login: LoginAction) {}
 
   ngOnInit() {
     // on init
+  }
+
+  onClick() {
+    this._login.promptLogin()
   }
 }

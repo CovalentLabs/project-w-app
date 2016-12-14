@@ -8,7 +8,7 @@ module.exports = {
     , default: ({componentname}) => capitallize(componentname)
     },
   ],
-  outDir: "./src/app",
+  outDir: "./src/@app",
   onComplete: (vars, renderedfiles) => {
     const s = vars["componentname"]
     const c = vars.ComponentName

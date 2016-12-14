@@ -4,7 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CommonModule }      from '@angular/common';
 
 /* App Root */
-import { AppComponent } from '@app/app.component';
+import { AppComponent } from './app.component';
 
 /* Shared Modules */
 import { SharedModule } from '@app/shared';
