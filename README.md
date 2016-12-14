@@ -75,6 +75,7 @@ cordova run android
 ```
 
 > The following was included information from the boilerplate starter that this is based off of.
+
 # Table of Contents
 
 * [Getting Started](#getting-started)
