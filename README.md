@@ -66,7 +66,7 @@ ENV=skipOpti npm run deploy
 # build files to ./www, then
 npm run build
 
-# ensure adb is running with devcies connected
+# ensure adb is running with devices connected
 adb devices
 
 # deploy to cordova either emulator or connected device
