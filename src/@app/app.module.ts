@@ -15,7 +15,7 @@ import { CoreModule } from '@app/core';
 import { AppRoutingModule } from '@app/routes/app-routing.module';
 
 
-// import { DeviceStateService } from '@app/core/device-state.service'
+import { AppStateService } from '@app/core/app-state'
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 @NgModule({
@@ -41,7 +41,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 export class AppModule {
   constructor(
       public appRef: ApplicationRef,
-      // private _deviceStateService: DeviceStateService
+      private _appStateService: AppStateService
   ) {}
 
   hmrOnInit(store) {
@@ -49,12 +49,12 @@ export class AppModule {
 
     console.log("HMR store", store)
 
-    if (store && store.deviceState) {
-      // this._deviceStateService.setState(store.deviceState)
+    if (store && store.appState) {
+      this._appStateService.updateState(store.appState)
 
       // change detection
       this.appRef.tick()
-      delete store.deviceState
+      delete store.appState
 
       if (store.hash) {
         // set app path back
@@ -75,7 +75,7 @@ export class AppModule {
     store.hash = window.location.hash
 
     // Save state to hmr
-    // store.deviceState = Object.assign({}, this._deviceStateService.getState())
+    store.appState = Object.assign({}, this._appStateService.getState())
 
     // remove styles
     removeNgStyles();

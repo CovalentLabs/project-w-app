@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LoginAction } from '@app/core'
+import { LoginActions } from '@app/core'
 
 @Component({
   selector: 'pw-celebration-modal',
@@ -10,7 +10,7 @@ import { LoginAction } from '@app/core'
   ]
 })
 export class CelebrationModalComponent implements OnInit {
-  constructor(private _login: LoginAction) {}
+  constructor(private _login: LoginActions) {}
 
   ngOnInit() {
     // on init

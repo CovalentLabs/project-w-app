@@ -13,7 +13,7 @@ module.exports = {
     const c = vars.RouteName
     console.log(
     `
-    Add to parent module (app.module.ts)
+    Add to routing module (@app/routes/app-routing.module.ts)
 
 /* Feature Modules */
 import { ${c}Module } from './${s}/${s}.module';

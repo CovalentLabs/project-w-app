@@ -1,6 +1,6 @@
-import { LoginAction } from './login.action'
+import { LoginActions } from './login.action'
 
 export
-const ACTIONS = [ LoginAction ]
+const ACTIONS = [ LoginActions ]
 
-export { LoginAction }
+export { LoginActions }

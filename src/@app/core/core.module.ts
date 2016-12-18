@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { ACTIONS } from './action'
+import { AppStateService } from './app-state'
 
 // import { DeviceStateService }from './device-state.service';
 
@@ -20,11 +21,9 @@ import { ACTIONS } from './action'
   declarations: [],
   // exports:      [ TitleComponent ],
   providers:    [
-    // DeviceStateService,
+    AppStateService,
 
-    ...ACTIONS
-
-    // LoginWriter,
+    ...ACTIONS,
 
     // feature flags?
     // {provide: LoginWriter, useClass: LoginWriterMock},

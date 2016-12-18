@@ -16,6 +16,9 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "exclude": [
+    "**/_*/**",
+    "**/_*",
+    "./_*/**",
     "**/node_modules/**",
     "./node_modules",
     "./templates"
