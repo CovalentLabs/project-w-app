@@ -29,19 +29,19 @@ const MOCK_STATES: MockState[] = (function () {
   }
 
   add(//////////////////
-    'Login/Not Logged in',
+    'Login/Not logged in/Not logged in',
     notLoggedInBase
   )
 
   add(//////////////////
-    'Login/Has Logged out',
+    'Login/Not logged in/Has logged out',
     notLoggedInBase,
     { Login: { HasLoggedOut: true } }
   )
 
 
   add(//////////////////
-    'Login/Log in error',
+    'Login/Not logged in/Log in error',
     notLoggedInBase,
     {
       Login: {
