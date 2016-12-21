@@ -15,10 +15,8 @@
 
   <!--DebugState-->
   <div
-    class="debug-state"
-    *ngIf="AppState.Mock.ShowDebugState">
-    <pre>{{ AppState | json }}</pre>
-  </div>
+      class="debug-state"
+      *ngIf="AppState.Mock.ShowDebugState">{{ AppState | json }}</div>
 
   <div class="dropup"
       [class.show]="AppState.Mock.ShowMockMenu"
