@@ -34,8 +34,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // on init
-    console.log('Home Init')
     // trigger update so AppState becomes set.
     this._app.next()
   }

@@ -49,6 +49,7 @@ export class AppModule {
   ) {}
 
   hmrOnInit(store) {
+    // Clear console on initiallization
     if ('clear' in console) { console.clear() }
 
     console.log("HMR store", store)

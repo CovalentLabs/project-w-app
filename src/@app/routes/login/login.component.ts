@@ -39,8 +39,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // on init
-    console.log('Hello Login')
     // trigger update so AppState becomes set.
     this._app.next()
   }

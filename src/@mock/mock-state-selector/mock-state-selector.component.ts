@@ -33,7 +33,6 @@ export class MockStateSelectorComponent {
     let keys = this.mockStateKeys
     let contents = createFolders(keys)
     this.mockStateFolders = contents
-    console.log('setupFolders', contents)
   }
 }
 

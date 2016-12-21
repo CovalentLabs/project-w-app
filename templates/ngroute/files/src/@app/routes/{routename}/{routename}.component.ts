@@ -34,8 +34,6 @@ export class <%= RouteName %>Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // on init
-    console.log('<%= RouteName %> Init')
     // trigger update so AppState becomes set.
     this._app.next()
   }

@@ -20,6 +20,6 @@ export class <%= ComponentName %>Component implements OnInit {
   }
 
   onClick() {
-    open.emit()
+    this.open.emit()
   }
 }
