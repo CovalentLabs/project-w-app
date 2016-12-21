@@ -5,7 +5,7 @@ import * as M from '@app/core/model'
 
 @Injectable()
 export class LoginActions {
-  constructor(public app: AppStateService) {}
+  constructor(private app: AppStateService) {}
 
   /**
    * My goal is to decorate these functions so that upon call, we can store

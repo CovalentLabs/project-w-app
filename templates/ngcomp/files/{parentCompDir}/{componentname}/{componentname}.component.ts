@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router'
 
@@ -10,9 +10,16 @@ import { Router } from '@angular/router'
   ]
 })
 export class <%= ComponentName %>Component implements OnInit {
+  @Input() data: string
+  @Output() open = new EventEmitter()
+
   constructor() {}
 
   ngOnInit() {
     // on init
+  }
+
+  onClick() {
+    open.emit()
   }
 }

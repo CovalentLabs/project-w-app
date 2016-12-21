@@ -1,0 +1,22 @@
+<!-- MockStateSelectorComponent Template -->
+
+<div class="mock">
+  <div class="open" (click)="mockSelectionOpen = true">
+    M
+  </div>
+  <div class="dropup"
+      [class.show]="mockSelectionOpen"
+      (click)="mockSelectionOpen = false">
+    <div class="title">Select State</div>
+    <div *ngFor="let key of mockStateKeys"
+        [attr.data-mock-key]="key"
+        (click)="select(key)">
+      {{key}}
+    </div>
+    <div class="title">Links</div>
+    <a routerLink="/home">/home</a>
+    <a routerLink="/login">/login</a>
+    <a routerLink="/">/</a>
+    <div (click)="mockSelectionOpen = false">Close</div>
+  </div>
+</div>

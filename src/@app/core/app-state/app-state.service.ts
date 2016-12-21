@@ -29,11 +29,15 @@ export class AppStateService {
   public state: Observable<M.AppState>
 
   constructor() {
+    console.log("Created app-state service", this)
     this.state = Observable.create(observer => {
+      console.log("Created observable", this, observer)
       this._stateObserver = observer
       // Any cleanup logic might go here
       return () => console.log('disposed state service')
-    });
+    })
+
+    this.state.subscribe(noop => noop)
   }
 
   updateState(partial: M.PartialAppState) {
@@ -48,6 +52,8 @@ export class AppStateService {
     // Store from -> to for time travelling?
 
     // Special merge update of traits
+    console.log(this._state, partial)
+    console.log(this._state, to)
     mergeWith(this._state, to, mergeExceptArrays)
 
     this.next()
@@ -58,6 +64,7 @@ export class AppStateService {
   }
 
   next() {
+    console.log(this._state)
     this._stateObserver.next(this._state)
   }
 

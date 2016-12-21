@@ -1,12 +1,10 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 
 import { Router } from '@angular/router'
 
-import { AppStateService, LoginActions } from '@app/core'
+import { AppStateService, AppState, LoginActions } from '@app/core'
 
 import { Subscription } from 'rxjs'
-
-import * as M from '@app/core/model'
 
 @Component({
   selector: 'pw-login',
@@ -16,21 +14,20 @@ import * as M from '@app/core/model'
   ]
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  // Overall AppState
+  AppState: AppState
+
   private _stateSub: Subscription
 
-  private isLoggingIn: boolean = false
-  private AppState: M.AppState
-
   constructor(
-      private _elt: ElementRef,
+      private _app: AppStateService,
       private _router: Router,
-      private _login: LoginActions,
-      private _app: AppStateService) {
-    this._stateSub =
-    this._app.state.subscribe(appState => {
-      if (appState.Login.Credentials) {
-        this._router.navigate(['/'])
-        return
+      private _login: LoginActions) {
+    this._stateSub = this._app.state.subscribe(
+        appState => {
+      if (appState.Login.IsLoggedIn) {
+        // If not logged in, redirect to login page
+        this._router.navigate(['/home'])
       }
 
       this.AppState = appState
@@ -38,21 +35,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onClickLogin() {
-    this.isLoggingIn = true
-
-    // never pass in an update function
-    // the update function is handled by
-    // the action decorator
     this._login.promptLogin()
   }
 
   ngOnInit() {
-    this.AppState = this._app.getState()
+    // on init
+    console.log('Hello Login')
+    // trigger update so AppState becomes set.
     this._app.next()
   }
 
   ngOnDestroy() {
-    // Remove subscription to free up resources
+    // free up resources by unsubscribing.
     this._stateSub.unsubscribe()
   }
 }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-
-// import { ApiService } from './shared';
+import { Component } from '@angular/core'
 
 import '../style/app.scss';
+
+import { MockState } from '@mock/states'
+
+import { AppStateService } from '@app/core'
 
 @Component({
   selector: 'pw-app', // <pw-app></pw-app>
@@ -10,9 +12,11 @@ import '../style/app.scss';
   styles: [ require('./app.component.scss') ],
 })
 export class AppComponent {
-  url = 'https://github.com/preboot/angular2-webpack';
+  constructor(private _app: AppStateService) {}
 
-  constructor() {
-    // Do something with api
+  setState(ms: MockState) {
+    const update = this._app.action("Mock Update State")
+
+    update("Mock:" + ms.name, ms.state)
   }
 }

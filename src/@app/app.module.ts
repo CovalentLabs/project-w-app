@@ -6,6 +6,9 @@ import { CommonModule }      from '@angular/common';
 /* App Root */
 import { AppComponent } from './app.component';
 
+// Mocks
+import { MockStateSelectorComponent } from '@mock/mock-state-selector/mock-state-selector.component'
+
 /* Shared Modules */
 import { SharedModule } from '@app/shared';
 
@@ -31,7 +34,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppRoutingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    MockStateSelectorComponent
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

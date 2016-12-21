@@ -1,18 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+
+import { Router } from '@angular/router'
+
+import { AppStateService, AppState } from '@app/core'
+
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'pw-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  template: require('./home.component.html'),
+  styles: [
+    require('./home.component.scss'),
+  ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  // Overall AppState
+  AppState: AppState
 
-  constructor() {
-    // Do stuff
+  private _stateSub: Subscription
+
+  constructor(
+      private _app: AppStateService,
+      private _router: Router) {
+    this._stateSub = this._app.state.subscribe(
+        appState => {
+      if (!appState.Login.IsLoggedIn) {
+        // If not logged in, redirect to login page
+        this._router.navigate(['/login'])
+      }
+
+      this.AppState = appState
+    })
   }
 
   ngOnInit() {
-    console.log('Hello Home');
+    // on init
+    console.log('Home Init')
+    // trigger update so AppState becomes set.
+    this._app.next()
   }
 
+  ngOnDestroy() {
+    // free up resources by unsubscribing.
+    this._stateSub.unsubscribe()
+  }
 }

@@ -1,4 +1,13 @@
-// component styles are encapsulated and only applied to their components
-* {
-  color: #FFEF00;
+// HomeComponent Styles
+
+:host {
+  display: block;
+  padding: 4px;
+  color: black;
+  background: #26d43f;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
 }

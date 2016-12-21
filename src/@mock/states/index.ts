@@ -11,6 +11,7 @@ function mergeExceptArrays (objValue, srcValue) {
   }
 }
 
+export
 type MockState = { name: string, state: AppState }
 
 const MOCK_STATES: MockState[] = (function () {
@@ -105,7 +106,7 @@ function state (arr: MockState[]) {
 }
 
 function assign (state: AppState, partial?: PartialAppState): AppState {
-  state = Object.assign({}, state)
+  state = mergeWith({}, state)
   if (partial != null) {
     mergeWith(state, partial, mergeExceptArrays)
   }

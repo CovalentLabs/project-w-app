@@ -1,19 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
 /* Shared Modules */
-import { SharedModule } from '@app/shared/shared.module';
+import { SharedModule } from '@app/shared/shared.module'
 
 /* Feature Modules */
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './login/login.module'
+import { HomeModule } from './home/home.module'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent}
-];
+  { path: '', pathMatch: 'full', redirectTo: 'login' }
+]
 
 @NgModule({
   imports: [
@@ -23,11 +20,9 @@ const routes: Routes = [
 
     /* Feature Routes */
     LoginModule,
+    HomeModule,
   ],
-  declarations: [
-    HomeComponent,
-    AboutComponent
-  ],
+  declarations: [],
   exports: [RouterModule, LoginModule]
 })
 export class AppRoutingModule {}

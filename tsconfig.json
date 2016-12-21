@@ -10,7 +10,8 @@
     "noEmitHelpers": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@app/*": ["./src/@app/*"]
+      "@app/*": ["./src/@app/*"],
+      "@mock/*": ["./src/@mock/*"]
     }
   },
   "compileOnSave": false,
