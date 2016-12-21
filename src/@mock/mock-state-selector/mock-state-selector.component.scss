@@ -17,10 +17,19 @@
 
   .open {
     z-index: 9998;
-    padding: 10px;
+    line-height: 1;
+    text-align: center;
+    padding: 8px;
     border-radius: 20px;
     font-size: 20px;
+    height: 36px;
+    width: 36px;
     bottom: 30%;
+  }
+
+  .close-modal {
+    display: block;
+    background: #dbdbdb
   }
 
   .dropup {

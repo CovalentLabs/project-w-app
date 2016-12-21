@@ -9,6 +9,7 @@
       (click)="mockSelectionOpen = false">
     <div class="title">Select State</div>
     <div *ngFor="let key of mockStateKeys"
+        class="btn dropdown-item"
         [attr.data-mock-key]="key"
         (click)="select(key)">
       {{key}}
@@ -17,6 +18,6 @@
     <a routerLink="/home">/home</a>
     <a routerLink="/login">/login</a>
     <a routerLink="/">/</a>
-    <div (click)="mockSelectionOpen = false">Close</div>
+    <div class="btn close-modal" (click)="mockSelectionOpen = false">Close</div>
   </div>
 </div>
