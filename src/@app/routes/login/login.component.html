@@ -5,4 +5,23 @@
 <button (click)="onClickLogin()">Login</button>
 <br>
 <pre>login</pre>
-<pre>{{ AppState | json }}</pre>
+<!--<pre>{{ AppState | json }}</pre>-->
+
+<div class="alert-container">
+  <div *ngIf="AppState.Login.LoginError">
+    <span class="alert alert-warning">
+      <code>
+        {{AppState.Login.LoginError.ErrorId}}
+      </code>
+      {{AppState.Login.LoginError.Reason}}
+    </span>
+  </div>
+
+  <div *ngIf="AppState.Login.HasLoggedOut">
+    <span class="alert alert-success">
+      Logged out!
+    </span>
+  </div>
+</div>
+
+
