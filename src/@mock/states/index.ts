@@ -1,5 +1,5 @@
 
-import { AppState, PartialAppState } from '@app/core'
+import { AppState, PartialAppState, MockDefault } from '@app/core'
 
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 // https://lodash.com/docs/4.16.4#mergeWith
@@ -18,7 +18,8 @@ const MOCK_STATES: MockState[] = (function () {
   let res: MockState[] = []
   let add = state(res)
 
-  let notLoggedInBase = {
+  let notLoggedInBase: AppState = {
+    Mock: MockDefault,
     Login: {
       Credentials: null,
       HasLoggedOut: false,

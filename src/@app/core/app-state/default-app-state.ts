@@ -9,6 +9,8 @@ const DefaultAppState: M.AppState = {
     HasLoggedOut: false,
     LoginError: null,
     Credentials: null,
-  }
+  },
+
+  Mock: M.MockDefault,
 
 }

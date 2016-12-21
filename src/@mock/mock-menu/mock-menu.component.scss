@@ -9,27 +9,51 @@
   color: black;
 
   .open, .dropup {
-    position: absolute;
     background: whitesmoke;
-    right: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 
   .open {
-    z-index: 9998;
     line-height: 1;
     text-align: center;
     padding: 8px;
     border-radius: 20px;
+    margin-bottom: 10px;
     font-size: 20px;
     height: 36px;
     width: 36px;
+    user-select: none;
+    cursor: pointer;
+
+    &.active-open {
+      background: silver;
+    }
+  }
+
+  .toolbar {
     bottom: 30%;
+    position: absolute;
+    right: 20px;
+    z-index: 9995;
   }
 
   .close-modal {
     display: block;
-    background: #dbdbdb
+    background: #dbdbdb;
+  }
+
+  .debug-state {
+    pointer-events: none;
+    opacity: 1;
+    background: rgba(255,255,255,0.7);
+    pre { color: black; font-weight: bold; }
+    text-shadow: white 0 0 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 9990;
   }
 
   .dropup {
@@ -37,7 +61,9 @@
     opacity: 0;
 
     z-index: 9999;
+    position: absolute;
     top: 10px;
+    right: 20px;
     bottom: 10px;
     overflow: auto;
     width: 220px;

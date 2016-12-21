@@ -1,0 +1,38 @@
+<!-- MockStateSelectorComponent Template -->
+
+<div class="mock">
+  <div class="toolbar">
+    <div class="open" (click)="toggleMockMenu()"
+        [class.active-open]="AppState.Mock.ShowMockMenu">
+      M
+    </div>
+    <div class="open"
+        [class.active-open]="AppState.Mock.ShowDebugState"
+        (click)="toggleDebugState()">
+      S
+    </div>
+  </div>
+
+  <!--DebugState-->
+  <div
+    class="debug-state"
+    *ngIf="AppState.Mock.ShowDebugState">
+    <pre>{{ AppState | json }}</pre>
+  </div>
+
+  <div class="dropup"
+      [class.show]="AppState.Mock.ShowMockMenu"
+      (click)="toggleMockMenu(false)">
+    <div class="title">Select State</div>
+    <pw-mock-tree-view
+        *ngFor="let f of mockStateFolders"
+        [folder]="f"
+        (select)="select($event)">
+    </pw-mock-tree-view>
+    <div class="title">Links</div>
+    <a routerLink="/home">/home</a>
+    <a routerLink="/login">/login</a>
+    <a routerLink="/">/</a>
+    <div class="btn close-modal" (click)="toggleMockMenu(false)">Close</div>
+  </div>
+</div>

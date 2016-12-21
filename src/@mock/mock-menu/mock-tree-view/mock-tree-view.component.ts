@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Folder } from '../mock-state-selector.component'
+import { Folder } from '../mock-menu.component'
 
 @Component({
   selector: 'pw-mock-tree-view',

@@ -2,13 +2,13 @@ import { NgModule }           from '@angular/core'
 import { SharedModule }       from '@app/shared/shared.module'
 
 // Mock State Selector
-import { MockStateSelectorComponent } from './mock-state-selector/mock-state-selector.component'
-import { MockTreeViewComponent } from './mock-state-selector/mock-tree-view/mock-tree-view.component'
+import { MockMenuComponent } from './mock-menu/mock-menu.component'
+import { MockTreeViewComponent } from './mock-menu/mock-tree-view/mock-tree-view.component'
 
 @NgModule({
   imports:      [ SharedModule ],
-  declarations: [ MockStateSelectorComponent, MockTreeViewComponent ],
-  exports: [ MockStateSelectorComponent ],
+  declarations: [ MockMenuComponent, MockTreeViewComponent ],
+  exports: [ MockMenuComponent ],
   providers:    [
     // Mock Providers?
   ]
