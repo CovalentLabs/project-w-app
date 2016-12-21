@@ -106,6 +106,6 @@ function createFolders(keys: string[], prefix = ''): Folder[] {
     })
   return res.concat(
     Object.keys(items)
-      .map(pre => ({ name: pre, children: createFolders(items[pre], pre) }))
+      .map(pre => ({ name: pre, children: createFolders(items[pre], prefix + pre) }))
   )
 }
