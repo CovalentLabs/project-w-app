@@ -55,7 +55,8 @@ export class AppModule {
     console.log("HMR store", store)
 
     if (store && store.appState) {
-      this._appStateService.updateState(store.appState)
+      let update = this._appStateService.action("Hot Module Reload", 'reset')
+      update("Reinstate", store.appState)
 
       // change detection
       this.appRef.tick()

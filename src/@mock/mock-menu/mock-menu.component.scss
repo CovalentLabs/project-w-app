@@ -26,7 +26,8 @@
     cursor: pointer;
 
     &.active-open {
-      background: silver;
+      background: dodgerblue;
+      color: white;
     }
   }
 
@@ -46,9 +47,9 @@
     pointer-events: none;
     opacity: 1;
 
-    color: black;
-    text-shadow: 0px 0px 1px rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.5);
+    color: lawngreen;
+    text-shadow: 0px 0px 2px black;
+    background: rgba(255,255,255,0.3);
 
     font-weight: 500;
     font-family: "Fira Code", Consolas, monospace;

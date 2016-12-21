@@ -38,7 +38,7 @@ export class AppStateService {
     this.state.subscribe(noop => noop)
   }
 
-  updateState(partial: M.PartialAppState) {
+  private updateState(partial: M.PartialAppState) {
     // let from: M.PartialModel = {}
     let to: M.PartialAppState = {}
     for (let key in partial) {
@@ -63,12 +63,19 @@ export class AppStateService {
     this._stateObserver.next(this._state)
   }
 
-  action(message: string): ActionUpdate {
+  action(message: string, time_travel?: 'reset' | 'skip' | 'store'): ActionUpdate {
     function ActionUpdateFunction (name: string, partial: M.PartialAppState) {
-      // FUTURE: log or store etc. for time travel. Time travel is so hot right now.
-      console.log('%c' + message + ' %c' + name, 'font-weight: bold', 'color: blue')
+      if (time_travel === 'reset') {
+        // FUTURE Reset timeline
+        console.log('%cTimeline Reset', 'font-weight: bold; color: green')
+      }
 
-      this.updateState(partial)
+      if (time_travel !== 'skip') {
+        // FUTURE: log or store etc. for time travel. Time travel is so hot right now.
+        console.log('%c' + message + ' %c' + name, 'font-weight: bold', 'color: blue')
+      }
+
+      (<AppStateService> this).updateState(partial)
     }
 
     return ActionUpdateFunction.bind(this)

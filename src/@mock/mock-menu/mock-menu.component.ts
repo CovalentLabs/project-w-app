@@ -42,7 +42,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
   }
 
   setState(ms: MockState) {
-    const update = this._app.action("Mock Update State")
+    const update = this._app.action("Mock Update State", 'reset')
 
     update("Mock:" + ms.name, ms.state)
   }
@@ -51,7 +51,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
     if (show == null) {
       show = !this.AppState.Mock.ShowMockMenu
     }
-    const update = this._app.action("Mock ShowMockMenu")
+    const update = this._app.action("Mock ShowMockMenu", 'skip')
 
     update(show ? 'Show' : 'Hide',  {
       Mock: { ShowMockMenu: show }
@@ -62,7 +62,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
     if (show == null) {
       show = !this.AppState.Mock.ShowDebugState
     }
-    const update = this._app.action("Mock ShowDebugState")
+    const update = this._app.action("Mock ShowDebugState", 'skip')
 
     update(show ? 'Show' : 'Hide',  {
       Mock: { ShowDebugState: show }
