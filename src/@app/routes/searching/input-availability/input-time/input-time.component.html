@@ -1,0 +1,20 @@
+<!-- InputTimeComponent Template -->
+
+<div class="flex-cont input-cont">
+  <input type="number" [(ngModel)]="hours">
+  <span>:</span>
+  <input type="number" [(ngModel)]="minutes">
+</div>
+
+<div class="flex-cont">
+  <div class="time-a"
+      (click)="isAm = true"
+      [class.active]="isAm">
+    AM
+  </div>
+  <div class="time-a"
+      (click)="isAm = false"
+      [class.active]="!isAm">
+    PM
+  </div>
+</div>

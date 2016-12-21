@@ -7,13 +7,13 @@ import { AppStateService, AppState } from '@app/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'pw-home',
-  template: require('./home.component.html'),
+  selector: 'pw-searching',
+  template: require('./searching.component.html'),
   styles: [
-    require('./home.component.scss'),
+    require('./searching.component.scss'),
   ]
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class SearchingComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
 
@@ -31,10 +31,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.AppState = appState
     })
-  }
-
-  clickStartSearch() {
-    this._router.navigate(['/searching'])
   }
 
   ngOnInit() {

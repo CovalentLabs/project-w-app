@@ -1,0 +1,30 @@
+// InputTimeComponent Styles
+
+:host {
+  display: block;
+  padding: 4px;
+}
+
+.flex-cont {
+  display: flex;
+}
+
+.time-a {
+  text-align: center;
+
+  flex-grow: 1;
+
+  &.active {
+    color: dodgerblue;
+  }
+}
+
+.input-cont {
+  > input {
+    flex-grow: 1;
+
+  }
+  > span {
+    color: blue;
+  }
+}

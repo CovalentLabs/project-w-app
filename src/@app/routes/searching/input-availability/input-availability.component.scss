@@ -1,0 +1,50 @@
+// InputAvailabilityComponent Styles
+
+$border-blue: dodgerblue;
+$background: whitesmoke;
+
+:host {
+  display: block;
+  position: relative;
+}
+
+$text-size: 12px;
+
+.title {
+  color: $border-blue;
+  font-size: $text-size;
+}
+
+.avail-container {
+  margin: 8px;
+  border: 2px solid $border-blue;
+}
+
+
+.until-display {
+  border-bottom: 2px solid $border-blue;
+
+  font-size: $text-size;
+
+  text-align: center;
+
+  height: $text-size * .8;
+  margin-bottom: $text-size;
+
+  > span {
+    background: $background;
+    display: inline-block;
+
+    color: $border-blue;
+
+    padding: 0px 12px;
+    text-transform: uppercase;
+  }
+}
+
+.confirm-button {
+  color: whitesmoke;
+  width: 100%;
+  background: $border-blue;
+  border: none;
+}
