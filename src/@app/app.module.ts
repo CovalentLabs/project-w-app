@@ -6,9 +6,6 @@ import { CommonModule }      from '@angular/common';
 /* App Root */
 import { AppComponent } from './app.component';
 
-// Mocks
-import { MockStateSelectorComponent } from '@mock/mock-state-selector/mock-state-selector.component'
-
 /* Shared Modules */
 import { SharedModule } from '@app/shared';
 
@@ -17,6 +14,8 @@ import { CoreModule } from '@app/core';
 /* Routing Module */
 import { AppRoutingModule } from '@app/routes/app-routing.module';
 
+// Mocks
+import { MockModule } from '@mock/mock.module'
 
 import { AppStateService } from '@app/core/app-state'
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -31,11 +30,12 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     // and app-wide singletons such as the DeviceStateService
     CoreModule.forRoot(),
 
+    MockModule,
+
     AppRoutingModule
   ],
   declarations: [
-    AppComponent,
-    MockStateSelectorComponent
+    AppComponent
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

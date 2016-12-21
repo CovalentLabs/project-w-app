@@ -8,12 +8,11 @@
       [class.show]="mockSelectionOpen"
       (click)="mockSelectionOpen = false">
     <div class="title">Select State</div>
-    <div *ngFor="let key of mockStateKeys"
-        class="btn dropdown-item"
-        [attr.data-mock-key]="key"
-        (click)="select(key)">
-      {{key}}
-    </div>
+    <pw-mock-tree-view
+        *ngFor="let f of mockStateFolders"
+        [folder]="f"
+        (select)="select($event)">
+    </pw-mock-tree-view>
     <div class="title">Links</div>
     <a routerLink="/home">/home</a>
     <a routerLink="/login">/login</a>
