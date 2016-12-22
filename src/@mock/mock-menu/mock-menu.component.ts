@@ -24,8 +24,6 @@ export class MockMenuComponent implements OnDestroy, OnInit {
   private _timelineSub: Subscription
 
   mockStateKeys: string[] = []
-  @Output() selectState = new EventEmitter<MockState>()
-
   showState = false
   mockSelectionOpen = false
 
