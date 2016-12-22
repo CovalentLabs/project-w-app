@@ -67,6 +67,12 @@
     z-index: 9990;
   }
 
+  pw-timeline-view {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
   .dropup {
     pointer-events: none;
     opacity: 0;

@@ -21,6 +21,8 @@ import * as M from '@app/core/model'
 
 export type ActionUpdate = (name: string, partial: M.PartialAppState) => void
 
+import { TimelineService, Timeline } from './timeline.service'
+
 @Injectable()
 export class AppStateService {
   private _state: M.AppState = DefaultAppState
@@ -28,31 +30,33 @@ export class AppStateService {
 
   public state: Observable<M.AppState>
 
-  constructor() {
+  constructor(private _timeline: TimelineService) {
     this.state = Observable.create(observer => {
       this._stateObserver = observer
       // Any cleanup logic might go here
-      return () => console.log('disposed state service')
+      return () => console.log('disposed state subscription')
     })
-
     this.state.subscribe(noop => noop)
   }
 
   private updateState(partial: M.PartialAppState) {
-    // let from: M.PartialModel = {}
+    let track_from: M.PartialAppState = {}
     let to: M.PartialAppState = {}
     for (let key in partial) {
       if (!deepEqual(this._state[key], partial[key])) {
-        // from[key] = this._state[key]
+        track_from[key] = this._state[key]
         to[key] = partial[key]
       }
     }
-    // Store from -> to for time travelling?
 
     // Special merge update of traits
+    let from: M.PartialAppState = {}
+    mergeWith(from, track_from, mergeExceptArrays)
     mergeWith(this._state, to, mergeExceptArrays)
 
     this.next()
+
+    return { from, to }
   }
 
   getState(): M.AppState {
@@ -63,19 +67,31 @@ export class AppStateService {
     this._stateObserver.next(this._state)
   }
 
-  action(message: string, time_travel?: 'reset' | 'skip' | 'store'): ActionUpdate {
+  applyTimeline(timeline: Timeline) {
+    this._state = DefaultAppState
+    this._timeline.reset()
+    for (let entry of timeline) {
+      // enter each timeline entry back into timeline
+      this.action(entry.type)(entry.name, entry.to)
+    }
+  }
+
+  // This is the fundamental way to change the Application,
+  // Here you can create an update function, which can be passed
+  // your PartialAppState update, and it will be stored and logged.
+  action(type: string, time_travel?: 'reset' | 'skip' | 'store'): ActionUpdate {
     function ActionUpdateFunction (name: string, partial: M.PartialAppState) {
+      const app = (<AppStateService> this)
+
       if (time_travel === 'reset') {
-        // FUTURE Reset timeline
-        console.log('%cTimeline Reset', 'font-weight: bold; color: green')
+        app._timeline.reset()
       }
+
+      const change = app.updateState(partial)
 
       if (time_travel !== 'skip') {
-        // FUTURE: log or store etc. for time travel. Time travel is so hot right now.
-        console.log('%c' + message + ' %c' + name, 'font-weight: bold', 'color: blue')
+        app._timeline.enter(type, name, change.from, change.to)
       }
-
-      (<AppStateService> this).updateState(partial)
     }
 
     return ActionUpdateFunction.bind(this)

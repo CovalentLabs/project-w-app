@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { ACTIONS } from './action'
-import { AppStateService } from './app-state'
+import { AppStateService, TimelineService } from './app-state'
 
 // import { DeviceStateService }from './device-state.service';
 
@@ -22,6 +22,7 @@ import { AppStateService } from './app-state'
   // exports:      [ TitleComponent ],
   providers:    [
     AppStateService,
+    TimelineService,
 
     ...ACTIONS,
 

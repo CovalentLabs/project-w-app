@@ -2,16 +2,28 @@
 
 <div class="mock">
   <div class="toolbar">
-    <div class="open" (click)="toggleMockMenu()"
-        [class.active-open]="AppState.Mock.ShowMockMenu">
+    <div class="open" title="Show Mock States"
+        [class.active-open]="AppState.Mock.ShowMockMenu"
+        (click)="toggleMockMenu()">
       M
     </div>
-    <div class="open"
+    <div class="open" title="Show Debug AppState"
         [class.active-open]="AppState.Mock.ShowDebugState"
         (click)="toggleDebugState()">
       S
     </div>
+    <div class="open" title="Show Timeline"
+        [class.active-open]="AppState.Mock.ShowTimeline"
+        (click)="toggleTimeline()">
+      T
+    </div>
   </div>
+
+  <!--Timeline-->
+  <ng-container *ngIf="AppState.Mock.ShowTimeline && Timeline">
+    <pw-timeline-view [timeline]="Timeline" (selectEntry)="selectTimelineEntry($event)">
+    </pw-timeline-view>
+  </ng-container>
 
   <!--DebugState-->
   <div

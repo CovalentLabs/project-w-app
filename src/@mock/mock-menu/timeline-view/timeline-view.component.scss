@@ -1,0 +1,49 @@
+// TimelineViewComponent Styles
+
+:host {
+  display: block;
+  // background: #dbdbdb;
+  pointer-events: none;
+  padding: 4px;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.2) inset;
+}
+
+.timeline-list {
+  &::before {
+    content: "Timeline";
+    position: absolute;
+    padding: 0px 4px;
+    bottom: 0;
+    right: 0;
+    background: dodgerblue;
+    color: white;
+  }
+  height: 100px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.timeline-entry {
+  width: 100px;
+  height: 88px;
+  font-size: 10px;
+  float: left;
+  padding: 8px 4px;
+  margin: 4px;
+  margin-right: 20px;
+  background: whitesmoke;
+  border: 1px solid white;
+  pointer-events: all;
+
+  opacity: .7;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+    background: lightgoldenrodyellow;
+  }
+}

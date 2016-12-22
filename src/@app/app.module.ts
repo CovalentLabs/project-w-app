@@ -17,7 +17,7 @@ import { AppRoutingModule } from '@app/routes/app-routing.module';
 // Mocks
 import { MockModule } from '@mock/mock.module'
 
-import { AppStateService } from '@app/core/app-state'
+import { AppStateService, TimelineService } from '@app/core/app-state'
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 @NgModule({
@@ -45,7 +45,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 export class AppModule {
   constructor(
       public appRef: ApplicationRef,
-      private _appStateService: AppStateService
+      private _appStateService: AppStateService,
+      private _timelineService: TimelineService
   ) {}
 
   hmrOnInit(store) {
@@ -54,13 +55,12 @@ export class AppModule {
 
     console.log("HMR store", store)
 
-    if (store && store.appState) {
-      let update = this._appStateService.action("Hot Module Reload", 'reset')
-      update("Reinstate", store.appState)
+    if (store && store.timeline) {
+      this._appStateService.applyTimeline(store.timeline)
 
       // change detection
       this.appRef.tick()
-      delete store.appState
+      delete store.timeline
 
       if (store.hash) {
         // set app path back
@@ -81,7 +81,7 @@ export class AppModule {
     store.hash = window.location.hash
 
     // Save state to hmr
-    store.appState = Object.assign({}, this._appStateService.getState())
+    store.timeline = this._timelineService.getTimeline()
 
     // remove styles
     removeNgStyles();

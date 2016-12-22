@@ -19,7 +19,7 @@ export class LoginActions {
     const update: ActionUpdate = this.app.action("Prompt Login")
 
     setTimeout(
-      () => update("Successfully Logged In", createLoggedInUpdate('Cole', 'Lawrence', '1')),
+      () => update("Successfully Logged In as Cole!", createLoggedInUpdate('Cole', 'Lawrence', '1')),
       1500
     )
   }

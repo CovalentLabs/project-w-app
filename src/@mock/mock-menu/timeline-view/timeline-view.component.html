@@ -1,0 +1,9 @@
+<!-- TimelineViewComponent Template -->
+<div class="timeline-list" *ngIf="timeline">
+  <div class="timeline-entry"
+      (click)="onClick(entry)"
+      *ngFor="let entry of timeline">
+    <strong class="no-wrap">{{entry.type}}</strong>:
+    <span class="no-wrap">{{entry.name}}</span>
+  </div>
+</div>
