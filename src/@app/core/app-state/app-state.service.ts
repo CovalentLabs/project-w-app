@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core'
 
 import { Observer, Observable } from 'rxjs'
 
+import { Router, NavigationEnd } from '@angular/router'
+
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 const deepEqual = <(value: any, other: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.isequalwith')
 
@@ -18,8 +20,11 @@ function mergeExceptArrays (objValue, srcValue) {
 import * as M from '@app/core/model'
 
 export type ActionUpdate = (name: string, partial: M.PartialAppState) => void
+export type EffectUpdate = ActionUpdate
+export type NavigationUpdate = (from_url: string, to_url: string) => void
 
 import { TimelineService, Timeline } from './timeline.service'
+import * as T from './timeline.service'
 
 @Injectable()
 export class AppStateService {
@@ -28,12 +33,27 @@ export class AppStateService {
 
   public state: Observable<M.AppState>
 
-  constructor(private _timeline: TimelineService) {
+  private _lastUrl: string
+
+  constructor(
+      private _timeline: TimelineService,
+      private _router: Router) {
     this.state = Observable.create(observer => {
       this._stateObserver = observer
       // Any cleanup logic might go here
-      return () => console.log('disposed state subscription')
+      return () => console.log('%cdisposed state subscription', 'color: slategrey')
     })
+
+    this._lastUrl = this._router.url
+
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.navigation("Detected")(this._lastUrl, event.url)
+        this._lastUrl = event.url
+      }
+    })
+
+
     this.state.subscribe(noop => noop)
   }
 
@@ -70,7 +90,20 @@ export class AppStateService {
     this._timeline.reset()
     for (let entry of timeline) {
       // enter each timeline entry back into timeline
-      this.action(entry.type)(entry.name, entry.to)
+      switch (entry.type) {
+        case 'action':
+          const action_data = <T.TimelineAction> entry.data
+          this.action(action_data.type)(action_data.name, action_data.to)
+        break
+        case 'navigation':
+          const navigation_data = <T.TimelineNavigation> entry.data
+          this._router.navigateByUrl(navigation_data.to)
+        break
+        case 'effect':
+          const effect_data = <T.TimelineEffect> entry.data
+          this.effect(effect_data.type)(effect_data.name, effect_data.to)
+        break
+      }
     }
   }
 
@@ -88,10 +121,55 @@ export class AppStateService {
       const change = app.updateState(partial)
 
       if (time_travel !== 'skip') {
-        app._timeline.enter(type, name, change.from, change.to)
+        app._timeline.enter(
+          'action',
+          // This type guard is for future proofing, rather than it being
+          // required for this to work. So, if TimelineAction changes structure,
+          // this will update
+          <T.TimelineAction> { type, name, from: change.from, to: change.to }
+        )
       }
     }
 
     return ActionUpdateFunction.bind(this)
+  }
+
+  // This is the fundamental way which server originated changes,
+  // update the Application state.
+  effect(type: string): EffectUpdate {
+    function EffectUpdateFunction (name: string, partial: M.PartialAppState) {
+      const app = (<AppStateService> this)
+
+      const change = app.updateState(partial)
+
+      app._timeline.enter(
+        'effect',
+        <T.TimelineEffect> { type, name, from: change.from, to: change.to }
+      )
+    }
+
+    return EffectUpdateFunction.bind(this)
+  }
+
+  // This is the fundamental way which server originated changes,
+  // update the Application state.
+  navigation(reason: string): NavigationUpdate {
+    function NavigationUpdateFunction (from_url: string, to_url: string) {
+      const app = (<AppStateService> this)
+
+      // We've commented this out, because we are solely relying on listening
+      // for router url changes.
+      // Unfortunately, this means we need to do weird things to time travel,
+      // but we'll cross that bridge when we come to it.
+      // We will likely just end up separating navigation and
+      // app._router.navigateByUrl(url)
+
+      app._timeline.enter(
+        'navigation',
+        <T.TimelineNavigation> { reason, from: from_url, to: to_url }
+      )
+    }
+
+    return NavigationUpdateFunction.bind(this)
   }
 }

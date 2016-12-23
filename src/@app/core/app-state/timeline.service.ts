@@ -4,25 +4,31 @@ import { Observer, Observable } from 'rxjs'
 
 import * as M from '@app/core/model'
 
-const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
-
-
-// https://lodash.com/docs/4.16.4#mergeWith
-// In the future, we may be interested in customizing this further
-// for better support of large message arrays maybe.
-function mergeExceptArrays (objValue, srcValue) {
-  if (objValue instanceof Array && srcValue instanceof Array) {
-    return srcValue
-  }
-}
-
-export type TimelineEntry = {
-  id: any,
+// Results from Device action
+export type TimelineAction = {
   type: string,
   name: string,
   from: M.PartialAppState,
   to: M.PartialAppState
 }
+// Results from Server action
+export type TimelineEffect = TimelineAction
+
+export type TimelineNavigation = {
+  reason: string,
+  from: string,
+  to: string,
+}
+
+export type TimelineEntryType = 'action' | 'effect' | 'navigation'
+export type TimelineEntryData = TimelineAction | TimelineEffect | TimelineNavigation
+
+export type TimelineEntry = {
+  id: any
+  type: TimelineEntryType
+  data: TimelineEntryData
+}
+
 export type Timeline = TimelineEntry[]
 
 @Injectable()
@@ -56,16 +62,11 @@ export class TimelineService {
     this.next()
   }
 
-  goBackTo(id: any): M.PartialAppState {
+  getAfter(id: any): Timeline {
     id = Number(id)
 
     return this._timeline
       .filter(entry => entry.id > id)
-      .reduceRight((prev, entry) => {
-        // Special merge update of traits
-        mergeWith(prev, entry.from, mergeExceptArrays)
-        return prev
-      }, <M.PartialAppState> {})
   }
 
   getUpTo(id: any): Timeline {
@@ -79,16 +80,31 @@ export class TimelineService {
     return this._timeline
   }
 
-  enter(type: string, name: string, from: M.PartialAppState, to: M.PartialAppState) {
+  enter(entry_type: TimelineEntryType, data: TimelineEntryData) {
     // FUTURE: log or store etc. for time travel. Time travel is so hot right now.
-    console.log('%c' + type + ' %c' + name, 'font-weight: bold', 'color: blue')
+    let type
+    let name
+    switch (entry_type) {
+      case 'navigation':
+        let navdata = (<TimelineNavigation> data)
+        type = navdata.reason
+        name = `${navdata.from} => ${navdata.to}`
+        break
+      case 'action':
+        type = (<TimelineAction> data).type
+        name = (<TimelineAction> data).name
+        break
+      case 'effect':
+        type = (<TimelineEffect> data).type
+        name = (<TimelineEffect> data).name
+        break
+    }
+    console.log(entry_type.toUpperCase() + ': %c' + type + ' %c' + name, 'font-weight: bold', 'color: blue')
 
     this._timeline.push({
       id: this._id++,
-      type,
-      name,
-      from,
-      to,
+      type: entry_type,
+      data: data
     })
 
     this.next()

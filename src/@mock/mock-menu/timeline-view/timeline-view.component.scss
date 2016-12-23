@@ -3,40 +3,62 @@
 :host {
   display: block;
   // background: #dbdbdb;
-  pointer-events: none;
   padding: 4px;
   box-shadow: 0 4px 4px rgba(0,0,0,0.2) inset;
+  pointer-events: none;
 }
 
 .timeline-list {
-  &::before {
-    content: "Timeline";
+  pointer-events: none;
+  opacity: .7;
+  .title {
+    pointer-events: all;
+    cursor: pointer;
     position: absolute;
     padding: 0px 4px;
     bottom: 0;
     right: 0;
-    background: dodgerblue;
+    z-index: 1;
+    background: slategrey;
     color: white;
   }
-  height: 100px;
+  &.is-interactive {
+    pointer-events: all;
+    opacity: 1;
+    .title {
+      background: dodgerblue;
+    }
+  }
+
+  // scroll bar wisth is 17px
+  max-height: calc(100vh - 17px);
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .timeline-entry {
-  width: 100px;
-  height: 88px;
   font-size: 10px;
-  float: left;
-  padding: 8px 4px;
-  margin: 4px;
-  margin-right: 20px;
+  padding: 4px;
+  margin: 4px 20px;
   background: whitesmoke;
   border: 1px solid white;
-  pointer-events: all;
 
-  opacity: .7;
+  > * {
+    display: inline-block;
+  }
+
+  .type {
+    background: white;
+    color: fuscia;
+    mix-blend-mode: exclusion;
+    padding: .2em .5em;
+  }
+
+  opacity: .8;
+
+  &[data-entry-type=navigation] { background-color: rgb(20%, 80%, 60%); }
+  &[data-entry-type=action] { background-color: rgb(68.6%, 89%, 7.5%); }
+  &[data-entry-type=effect] { background-color: rgb(100%, 43.9%, 20.4%); }
 
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 

@@ -13,6 +13,8 @@ export class TimelineViewComponent {
   @Input() timeline: Timeline
   @Output() selectEntry = new EventEmitter<any>()
 
+  interactive: boolean = false
+
   onClick(entry: TimelineEntry) {
     this.selectEntry.emit(entry.id)
   }

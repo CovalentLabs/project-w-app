@@ -61,14 +61,6 @@ export class AppModule {
       // change detection
       this.appRef.tick()
       delete store.timeline
-
-      if (store.hash) {
-        // set app path back
-        setTimeout(() => {
-          window.location.hash = store.hash
-          delete store.hash
-        })
-      }
     }
   }
 
@@ -76,9 +68,6 @@ export class AppModule {
     let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
     // recreate elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
-
-    // hash
-    store.hash = window.location.hash
 
     // Save state to hmr
     store.timeline = this._timelineService.getTimeline()

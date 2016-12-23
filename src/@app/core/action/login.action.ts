@@ -8,12 +8,8 @@ export class LoginActions {
   constructor(private app: AppStateService) {}
 
   /**
-   * My goal is to decorate these functions so that upon call, we can store
-   * the arguments passed to it,
-   * and then we can replay the function calls over again in the future for
-   * extremely easy testing set up.
-   * Now, in this case with Action, we are able to store the update produced
-   * by the prompt and apply it to our app's state.
+   * Each action creates an update which is tracked on a timeline
+   * for feedback/error reports and debugging ease.
    */
   promptLogin() {
     const update: ActionUpdate = this.app.action("Prompt Login")
