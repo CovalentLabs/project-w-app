@@ -2,7 +2,7 @@
 <div class="timeline-list" *ngIf="timeline"
     [class.is-interactive]="interactive">
   <div class="title"
-      (click)="interactive = !interactive">
+      (click)="interactive = !interactive; changes.detectChanges()">
     Timeline
   </div>
   <div class="timeline-entry"

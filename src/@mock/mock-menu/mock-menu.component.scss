@@ -13,6 +13,16 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 
+  .overlay {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .overlay.active-overlay {
+    pointer-events: all;
+    opacity: 1;
+  }
+
   .open {
     line-height: 1;
     text-align: center;
@@ -44,9 +54,6 @@
   }
 
   .debug-state {
-    pointer-events: all;
-    opacity: 1;
-
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -73,15 +80,13 @@
 
   pw-timeline-view {
     position: absolute;
+    z-index: 9992;
     bottom: 0;
     width: 100%;
     max-height: 100vh;
   }
 
   .dropup {
-    pointer-events: none;
-    opacity: 0;
-
     z-index: 9999;
     position: absolute;
     top: 10px;
@@ -134,13 +139,6 @@
       &:hover {
         background: lightskyblue;
       }
-    }
-
-    transition: opacity .2s;
-
-    &.show {
-      opacity: 1;
-      pointer-events: all;
     }
   }
 }

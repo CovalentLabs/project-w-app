@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 import { Timeline, TimelineEntry } from '@app/core'
 
@@ -12,8 +12,10 @@ import { Timeline, TimelineEntry } from '@app/core'
 export class TimelineViewComponent {
   @Input() timeline: Timeline
   @Output() selectEntry = new EventEmitter<any>()
-
   interactive: boolean = false
+
+  constructor(protected changes: ChangeDetectorRef) {}
+
 
   onClick(entry: TimelineEntry) {
     this.selectEntry.emit(entry.id)

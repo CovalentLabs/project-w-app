@@ -13,6 +13,7 @@
   opacity: .7;
   .title {
     pointer-events: all;
+    user-select: none;
     cursor: pointer;
     position: absolute;
     padding: 0px 4px;

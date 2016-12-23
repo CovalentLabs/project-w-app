@@ -20,18 +20,23 @@
   </div>
 
   <!--Timeline-->
-  <ng-container *ngIf="AppState.Mock.ShowTimeline && Timeline">
-    <pw-timeline-view [timeline]="Timeline" (selectEntry)="selectTimelineEntry($event)">
+  <ng-container *ngIf="Timeline">
+    <pw-timeline-view
+        class="overlay"
+        [class.active-overlay]="AppState.Mock.ShowTimeline"
+        [timeline]="Timeline" (selectEntry)="selectTimelineEntry($event)">
     </pw-timeline-view>
   </ng-container>
 
   <!--DebugState-->
   <div
-      class="debug-state"
-      *ngIf="AppState.Mock.ShowDebugState">{{ AppState | json }}</div>
+      class="overlay"
+      [class.active-overlay]="AppState.Mock.ShowDebugState">
+    <div class="debug-state">{{ AppState | json }}</div>
+  </div>
 
-  <div class="dropup"
-      [class.show]="AppState.Mock.ShowMockMenu"
+  <div class="dropup overlay"
+      [class.active-overlay]="AppState.Mock.ShowMockMenu"
       (click)="toggleMockMenu(false)">
     <div class="title">Select State</div>
     <pw-mock-tree-view

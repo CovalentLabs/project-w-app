@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { AppStateService, ActionUpdate } from '@app/core/app-state'
+import { AppStateService, ActionUpdate, EffectUpdate } from '@app/core/app-state'
 import * as M from '@app/core/model'
 
 @Injectable()
@@ -12,7 +12,7 @@ export class LoginActions {
    * for feedback/error reports and debugging ease.
    */
   promptLogin() {
-    const update: ActionUpdate = this.app.action("Prompt Login")
+    const update: EffectUpdate = this.app.effect("Prompt Login")
 
     setTimeout(
       () => update("Successfully Logged In as Cole!", createLoggedInUpdate('Cole', 'Lawrence', '1')),
