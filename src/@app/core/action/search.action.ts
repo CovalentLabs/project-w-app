@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 
 import { AppStateService, ActionUpdate, EffectUpdate } from '@app/core/app-state'
-import * as M from '@app/core/model'
 
 import moment = require('moment')
 
