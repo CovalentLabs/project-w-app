@@ -21,7 +21,12 @@ export class SearchActions {
     // as IsSearching is likely false
     update("Setting Up", {
       Search: {
+        // Show Search Header Bar at top of app
         ShowSearch: true
+      },
+      Device: {
+        // Navigate to search page
+        URL: '/search'
       }
     })
 
