@@ -1,9 +1,32 @@
 
+
 // These are items which have Id properties
 // It is important for us to keep track of the items
 // which can be changed on one side of the App,
 // and need to stay up to date across the app.
-import { SharedDBObjectName, SharedDBObjectNames } from './shared'
+export type SharedDBObjectName
+  = 'Profile'
+  | 'Friend'
+  | 'Availability'
+  | 'Pea'
+  | 'Pod'
+  | 'PodMatch'
+  | 'SentInvitation'
+  | 'PodSentInvitation'
+  | 'Group'
+  | 'GroupUser'
+export const SharedDBObjectNames: SharedDBObjectName[] =
+  [ 'Profile'
+  , 'Friend'
+  , 'Availability'
+  , 'Pea'
+  , 'Pod'
+  , 'PodMatch'
+  , 'SentInvitation'
+  , 'PodSentInvitation'
+  , 'Group'
+  , 'GroupUser' ]
+// import { SharedDBObjectName, SharedDBObjectNames } from './shared'
 import { DBObjectName as DB1, DBObjectNames as DBN1 } from './login-credentials.model'
 import { DBObjectName as DB2, DBObjectNames as DBN2 } from './lobby-item.model'
 import { DBObjectName as DB3, DBObjectNames as DBN3 } from './user-item.model'
