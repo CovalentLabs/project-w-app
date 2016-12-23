@@ -3,10 +3,13 @@ import { Device, DefaultDevice } from './device.model'
 export { Device, DefaultDevice }
 import { Login, DefaultLogin } from './login.model'
 export { Login, DefaultLogin }
+export { LoginCredentials } from './login-credentials.model'
+export { UserItem } from './user-item.model'
 import { Search, DefaultSearch } from './search.model'
 export { Search, DefaultSearch }
 import { Lobby, DefaultLobby } from './lobby.model'
 export { Lobby, DefaultLobby }
+export { LobbyItem, LobbyItemType, LobbyItemOperation } from './lobby-item.model'
 import { Mock, DefaultMock } from './mock.model'
 export { Mock, DefaultMock }
 
