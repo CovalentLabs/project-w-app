@@ -1,9 +1,9 @@
 <!-- InputTimeComponent Template -->
 
 <div class="flex-cont input-cont">
-  <input type="number" [(ngModel)]="hours">
+  <input type="number" min="1" max="12" [(ngModel)]="hours">
   <span>:</span>
-  <input type="number" [(ngModel)]="minutes">
+  <input type="number" min="0" max="55" step="5" [(ngModel)]="minutes">
 </div>
 
 <div class="flex-cont">
