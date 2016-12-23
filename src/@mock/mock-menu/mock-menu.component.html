@@ -40,9 +40,9 @@
         (select)="select($event)">
     </pw-mock-tree-view>
     <div class="title">Links</div>
-    <a routerLink="/home">/home</a>
-    <a routerLink="/login">/login</a>
-    <a routerLink="/">/</a>
+    <div class="open-link" *ngFor="let url of mockUrls" (click)="navigate(url)">
+      {{ url }}
+    </div>
     <div class="btn close-modal" (click)="toggleMockMenu(false)">Close</div>
   </div>
 </div>

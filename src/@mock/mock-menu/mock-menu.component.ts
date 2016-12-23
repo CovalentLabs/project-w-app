@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { getMockState, MOCK_STATE_KEYS, MockState } from '@mock/states'
 
 import { AppStateService, AppState, Timeline, TimelineService } from '@app/core'
@@ -27,8 +29,17 @@ export class MockMenuComponent implements OnDestroy, OnInit {
   showState = false
   mockSelectionOpen = false
 
+  mockUrls: string[] = [
+    '/home',
+    '/searching',
+    '/lobby',
+    '/history',
+    '/',
+  ]
+
   mockStateFolders: Folder[] = []
   constructor(private _app: AppStateService,
+      private _router: Router,
       private _timeline: TimelineService) {
     this.mockStateKeys = MOCK_STATE_KEYS
 
@@ -40,6 +51,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
       .subscribe(timeline => this.Timeline = timeline)
   }
 
+  // Sets up directory tree structure view
   setupFolders() {
     let keys = this.mockStateKeys
     let contents = createFolders(keys)
@@ -59,6 +71,10 @@ export class MockMenuComponent implements OnDestroy, OnInit {
 
   select(key: string) {
     this.setState(getMockState(key))
+  }
+
+  navigate(url: string) {
+    this._router.navigateByUrl(url)
   }
 
   setState(ms: MockState) {
