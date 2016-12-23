@@ -33,6 +33,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
     '/home',
     '/searching',
     '/lobby',
+    '/login',
     '/history',
     '/',
   ]
