@@ -1,4 +1,6 @@
 
+import { Device, DefaultDevice } from './device.model'
+export { Device, DefaultDevice }
 import { Login, DefaultLogin } from './login.model'
 export { Login, DefaultLogin }
 import { Search, DefaultSearch } from './search.model'
@@ -15,6 +17,7 @@ export * from './shared'
 // can be modified for the user.
 export
 type AppState = {
+  Device: Device,
   Login: Login,
   Search: Search,
   Lobby: Lobby,
@@ -23,6 +26,7 @@ type AppState = {
 
 export
 const DefaultAppState: AppState = {
+  Device: DefaultDevice,
   Login: DefaultLogin,
   Lobby: DefaultLobby,
   Search: DefaultSearch,

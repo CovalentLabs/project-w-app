@@ -33,8 +33,6 @@ export class AppStateService {
 
   public state: Observable<M.AppState>
 
-  private _lastUrl: string
-
   constructor(
       private _timeline: TimelineService,
       private _router: Router) {
@@ -44,12 +42,14 @@ export class AppStateService {
       return () => console.log('%cdisposed state subscription', 'color: slategrey')
     })
 
-    this._lastUrl = this._router.url
-
     this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.navigation("Detected")(this._lastUrl, event.url)
-        this._lastUrl = event.url
+        let prevUrl = this._state.Device.URL
+        if (prevUrl !== event.url) {
+          this.navigation("Detected")(prevUrl, event.url)
+          // Put the update into the state.
+          this.updateState({ Device: { URL: event.url } })
+        }
       }
     })
 
@@ -88,6 +88,7 @@ export class AppStateService {
   applyTimeline(timeline: Timeline) {
     this._state = M.DefaultAppState
     this._timeline.reset()
+    this._router.navigateByUrl('/')
     for (let entry of timeline) {
       // enter each timeline entry back into timeline
       switch (entry.type) {
@@ -119,6 +120,10 @@ export class AppStateService {
       }
 
       const change = app.updateState(partial)
+
+      if (partial.Device && partial.Device.URL !== app._router.url) {
+        app._router.navigateByUrl(partial.Device.URL)
+      }
 
       if (time_travel !== 'skip') {
         app._timeline.enter(
