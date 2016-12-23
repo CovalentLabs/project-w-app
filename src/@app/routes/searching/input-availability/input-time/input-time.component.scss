@@ -18,6 +18,7 @@ $font-size: 21vw;
 
   flex-grow: 1;
 
+  color: lightslategrey;
   &.active {
     color: dodgerblue;
   }
@@ -28,11 +29,15 @@ $font-size: 21vw;
   color: dodgerblue;
   > input {
     padding: 0;
+    &:last-child {
+      padding-right: 40px;
+    }
     flex-grow: 1;
     // Minimum width is 2 characters
     min-width: 2em;
     text-align: right;
     border: none;
     background: transparent;
+    color: dodgerblue;
   }
 }
