@@ -2,9 +2,18 @@
 
 <span class="title">Login</span>
 <br>
-<button (click)="onClickLogin()">Login</button>
+<div class="text-center">
+  <ng-container *ngIf="!AppState.Login.IsLoggedIn">
+    <button (click)="onClickLogin()">Login</button>
+  </ng-container>
+  <ng-container *ngIf="AppState.Login.IsLoggedIn">
+    <p>
+      You are currently logged in as {{AppState.Login.Credentials.Profile.FirstName}}.
+    </p>
+    <button (click)="onClickLogout()">Logout</button>
+  </ng-container>
+</div>
 <br>
-<pre>login</pre>
 <!--<pre>{{ AppState | json }}</pre>-->
 
 <div class="alert-container">
