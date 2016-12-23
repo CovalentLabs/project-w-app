@@ -31,6 +31,7 @@ export class InputAvailabilityComponent implements OnInit {
   }
 
   onConfirm() {
-    this.confirm.emit()
+    // TODO Actually update from and to when time inputs change
+    this.confirm.emit({ from: this.from, to: this.to })
   }
 }

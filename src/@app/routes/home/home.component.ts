@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 
 import { Router } from '@angular/router'
 
-import { AppStateService, AppState } from '@app/core'
+import { AppStateService, AppState, SearchActions } from '@app/core'
 
 import { Subscription } from 'rxjs'
 
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
       private _app: AppStateService,
+      private _search: SearchActions,
       private _router: Router) {
     this._stateSub = this._app.state.subscribe(
         appState => {
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   clickStartSearch() {
+    this._search.startSearch()
     this._router.navigate(['/searching'])
   }
 

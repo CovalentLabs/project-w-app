@@ -3,7 +3,13 @@ import * as S from './shared'
 
 export
 type Search = {
+  // Searching connection is set up and active
   IsSearching: boolean
+
+  // ShowSearch determines whether the top search navbar shows
+  // if IsSearching is false, then bar will show a spinner
+  ShowSearch: boolean
+
   Pea: S.Pea
   Pod: S.Pod
   Matches: S.PodMatch[]
@@ -17,6 +23,7 @@ type Search = {
 export
 const DefaultSearch: Search = {
   IsSearching: false,
+  ShowSearch: false,
   Pea: null,
   Pod: null,
   Matches: null,

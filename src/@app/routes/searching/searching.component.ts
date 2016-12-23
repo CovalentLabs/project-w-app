@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 
 import { Router } from '@angular/router'
 
-import { AppStateService, AppState } from '@app/core'
+import { AppStateService, AppState, SearchActions } from '@app/core'
 
 import { Subscription } from 'rxjs'
+
+import { TimeRange } from './input-availability/input-availability.component'
 
 @Component({
   selector: 'pw-searching',
@@ -21,6 +23,7 @@ export class SearchingComponent implements OnInit, OnDestroy {
 
   constructor(
       private _app: AppStateService,
+      private _search: SearchActions,
       private _router: Router) {
     this._stateSub = this._app.state.subscribe(
         appState => {
@@ -31,6 +34,12 @@ export class SearchingComponent implements OnInit, OnDestroy {
 
       this.AppState = appState
     })
+  }
+
+  confirmAvailability(range: TimeRange) {
+    // TODO
+    // this._search.setAvailability([range])
+    console.log("Setting availability", [range])
   }
 
   ngOnInit() {
