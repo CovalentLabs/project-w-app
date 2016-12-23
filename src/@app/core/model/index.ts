@@ -1,8 +1,14 @@
 
-import { Login } from './login.model'
-export { Login }
-import { Mock, MockDefault } from './mock.model'
-export { Mock, MockDefault }
+import { Login, DefaultLogin } from './login.model'
+export { Login, DefaultLogin }
+import { Search, DefaultSearch } from './search.model'
+export { Search, DefaultSearch }
+import { Lobby, DefaultLobby } from './lobby.model'
+export { Lobby, DefaultLobby }
+import { Mock, DefaultMock } from './mock.model'
+export { Mock, DefaultMock }
+
+export * from './shared'
 
 // The interface of our entire application's state.
 // Here defines every part of the application which
@@ -10,7 +16,17 @@ export { Mock, MockDefault }
 export
 type AppState = {
   Login: Login,
+  Search: Search,
+  Lobby: Lobby,
   Mock: Mock
+}
+
+export
+const DefaultAppState: AppState = {
+  Login: DefaultLogin,
+  Lobby: DefaultLobby,
+  Search: DefaultSearch,
+  Mock: DefaultMock,
 }
 
 // PartialModel for defining update functions

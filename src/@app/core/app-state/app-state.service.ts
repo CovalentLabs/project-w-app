@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core'
 
 import { Observer, Observable } from 'rxjs'
 
-import { DefaultAppState } from './default-app-state'
-
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 const deepEqual = <(value: any, other: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.isequalwith')
 
@@ -25,7 +23,7 @@ import { TimelineService, Timeline } from './timeline.service'
 
 @Injectable()
 export class AppStateService {
-  private _state: M.AppState = DefaultAppState
+  private _state: M.AppState = M.DefaultAppState
   private _stateObserver: Observer<M.AppState>
 
   public state: Observable<M.AppState>
@@ -68,7 +66,7 @@ export class AppStateService {
   }
 
   applyTimeline(timeline: Timeline) {
-    this._state = DefaultAppState
+    this._state = M.DefaultAppState
     this._timeline.reset()
     for (let entry of timeline) {
       // enter each timeline entry back into timeline

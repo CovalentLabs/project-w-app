@@ -7,7 +7,7 @@ type Mock = {
 }
 
 export
-const MockDefault: Mock = {
+const DefaultMock: Mock = {
   ShowDebugState: false,
   ShowMockMenu: false,
   ShowTimeline: false,

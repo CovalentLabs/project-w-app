@@ -58,8 +58,12 @@ function createLoggedInUpdate(firstname: string, lastname: string, user_id: stri
       Credentials: {
         FirstName: firstname,
         LastName: lastname,
-        Profile: {},
-        UserId: user_id
+        Profile: {
+          Id: user_id + 'p',
+          Tagline: 'Some tagline',
+          FirstName: firstname,
+        },
+        Id: user_id
       }
     }
   }

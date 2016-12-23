@@ -1,5 +1,5 @@
 
-import { AppState, PartialAppState, MockDefault } from '@app/core'
+import { AppState, PartialAppState, DefaultAppState } from '@app/core'
 
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 // https://lodash.com/docs/4.16.4#mergeWith
@@ -18,15 +18,17 @@ const MOCK_STATES: MockState[] = (function () {
   let res: MockState[] = []
   let add = state(res)
 
-  let notLoggedInBase: AppState = {
-    Mock: MockDefault,
-    Login: {
-      Credentials: null,
-      HasLoggedOut: false,
-      IsLoggedIn: false,
-      LoginError: null
-    }
-  }
+  let notLoggedInBase: AppState =
+    assign(DefaultAppState, {
+      // This should be the default anyway,
+      // but here we are being very deliberate.
+      Login: {
+        Credentials: null,
+        HasLoggedOut: false,
+        IsLoggedIn: false,
+        LoginError: null
+      }
+    })
 
   add(//////////////////
     'Login/Not logged in/Not logged in',
@@ -56,10 +58,15 @@ const MOCK_STATES: MockState[] = (function () {
       Credentials: {
         FirstName: 'Jackson',
         LastName: 'Rains',
-        Profile: {},
-        UserId: 'jr0'
+        Profile: {
+          Id: 'jr0p',
+          Tagline: 'Captain Action',
+          FirstName: 'Jackson',
+        },
+        Id: 'jr0'
       },
-      IsLoggedIn: true
+      IsLoggedIn: true,
+      UserItems: [],
     }
   })
 
@@ -74,10 +81,15 @@ const MOCK_STATES: MockState[] = (function () {
       Credentials: {
         FirstName: 'Cole',
         LastName: 'Lawrence',
-        Profile: {},
-        UserId: 'cl0'
+        Profile: {
+          Id: 'cl0p',
+          Tagline: 'Mostly Curious',
+          FirstName: 'Cole',
+        },
+        Id: 'cl0'
       },
-      IsLoggedIn: true
+      IsLoggedIn: true,
+      UserItems: [],
     }
   })
 

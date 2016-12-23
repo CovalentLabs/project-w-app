@@ -1,5 +1,6 @@
 
-import { Profile } from './shared'
+import { LoginCredentials } from './login-credentials.model'
+import { UserItem } from './user-item.model'
 
 export
 type Login = {
@@ -20,15 +21,22 @@ type Login = {
   // a feature, like this one, off.
   HasLoggedOut: boolean
 
-  Credentials: {
-    UserId: string
-    FirstName: string
-    LastName: string
-    Profile: Profile
-  }
+  Credentials: LoginCredentials,
+
+  // Notifications
+  UserItems: UserItem[],
 
   LoginError: {
     ErrorId: string
     Reason: string
   }
+}
+
+export
+const DefaultLogin: Login = {
+  IsLoggedIn: false,
+  HasLoggedOut: false,
+  Credentials: null,
+  UserItems: null,
+  LoginError: null,
 }
