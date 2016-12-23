@@ -67,6 +67,10 @@ export enum GroupLockStatus {
   UNLOCKED,
 }
 
+// The reason Group is a shared model,
+// as opposed to only being in Lobby is because
+// the Group model will be used in the history screen as well!
+
 // This is the final group which you are in to go to the event with,
 // It is not formed until all pods have accepted each other and are
 // paired together.
