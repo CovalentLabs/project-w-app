@@ -48,6 +48,10 @@ function createLoggedOutUpdate() {
 function createLoggedInUpdate(firstname: string, lastname: string, user_id: string): M.PartialAppState {
   // return a partial update to the device state
   return {
+    Device: {
+      // Send user to home
+      URL: '/home',
+    },
     Login: {
       IsLoggedIn: true,
       HasLoggedOut: false,
