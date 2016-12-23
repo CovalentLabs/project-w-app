@@ -20,8 +20,13 @@ export type TimelineNavigation = {
   to: string,
 }
 
-export type TimelineEntryType = 'action' | 'effect' | 'navigation'
-export type TimelineEntryData = TimelineAction | TimelineEffect | TimelineNavigation
+export type TimelineNote = {
+  type: string,
+  message: string
+}
+
+export type TimelineEntryType = 'action' | 'effect' | 'note' | 'navigation'
+export type TimelineEntryData = TimelineAction | TimelineEffect | TimelineNote | TimelineNavigation
 
 export type TimelineEntry = {
   id: any
@@ -81,25 +86,37 @@ export class TimelineService {
   }
 
   enter(entry_type: TimelineEntryType, data: TimelineEntryData) {
-    // FUTURE: log or store etc. for time travel. Time travel is so hot right now.
-    let type
-    let name
+    // Time travel is so hot right now.
+    // Logging out based on type
+    let title
+    let message
+    let style
     switch (entry_type) {
-      case 'navigation':
-        let navdata = (<TimelineNavigation> data)
-        type = navdata.reason
-        name = `${navdata.from} => ${navdata.to}`
-        break
       case 'action':
-        type = (<TimelineAction> data).type
-        name = (<TimelineAction> data).name
+        title = (<TimelineAction> data).type
+        message = (<TimelineAction> data).name
+        style = `color: #501cec`
         break
       case 'effect':
-        type = (<TimelineEffect> data).type
-        name = (<TimelineEffect> data).name
+        title = (<TimelineEffect> data).type
+        message = (<TimelineEffect> data).name
+        style = `color: #008fcb`
+        break
+      case 'note':
+        title = (<TimelineNote> data).type
+        message = (<TimelineNote> data).message
+        style = `color: #444`
+        break
+      case 'navigation':
+        let navdata = (<TimelineNavigation> data)
+        title = navdata.reason
+        message = `${navdata.from} => ${navdata.to}`
+        style = `color: #cc3366`
         break
     }
-    console.log(entry_type.toUpperCase() + ': %c' + type + ' %c' + name, 'font-weight: bold', 'color: blue')
+
+    console.log('%c' + entry_type.toUpperCase() + '%c: ' + title + ' %c' + message,
+                style, 'font-weight: bold', 'color: blue')
 
     this._timeline.push({
       id: this._id++,

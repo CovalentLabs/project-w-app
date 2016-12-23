@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 
 import { Observer, Observable } from 'rxjs'
 
-import { Router, NavigationEnd } from '@angular/router'
+import { Router, NavigationEnd, NavigationStart } from '@angular/router'
 
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 const deepEqual = <(value: any, other: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.isequalwith')
@@ -21,6 +21,7 @@ import * as M from '@app/core/model'
 
 export type ActionUpdate = (name: string, partial: M.PartialAppState) => void
 export type EffectUpdate = ActionUpdate
+export type NoteUpdate = (message: string) => void
 export type NavigationUpdate = (from_url: string, to_url: string) => void
 
 import { TimelineService, Timeline } from './timeline.service'
@@ -42,14 +43,26 @@ export class AppStateService {
       return () => console.log('%cdisposed state subscription', 'color: slategrey')
     })
 
-    this._router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        let prevUrl = this._state.Device.URL
-        if (prevUrl !== event.url) {
-          this.navigation("Detected")(prevUrl, event.url)
-          // Put the update into the state.
-          this.updateState({ Device: { URL: event.url } })
-        }
+    this._router.events
+        .filter(event => event instanceof NavigationStart)
+        .subscribe(event => {
+      const isLoginPath = event.url.startsWith('/login')
+      const isLoggedIn = this._state.Login.IsLoggedIn
+      if (!isLoginPath && !isLoggedIn) {
+        // Not sure if we should log these or not.
+        this.note('Not logged in redirect')(`Access: ${event.url}`)
+        this._router.navigateByUrl('/login')
+      }
+    })
+
+    this._router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe(event => {
+      let prevUrl = this._state.Device.URL
+      if (prevUrl !== event.url) {
+        this.navigation("Detected")(prevUrl, event.url)
+        // Put the update into the state.
+        this.updateState({ Device: { URL: event.url } })
       }
     })
 
@@ -96,13 +109,17 @@ export class AppStateService {
           const action_data = <T.TimelineAction> entry.data
           this.action(action_data.type)(action_data.name, action_data.to)
         break
-        case 'navigation':
-          const navigation_data = <T.TimelineNavigation> entry.data
-          this._router.navigateByUrl(navigation_data.to)
-        break
         case 'effect':
           const effect_data = <T.TimelineEffect> entry.data
           this.effect(effect_data.type)(effect_data.name, effect_data.to)
+        break
+        case 'note':
+          // Do not recreate notes
+          // const note_data = <T.TimelineNote> entry.data
+        break
+        case 'navigation':
+          const navigation_data = <T.TimelineNavigation> entry.data
+          this._router.navigateByUrl(navigation_data.to)
         break
       }
     }
@@ -176,5 +193,19 @@ export class AppStateService {
     }
 
     return NavigationUpdateFunction.bind(this)
+  }
+
+  // This is a simple way to add notes to the timeline that do not perform any updates
+  note(type: string): NoteUpdate {
+    function NoteUpdateFunction (message: string) {
+      const app = (<AppStateService> this)
+
+      app._timeline.enter(
+        'note',
+        <T.TimelineNote> { type, message }
+      )
+    }
+
+    return NoteUpdateFunction.bind(this)
   }
 }
