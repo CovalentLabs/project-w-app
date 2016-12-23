@@ -66,8 +66,7 @@ export class AppStateService {
       }
     })
 
-
-    this.state.subscribe(noop => noop)
+    this.state.subscribe(() => void(0))
   }
 
   private updateState(partial: M.PartialAppState) {
@@ -101,7 +100,6 @@ export class AppStateService {
   applyTimeline(timeline: Timeline) {
     this._state = M.DefaultAppState
     this._timeline.reset()
-    this._router.navigateByUrl('/')
     for (let entry of timeline) {
       // enter each timeline entry back into timeline
       switch (entry.type) {
@@ -114,7 +112,7 @@ export class AppStateService {
           this.effect(effect_data.type)(effect_data.name, effect_data.to)
         break
         case 'note':
-          // Do not recreate notes
+          // Do not recreate notes because they tend to multiply
           // const note_data = <T.TimelineNote> entry.data
         break
         case 'navigation':
@@ -163,6 +161,10 @@ export class AppStateService {
       const app = (<AppStateService> this)
 
       const change = app.updateState(partial)
+
+      if (partial.Device && partial.Device.URL !== app._router.url) {
+        app._router.navigateByUrl(partial.Device.URL)
+      }
 
       app._timeline.enter(
         'effect',
