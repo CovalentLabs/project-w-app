@@ -129,11 +129,16 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.(scss|sass)$/,
-        exclude: [root('src/@app'), root('src/@mock')],
-        loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+        exclude: [ root('src/@app'), root('src/@mock') ],
+        loader: isTest ? 'null-loader' :
+          ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: ['css-loader', 'postcss-loader', 'sass-loader']
+          })
       },
+
       // all css required in src/@app files will be merged in js files
-      {test: /\.(scss|sass)$/, exclude: root('src/style'), loader: 'raw-loader!postcss-loader!sass-loader'},
+      {test: /\.(scss|sass)$/, exclude: root('src/public'), loader: 'raw-loader!postcss-loader!sass-loader'},
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
@@ -200,7 +205,10 @@ module.exports = function makeWebpackConfig() {
          * Transforms .scss files to .css
          */
         sassLoader: {
-          //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
+          includePaths: [
+            // path.resolve(__dirname, "node_modules/bootstrap/scss"),
+            root("src/@app/style"),
+          ],
         },
         /**
          * PostCSS

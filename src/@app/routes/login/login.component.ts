@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs'
   selector: 'pw-login',
   template: require('./login.component.html'),
   styles: [
+    require('@app/style/component/full.scss'),
     require('./login.component.scss'),
   ]
 })

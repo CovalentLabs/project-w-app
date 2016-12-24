@@ -4,7 +4,7 @@
 <br>
 <div class="text-center">
   <ng-container *ngIf="!AppState.Login.IsLoggedIn">
-    <button (click)="onClickLogin()">Login</button>
+    <button class="btn btn-primary" (click)="onClickLogin()">Login</button>
   </ng-container>
   <ng-container *ngIf="AppState.Login.IsLoggedIn">
     <p>
