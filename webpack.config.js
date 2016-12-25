@@ -290,7 +290,11 @@ module.exports = function makeWebpackConfig() {
     historyApiFallback: true,
     quiet: true,
     stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
-  };
+  }
+
+  config.performance = {
+    hints: isProd
+  }
 
   return config;
 }();
