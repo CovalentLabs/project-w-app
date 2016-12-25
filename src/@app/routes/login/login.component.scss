@@ -1,12 +1,12 @@
 // LoginComponent Styles
 
-@import 'variables/colors';
+@import 'bootstrap/custom';
 
 :host {
   display: block;
   padding: 4px;
   color: black;
-  background: $primary;
+  background: $gray-lightest;
 }
 
 .alert-container {
