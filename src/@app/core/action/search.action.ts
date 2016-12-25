@@ -26,7 +26,7 @@ export class SearchActions {
       },
       Device: {
         // Navigate to search page
-        URL: '/search'
+        URL: '/searching'
       }
     })
 
