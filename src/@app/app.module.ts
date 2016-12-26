@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 /* Shared Modules */
 import { SharedModule } from '@app/shared';
+import { MaterialModule } from '@angular/material';
 
 import { CoreModule } from '@app/core';
 
@@ -28,6 +29,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
     // CoreModule defines everything that needs to be imported once,
     // and app-wide singletons such as the DeviceStateService
+    MaterialModule.forRoot(),
     CoreModule.forRoot(),
 
     MockModule,
