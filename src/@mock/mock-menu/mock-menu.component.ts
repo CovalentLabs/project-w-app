@@ -45,9 +45,6 @@ export class MockMenuComponent implements OnDestroy, OnInit {
     this.mockStateKeys = MOCK_STATE_KEYS
 
     this.setupFolders()
-
-    this._stateSub = this._app.state
-      .subscribe(appState => this.AppState = appState)
     this._timelineSub = this._timeline.timeline
       .subscribe(timeline => this.Timeline = timeline)
   }
@@ -60,6 +57,10 @@ export class MockMenuComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    // Set up state subscription after view is initiallized
+    this._stateSub = this._app.state
+      .subscribe(appState => this.AppState = appState)
+
     // trigger update so AppState becomes set.
     this._app.next()
   }
