@@ -1,9 +1,11 @@
 <!-- AppTopStatusBarComponent Template -->
 
-<button
-    *ngIf="AppState.Login.IsLoggedIn"
-    class="btn btn-default" (click)="onMenuClick()">
-  Menu
-</button>
+<div class="bar-container" [class.show]="AppState.Login.IsLoggedIn">
+  <button
+      class="btn btn-default" (click)="onMenuClick()">
+    Menu
+  </button>
 
-AppTopStatusBar
+  AppTopStatusBar
+</div>
+

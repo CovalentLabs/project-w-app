@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router'
 
-import { AppStateService, AppState, LobbyActions } from '@app/core'
+import { AppStateService, AppState, SearchActions } from '@app/core'
 
 import * as M from '@app/core/model'
 
@@ -26,8 +26,9 @@ export class AppTopStatusBarComponent implements OnInit, OnDestroy {
   private _stateSub: Subscription
 
   constructor(
-      private _app: AppStateService) {
-  }
+      private _app: AppStateService,
+      private _search: SearchActions
+  ) {}
 
   onMenuClick() {
     this.menuOpen.emit()
