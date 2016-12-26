@@ -1,5 +1,7 @@
 // InputTimeComponent Styles
 
+@import 'bootstrap/custom';
+
 // this is a broken value for anything landscape!
 $font-size: 21vw;
 
@@ -19,7 +21,20 @@ $font-size: 21vw;
   flex-grow: 1;
 
   color: lightslategrey;
-  &.active {
+
+  position: relative;
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  input:focus + span {
+    // outline: -webkit-focus-ring-color auto 5px;
+    outline: $brand-primary auto 5px;
+  }
+
+  // Style the checked radio button's following span
+  input:checked + span {
     color: dodgerblue;
   }
 }

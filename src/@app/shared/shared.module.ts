@@ -1,6 +1,6 @@
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
-import { FormsModule }         from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // import { InterestBlockComponent } from './interest-block/interest-block.component';
 // import { CtaButtonComponent } from './cta-button/cta-button.component'
@@ -22,6 +22,6 @@ import { CelebrationModalComponent } from './celebration-modal/celebration-modal
 @NgModule({
   imports:      [ CommonModule ],
   declarations: [ CelebrationModalComponent, ],
-  exports:      [ CelebrationModalComponent, CommonModule, FormsModule ]
+  exports:      [ CelebrationModalComponent, CommonModule, ReactiveFormsModule, FormsModule ]
 })
 export class SharedModule { }

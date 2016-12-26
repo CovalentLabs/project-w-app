@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
+import { FormGroup, FormControl } from '@angular/forms';
 // import moment = require('moment')
 
 @Component({
@@ -13,11 +14,21 @@ export class InputTimeComponent implements OnInit, OnChanges {
   @Input() value: Date
   @Output() change = new EventEmitter<Date>()
 
+  radioform = new FormGroup({
+    apradio: new FormControl('AM')
+  })
+
   private isAm = true
   private hours: number
   private minutes: number
 
-  constructor() {}
+  constructor() {
+    this.radioform.valueChanges.subscribe((n) => {
+      console.log(n)
+      const apradio = this.radioform.controls['apradio']
+      console.log(apradio.value)
+    })
+  }
 
   ngOnInit() {
     // on init
@@ -32,7 +43,8 @@ export class InputTimeComponent implements OnInit, OnChanges {
 
     this.minutes = this.value.getMinutes()
 
-    this.isAm = this.value.getHours() < 12
+    const apvalue = this.value.getHours() < 12 ? 'AM' : 'PM'
+    this.radioform.controls['apradio'].setValue(apvalue)
   }
 
   onChange() {
