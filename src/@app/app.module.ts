@@ -5,6 +5,7 @@ import { CommonModule }      from '@angular/common';
 
 /* App Root */
 import { AppComponent } from './app.component';
+import { AppTopStatusBarComponent } from './app-top-status-bar/app-top-status-bar.component';
 
 /* Shared Modules */
 import { SharedModule } from '@app/shared';
@@ -37,7 +38,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppRoutingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent, AppTopStatusBarComponent
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
