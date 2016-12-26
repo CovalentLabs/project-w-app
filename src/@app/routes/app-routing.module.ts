@@ -25,6 +25,6 @@ const routes: Routes = [
     SearchingModule,
   ],
   declarations: [],
-  exports: [RouterModule, LoginModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
