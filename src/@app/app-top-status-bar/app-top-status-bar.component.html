@@ -23,7 +23,10 @@
         </div>
         <md-menu class="menu-right" #appMenu="mdMenu">
           <button md-menu-item> Set Availability </button>
-          <button md-menu-item> Stop Search </button>
+          <button md-menu-item
+              (click)="onStopSearchClick()">
+            Stop Search
+          </button>
         </md-menu>
 
         <button class="settings-toggle-right" md-icon-button [mdMenuTriggerFor]="appMenu">

@@ -30,6 +30,10 @@ export class AppTopStatusBarComponent implements OnInit, OnDestroy {
     this.menuOpen.emit()
   }
 
+  onStopSearchClick() {
+    this._search.stopSearch()
+  }
+
   ngOnInit() {
     this._stateSub = this._app.state.subscribe(
         appState => {

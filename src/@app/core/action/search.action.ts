@@ -12,6 +12,24 @@ function reltime(num: number, unit: moment.unitOfTime.DurationConstructor): Date
 export class SearchActions {
   constructor(private app: AppStateService) {}
 
+  stopSearch() {
+    const update: ActionUpdate = this.app.action("Searching")
+
+    // Kick off showing the SearchBar which will have a spinner
+    // as IsSearching is likely false
+    update("Stopping", {
+      Search: {
+        // Show Search Header Bar at top of app
+        ShowSearch: false,
+        IsSearching: false
+      },
+      Device: {
+        // Navigate to search page
+        URL: '/home'
+      }
+    })
+  }
+
   startSearch() {
     const update: ActionUpdate = this.app.action("Searching")
 
