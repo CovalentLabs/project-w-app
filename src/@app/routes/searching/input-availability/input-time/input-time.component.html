@@ -1,18 +1,23 @@
 <!-- InputTimeComponent Template -->
 
-<div class="flex-cont input-cont">
-  <input type="number" min="1" max="12" [(ngModel)]="hours">
-  <span>:</span>
-  <input type="number" min="0" max="55" step="5" [(ngModel)]="minutes">
+<div [formGroup]="timeform">
+  <div class="flex-cont input-cont">
+    <input #hs type="number"
+        (change)="(hs.value > 12 && (hs.value = 1)) || (hs.value < 1 && (hs.value = 12))"
+        formControlName="hours">
+    <span>:</span>
+    <input #ms type="number" step="5"
+        (change)="(ms.value > 59 && (ms.value = 0)) || (ms.value < 0 && (ms.value = 55))"
+        formControlName="minutes">
+  </div>
+  <div class="flex-cont">
+    <label class="time-a">
+      <input type="radio" value="AM" formControlName="apradio">
+      <span>AM</span>
+    </label>
+    <label class="time-a">
+      <input type="radio" value="PM" formControlName="apradio">
+      <span>PM</span>
+    </label>
+  </div>
 </div>
-
-<form class="flex-cont" [formGroup]="radioform">
-  <label class="time-a">
-    <input type="radio" value="AM" formControlName="apradio">
-    <span>AM</span>
-  </label>
-  <label class="time-a">
-    <input type="radio" value="PM" formControlName="apradio">
-    <span>PM</span>
-  </label>
-</form>

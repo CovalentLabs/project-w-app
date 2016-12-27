@@ -1,8 +1,10 @@
 // SearchingComponent Styles
 
+@import 'bootstrap/custom';
+
 :host {
   display: block;
-  padding: 4px;
+  padding: $spacer;
 }
 
 .title {

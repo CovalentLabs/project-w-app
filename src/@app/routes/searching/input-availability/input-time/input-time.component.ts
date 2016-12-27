@@ -14,21 +14,21 @@ export class InputTimeComponent implements OnInit, OnChanges {
   @Input() value: Date
   @Output() change = new EventEmitter<Date>()
 
-  radioform = new FormGroup({
-    apradio: new FormControl('AM')
+  timeform = new FormGroup({
+    apradio: new FormControl('AM'),
+    hours: new FormControl(0),
+    minutes: new FormControl(0),
   })
 
-  private isAm = true
-  private hours: number
-  private minutes: number
-
   constructor() {
-    this.radioform.valueChanges.subscribe((n) => {
+    this.timeform.valueChanges.subscribe((n) => {
       console.log(n)
-      const apradio = this.radioform.controls['apradio']
+      const apradio = this.timeform.controls['apradio']
       console.log(apradio.value)
     })
   }
+
+  alert() { alert.apply(this, arguments) }
 
   ngOnInit() {
     // on init
@@ -36,15 +36,15 @@ export class InputTimeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.hours = this.value.getHours() % 12
-    if (this.hours === 0) {
-      this.hours = 12
-    }
+    console.log(this.timeform.controls)
+    const { apradio, hours, minutes } = this.timeform.controls
+    const hs = this.value.getHours() % 12 || 12
+    hours.setValue(hs)
 
-    this.minutes = this.value.getMinutes()
+    minutes.setValue(this.value.getMinutes())
 
     const apvalue = this.value.getHours() < 12 ? 'AM' : 'PM'
-    this.radioform.controls['apradio'].setValue(apvalue)
+    apradio.setValue(apvalue)
   }
 
   onChange() {

@@ -1,7 +1,9 @@
 // InputAvailabilityComponent Styles
 
-$border-blue: dodgerblue;
-$background: whitesmoke;
+@import 'bootstrap/custom';
+
+$border-color: $ui-primary;
+$background:  $ui-background;
 
 :host {
   display: block;
@@ -11,18 +13,17 @@ $background: whitesmoke;
 $text-size: 12px;
 
 .title {
-  color: $border-blue;
+  color: $border-color;
   font-size: $text-size;
 }
 
 .avail-container {
-  margin: 8px;
-  border: 2px solid $border-blue;
+  border: 2px solid $border-color;
 }
 
 
 .until-display {
-  border-bottom: 2px solid $border-blue;
+  border-bottom: 2px solid $border-color;
 
   font-size: $text-size;
 
@@ -35,7 +36,7 @@ $text-size: 12px;
     background: $background;
     display: inline-block;
 
-    color: $border-blue;
+    color: $border-color;
 
     padding: 0px 12px;
     text-transform: uppercase;
@@ -45,6 +46,6 @@ $text-size: 12px;
 .confirm-button {
   color: whitesmoke;
   width: 100%;
-  background: $border-blue;
+  background: $border-color;
   border: none;
 }

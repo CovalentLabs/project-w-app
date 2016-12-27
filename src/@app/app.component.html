@@ -1,8 +1,8 @@
 
 <md-sidenav-container class="h-100">
-  <md-sidenav #sidenav>
+  <md-sidenav #sidenav >
     <!-- sidenav content -->
-    <nav class="nav">
+    <nav class="nav" (click)="sidenav.close()">
       <a class="nav-link"
           routerLink='/home'
           routerLinkActive="active">

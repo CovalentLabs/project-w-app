@@ -4,9 +4,7 @@
 
 :host {
   display: block;
-  padding: 4px;
-  color: black;
-  background: $gray-lightest;
+  padding: $spacer;
 }
 
 .alert-container {
