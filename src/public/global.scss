@@ -1,4 +1,6 @@
+// Our custom specs from src/@app/style/bootstrap/_custom.scss
 @import 'bootstrap/custom';
 
 $enable-flex: true;
+// The Bootstrap node_module
 @import '~bootstrap/scss/bootstrap';
