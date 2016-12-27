@@ -2,18 +2,18 @@
 
 <div class="title">Set availability</div>
 
-<div class="avail-container">
-  <pw-input-time [value]="from"></pw-input-time>
+<form [formGroup]="availform" class="avail-container">
+  <pw-input-time formControlName="from"></pw-input-time>
 
   <div class="until-display">
     <span>until</span>
   </div>
 
-  <pw-input-time [value]="to"></pw-input-time>
+  <pw-input-time formControlName="to"></pw-input-time>
 
   <button
       class="confirm-button"
       (click)="onConfirm()">
     Confirm
   </button>
-</div>
+</form>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export
 type TimeRange = { from: Date, to: Date }
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'pw-input-availability',
@@ -14,24 +15,28 @@ export class InputAvailabilityComponent implements OnInit {
   @Input() default: TimeRange
   @Output() confirm = new EventEmitter<TimeRange>()
 
-  from: Date
-  to: Date
+  availform = new FormGroup({
+    from: new FormControl(new Date),
+    to: new FormControl(new Date),
+  })
 
   constructor() {}
 
   ngOnInit() {
+    const {from, to} = this.availform.controls
     // on init
     if (this.default) {
-      this.from = this.default.from
-      this.to = this.default.to
+      from.setValue(this.default.from)
+      to.setValue(this.default.to)
     } else {
-      this.from = new Date
-      this.to = new Date
+      from.setValue(new Date)
+      to.setValue(new Date)
     }
   }
 
   onConfirm() {
+    const {from, to} = this.availform.controls
     // TODO Actually update from and to when time inputs change
-    this.confirm.emit({ from: this.from, to: this.to })
+    this.confirm.emit({ from: from.value, to: to.value })
   }
 }
