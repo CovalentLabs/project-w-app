@@ -1,10 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
-import { Router } from '@angular/router'
-
 import { AppStateService, AppState, SearchActions } from '@app/core'
-
-import * as M from '@app/core/model'
 
 import { Subscription } from 'rxjs'
 

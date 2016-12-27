@@ -47,7 +47,7 @@ export class InputTimeComponent implements OnInit, OnChanges, ControlValueAccess
       const ms = minutes.value
       let val = moment().set('minutes', ms).set('hours', hs)
 
-      this.change.emit(val.toDate());
+      this.change.emit(val.toDate())
     })
 
     // store form changes subscription so we can unsubscribe later.
