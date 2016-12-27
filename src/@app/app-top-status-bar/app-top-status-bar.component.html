@@ -1,11 +1,43 @@
 <!-- AppTopStatusBarComponent Template -->
 
 <div class="bar-container" [class.show]="AppState.Login.IsLoggedIn">
-  <button
-      class="btn btn-default" (click)="onMenuClick()">
-    Menu
+  <button class="menu-toggle" type="button"
+      md-icon-button
+      aria-label="Toggle navigation"
+      (click)="onMenuClick()">
+      <md-icon>menu</md-icon>
   </button>
 
-  AppTopStatusBar
+  <ng-container *ngIf="AppState.Search.ShowSearch">
+    <ng-container *ngIf="AppState.Search.IsSearching">
+      <div class="search-tools">
+        <button class="lock" md-icon-button
+          aria-label="Lock joining group">
+          <md-icon *ngIf=" AppState.Search.IsPodLocked">lock_outline</md-icon>
+          <md-icon *ngIf="!AppState.Search.IsPodLocked">lock_open</md-icon>
+        </button>
+        <div class="pods">
+          <div class="pod">
+            <div class="pea">😇</div>
+          </div>
+        </div>
+        <md-menu class="menu-right" #appMenu="mdMenu">
+          <button md-menu-item> Set Availability </button>
+          <button md-menu-item> Stop Search </button>
+        </md-menu>
+
+        <button class="settings-toggle-right" md-icon-button [mdMenuTriggerFor]="appMenu">
+          <md-icon>settings</md-icon>
+        </button>
+
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!AppState.Search.IsSearching">
+      <div class="search-status">
+        Setting Up Search
+      </div>
+    </ng-container>
+  </ng-container>
+
 </div>
 

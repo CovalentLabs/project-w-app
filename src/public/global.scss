@@ -4,3 +4,9 @@
 $enable-flex: true;
 // The Bootstrap node_module
 @import '~bootstrap/scss/bootstrap';
+
+@import 'angular-material/custom';
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);

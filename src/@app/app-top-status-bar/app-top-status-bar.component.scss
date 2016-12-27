@@ -9,6 +9,11 @@
   border-bottom: 2px solid $brand-primary;
 }
 
+button {
+  background: transparent;
+  border: none;
+}
+
 .bar-container {
   display: block;
   max-height: 0px;
@@ -18,4 +23,20 @@
   &.show {
     max-height: 100px;
   }
+}
+
+.settings-toggle-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.search-tools {
+  display: inline-block;
+
+  .pods, .pod, .pea {
+    display: inline-block;
+    // height: 40px;
+  }
+
 }

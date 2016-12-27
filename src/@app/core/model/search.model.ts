@@ -10,6 +10,8 @@ type Search = {
   // if IsSearching is false, then bar will show a spinner
   ShowSearch: boolean
 
+  IsPodLocked: boolean
+
   Pea: S.Pea
   Pod: S.Pod
   Matches: S.PodMatch[]
@@ -24,6 +26,7 @@ export
 const DefaultSearch: Search = {
   IsSearching: false,
   ShowSearch: false,
+  IsPodLocked: false,
   Pea: null,
   Pod: null,
   Matches: null,
