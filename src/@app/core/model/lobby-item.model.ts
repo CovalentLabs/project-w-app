@@ -54,3 +54,12 @@ export type LobbyItem = {
       // they arrived at location
       | DataUserHasArrivedUpdate
 }
+
+// Helper for enforcing pairing of type and appropriate data type
+export type LobbyItemTypeAndData
+  = { type: LobbyItemType.TEXT,                    data: DataText }
+  | { type: LobbyItemType.LOCK_UPDATE,             data: DataLockStatusUpdate }
+  | { type: LobbyItemType.REACTION,                data: DataReaction }
+  | { type: LobbyItemType.USER_DATA_UPDATE,        data: DataUserDataUpdate }
+  | { type: LobbyItemType.USER_HAS_ARRIVED_UPDATE, data: DataUserHasArrivedUpdate }
+  | { type: LobbyItemType.USER_STATUS_UPDATE,      data: DataUserStatusUpdate }
