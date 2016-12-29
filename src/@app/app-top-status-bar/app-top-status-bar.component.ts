@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
-import { AppStateService, AppState, SearchActions } from '@app/core'
+import { AppStateService, AppState, DiscoverActions } from '@app/core'
 
 import { Subscription } from 'rxjs'
 
@@ -23,15 +23,15 @@ export class AppTopStatusBarComponent implements OnInit, OnDestroy {
 
   constructor(
       private _app: AppStateService,
-      private _search: SearchActions
+      private _discover: DiscoverActions
   ) {}
 
   onMenuClick() {
     this.menuOpen.emit()
   }
 
-  onStopSearchClick() {
-    this._search.stopSearch()
+  onStopDiscoverClick() {
+    this._discover.stopDiscover()
   }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 
-import { AppStateService, AppState, SearchActions } from '@app/core'
+import { AppStateService, AppState, DiscoverActions } from '@app/core'
 
 import { Subscription } from 'rxjs'
 
@@ -19,15 +19,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
       private _app: AppStateService,
-      private _search: SearchActions) {
+      private _discover: DiscoverActions) {
     this._stateSub = this._app.state.subscribe(
         appState => {
       this.AppState = appState
     })
   }
 
-  clickStartSearch() {
-    this._search.startSearch()
+  clickStartDiscover() {
+    this._discover.startDiscover()
   }
 
   ngOnInit() {

@@ -2,13 +2,13 @@
 import * as S from './shared'
 
 export
-type Search = {
-  // Searching connection is set up and active
-  IsSearching: boolean
+type Discover = {
+  // Discovering connection is set up and active
+  IsDiscovering: boolean
 
-  // ShowSearch determines whether the top search navbar shows
-  // if IsSearching is false, then bar will show a spinner
-  ShowSearch: boolean
+  // ShowDiscover determines whether the top discover navbar shows
+  // if IsDiscovering is false, then bar will show a spinner
+  ShowDiscover: boolean
 
   IsPodLocked: boolean
 
@@ -23,9 +23,9 @@ type Search = {
 }
 
 export
-const DefaultSearch: Search = {
-  IsSearching: false,
-  ShowSearch: false,
+const DefaultDiscover: Discover = {
+  IsDiscovering: false,
+  ShowDiscover: false,
   IsPodLocked: false,
   Pea: null,
   Pod: null,

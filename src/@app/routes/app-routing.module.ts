@@ -7,7 +7,7 @@ import { SharedModule } from '@app/shared/shared.module'
 /* Feature Modules */
 import { LoginModule } from './login/login.module'
 import { HomeModule } from './home/home.module'
-import { SearchingModule } from './searching/searching.module'
+import { DiscoveringModule } from './discovering/discovering.module'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' }
@@ -22,7 +22,7 @@ const routes: Routes = [
     /* Feature Routes */
     LoginModule,
     HomeModule,
-    SearchingModule,
+    DiscoveringModule,
   ],
   declarations: [],
   exports: [RouterModule]

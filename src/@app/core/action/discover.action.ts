@@ -9,50 +9,50 @@ function reltime(num: number, unit: moment.unitOfTime.DurationConstructor): Date
 }
 
 @Injectable()
-export class SearchActions {
+export class DiscoverActions {
   constructor(private app: AppStateService) {}
 
-  stopSearch() {
-    const update: ActionUpdate = this.app.action("Searching")
+  stopDiscover() {
+    const update: ActionUpdate = this.app.action("Discovering")
 
-    // Kick off showing the SearchBar which will have a spinner
-    // as IsSearching is likely false
+    // Kick off showing the DiscoverBar which will have a spinner
+    // as IsDiscovering is likely false
     update("Stopping", {
-      Search: {
-        // Show Search Header Bar at top of app
-        ShowSearch: false,
-        IsSearching: false
+      Discover: {
+        // Show Discover Header Bar at top of app
+        ShowDiscover: false,
+        IsDiscovering: false
       },
       Device: {
-        // Navigate to search page
+        // Navigate to discover page
         URL: '/home'
       }
     })
   }
 
-  startSearch() {
-    const update: ActionUpdate = this.app.action("Searching")
+  startDiscover() {
+    const update: ActionUpdate = this.app.action("Discovering")
 
     const state = this.app.getState()
 
-    // Kick off showing the SearchBar which will have a spinner
-    // as IsSearching is likely false
+    // Kick off showing the DiscoverBar which will have a spinner
+    // as IsDiscovering is likely false
     update("Setting Up", {
-      Search: {
-        // Show Search Header Bar at top of app
-        ShowSearch: true
+      Discover: {
+        // Show Discover Header Bar at top of app
+        ShowDiscover: true
       },
       Device: {
-        // Navigate to search page
-        URL: '/searching'
+        // Navigate to discover page
+        URL: '/discovering'
       }
     })
 
     // TODO: Everything here would be triggered by Server communication
 
-    const server_update: EffectUpdate = this.app.effect("Searching")
+    const server_update: EffectUpdate = this.app.effect("Discovering")
 
-    // Start Search channel
+    // Start Discover channel
     let pea = {
       Id: 'pea0',
       Availability: [{ Id: 'p0av0', Start: reltime(1, 'hour'), End: reltime(3, 'hours') }],
@@ -61,9 +61,9 @@ export class SearchActions {
 
     setTimeout(
       () => server_update("Started", {
-        Search: {
-          IsSearching: true,
-          ShowSearch: true,
+        Discover: {
+          IsDiscovering: true,
+          ShowDiscover: true,
           Pea: pea,
           Pod: {
             Id: 'pod0p0',
@@ -80,15 +80,15 @@ export class SearchActions {
   }
 
   toggleShowAvailability(show?: boolean) {
-    const update: ActionUpdate = this.app.action("Search Toggle ShowAvailabilityOptions")
+    const update: ActionUpdate = this.app.action("Discover Toggle ShowAvailabilityOptions")
 
     // If no value, then toggle
     if (show == null) {
-      show = !this.app.getState().Search.ShowAvailabilityOptions
+      show = !this.app.getState().Discover.ShowAvailabilityOptions
     }
 
     update(show ? "Show" : "Hide", {
-      Search: {
+      Discover: {
         ShowAvailabilityOptions: show
       }
     })
@@ -96,17 +96,17 @@ export class SearchActions {
 
   // Toggle the options menu for showing friends you may invite.
   toggleShowInvitationOptions(show?: boolean) {
-    const update: ActionUpdate = this.app.action("Search Toggle ShowInvitationOptions")
+    const update: ActionUpdate = this.app.action("Discover Toggle ShowInvitationOptions")
 
     // If no value, then toggle
     if (show == null) {
-      show = !this.app.getState().Search.ShowInvitationOptions
+      show = !this.app.getState().Discover.ShowInvitationOptions
     }
 
     // TODO: Should we populate the InvitationOptions now?
 
     update(show ? "Show" : "Hide", {
-      Search: {
+      Discover: {
         ShowInvitationOptions: show
       }
     })

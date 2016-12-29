@@ -5,8 +5,8 @@ import { Login, DefaultLogin } from './login.model'
 export { Login, DefaultLogin }
 export { LoginCredentials } from './login-credentials.model'
 export { UserItem } from './user-item.model'
-import { Search, DefaultSearch } from './search.model'
-export { Search, DefaultSearch }
+import { Discover, DefaultDiscover } from './discover.model'
+export { Discover, DefaultDiscover }
 import { Lobby, DefaultLobby } from './lobby.model'
 export { Lobby, DefaultLobby }
 export { LobbyItem, LobbyItemType, LobbyItemOperation } from './lobby-item.model'
@@ -22,7 +22,7 @@ export
 type AppState = {
   Device: Device,
   Login: Login,
-  Search: Search,
+  Discover: Discover,
   Lobby: Lobby,
   Mock: Mock
 }
@@ -32,7 +32,7 @@ const DefaultAppState: AppState = {
   Device: DefaultDevice,
   Login: DefaultLogin,
   Lobby: DefaultLobby,
-  Search: DefaultSearch,
+  Discover: DefaultDiscover,
   Mock: DefaultMock,
 }
 

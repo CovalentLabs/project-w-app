@@ -8,13 +8,13 @@
       <md-icon>menu</md-icon>
   </button>
 
-  <ng-container *ngIf="AppState.Search.ShowSearch">
-    <ng-container *ngIf="AppState.Search.IsSearching">
-      <div class="search-tools">
+  <ng-container *ngIf="AppState.Discover.ShowDiscover">
+    <ng-container *ngIf="AppState.Discover.IsDiscovering">
+      <div class="discover-tools">
         <button class="lock" md-icon-button
           aria-label="Lock joining group">
-          <md-icon *ngIf=" AppState.Search.IsPodLocked">lock_outline</md-icon>
-          <md-icon *ngIf="!AppState.Search.IsPodLocked">lock_open</md-icon>
+          <md-icon *ngIf=" AppState.Discover.IsPodLocked">lock_outline</md-icon>
+          <md-icon *ngIf="!AppState.Discover.IsPodLocked">lock_open</md-icon>
         </button>
         <div class="pods">
           <div class="pod">
@@ -24,8 +24,8 @@
         <md-menu class="menu-right" #appMenu="mdMenu">
           <button md-menu-item> Set Availability </button>
           <button md-menu-item
-              (click)="onStopSearchClick()">
-            Stop Search
+              (click)="onStopDiscoverClick()">
+            Stop Discover
           </button>
         </md-menu>
 
@@ -35,9 +35,9 @@
 
       </div>
     </ng-container>
-    <ng-container *ngIf="!AppState.Search.IsSearching">
-      <div class="search-status">
-        Setting Up Search
+    <ng-container *ngIf="!AppState.Discover.IsDiscovering">
+      <div class="discover-status">
+        Setting Up Discover
       </div>
     </ng-container>
   </ng-container>

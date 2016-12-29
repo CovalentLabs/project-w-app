@@ -1,8 +1,8 @@
 import { LoginActions } from './login.action'
-import { SearchActions } from './search.action'
+import { DiscoverActions } from './discover.action'
 import { LobbyActions } from './lobby.action'
 
 export
-const ACTIONS = [ LoginActions, SearchActions, LobbyActions ]
+const ACTIONS = [ LoginActions, DiscoverActions, LobbyActions ]
 
-export { LoginActions, SearchActions, LobbyActions }
+export { LoginActions, DiscoverActions, LobbyActions }

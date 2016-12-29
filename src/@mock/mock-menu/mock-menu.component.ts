@@ -31,7 +31,7 @@ export class MockMenuComponent implements OnDestroy, OnInit {
 
   mockUrls: string[] = [
     '/home',
-    '/searching',
+    '/discovering',
     '/lobby',
     '/login',
     '/history',

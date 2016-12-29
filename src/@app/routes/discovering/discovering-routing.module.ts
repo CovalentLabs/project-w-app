@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SearchingComponent } from './searching.component';
+import { DiscoverComponent } from './discovering.component';
 
 const routes: Routes = [
-  { path: 'searching', component: SearchingComponent },
+  { path: 'discovering', component: DiscoverComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class SearchingRoutingModule {}
+export class DiscoveringRoutingModule {}

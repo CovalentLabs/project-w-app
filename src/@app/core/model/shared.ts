@@ -29,7 +29,7 @@ export type Availability = {
   End: Date
 }
 
-// One user's vehicle for searching in
+// One user's vehicle for discovering in
 export type Pea = {
   Id: string
   Availability: Availability[]
