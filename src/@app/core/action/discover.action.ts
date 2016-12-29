@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { AppStateService, ActionUpdate, EffectUpdate } from '@app/core/app-state'
+import { DefaultDiscover } from '@app/core/model'
 
 import moment = require('moment')
 
@@ -18,11 +19,7 @@ export class DiscoverActions {
     // Kick off showing the DiscoverBar which will have a spinner
     // as IsDiscovering is likely false
     update("Stopping", {
-      Discover: {
-        // Show Discover Header Bar at top of app
-        ShowDiscover: false,
-        IsDiscovering: false
-      },
+      Discover: DefaultDiscover,
       Device: {
         // Navigate to discover page
         URL: '/home'
