@@ -3,6 +3,7 @@ import { AppState, PartialAppState, DefaultAppState } from '@app/core'
 import moment = require('moment')
 
 import * as M from '@app/core/model'
+import * as MLI from '@app/core/model/lobby-item.model'
 
 const mergeWith = <(obj: any, source: any, customizer?: (objValue, srcValue) => any) => any> require('lodash.mergewith')
 // https://lodash.com/docs/4.16.4#mergeWith
@@ -74,11 +75,11 @@ const prc2: M.Profile = {
   FirstName: 'Wile',
 }
 
-// Friends
+// Friends --------------------
 const fr1: M.Friend = nfri(pr$1, M.FriendStatus.IN_GROUP)
 const fr2: M.Friend = nfri(pr$2, M.FriendStatus.ONLINE)
 
-// Peas and Pods
+// Peas and Pods --------------
 
 // Pod $: Jackson (me), Road
 const pe$0: M.Pea = npea(pr$0, { start: 1, end: 3.5 })
@@ -127,6 +128,72 @@ function npod(id: string, ...peas: M.Pea[]): M.Pod {
   }
 }
 
+// Lobby ----------------------
+
+const gus$: M.GroupUser[] = ngroupusers(pod$, poda)
+const gr$0: M.Group = ngroup('gr$0', 'Flingalingables', gus$)
+
+function nrandgroupuser(podId: string, pea: M.Pea): M.GroupUser {
+  const color = ['dodgerblue', 'maroon', 'lawngreen', 'darkgray'][pea.Profile.Tagline.length % 4]
+  const status = [M.GroupUserStatus.ACTIVE, M.GroupUserStatus.AWAY][pea.Profile.FirstName.length % 2]
+  return {
+    Id: pea.Profile.Id + '-gu-' + podId,
+    PodId: podId,
+    Profile: pea.Profile,
+    Status: status,
+    Data: { WearingColor: color },
+    HasArrived: false,
+  }
+}
+
+function nlitext(id_gen: () => string, profile: M.Profile, mins: number, text: string) {
+  const data: MLI.DataText = text
+  return nli(id_gen, profile, mins, { type: MLI.LobbyItemType.TEXT, data })
+}
+
+function nlireac(id_gen: () => string, profile: M.Profile, mins: number, item: M.LobbyItem, reaction: string) {
+  const data: MLI.DataReaction = { ItemId: item.Id, Reaction: reaction }
+  return nli(id_gen, profile, mins, { type: MLI.LobbyItemType.REACTION, data })
+}
+
+// Create a unique ID generator
+function luid(name: string) {
+  let item_id = 0
+  return function luid_gen(): string { return `${item_id++}-${name}` }
+}
+
+function nli(id_gen: () => string, profile: M.Profile, mins: number, data: MLI.LobbyItemTypeAndData): M.LobbyItem {
+  return {
+    Id: id_gen(),
+    ProfileId: profile.Id,
+    OperationTargetItemId: null,
+    Operation: MLI.LobbyItemOperation.POST,
+    CreatedAt: reltime(mins, 'minutes'),
+    Data: data.data,
+    Type: data.type,
+  }
+}
+
+function ngroupusers(...pods: M.Pod[]): M.GroupUser[] {
+  return pods
+    .map(pod =>
+      pod.Peas
+    .map(pea => nrandgroupuser(pod.Id, pea)))
+    // flatten 2d arrays into 1d
+    .reduce((prev, curr) => prev.concat(curr), [])
+}
+
+function ngroup(id: string, name: string, users: M.GroupUser[]): M.Group {
+  return {
+    Id: id,
+    Name: name,
+    LockStatus: M.GroupLockStatus.UNLOCKED,
+    MeetingAt: reltime(.5, 'h'),
+    FormedAt: new Date(),
+    GroupUsers: users,
+  }
+}
+
 // Relative time from now
 function reltime(rel: number, unit: moment.unitOfTime.DurationConstructor): Date {
   return moment().add(rel, unit).toDate()
@@ -139,6 +206,8 @@ type MockState = { name: string, state: AppState }
 const MOCK_STATES: MockState[] = (function () {
   let res: MockState[] = []
   let add = state(res)
+
+  // Login ------------
 
   let notLoggedInBase: AppState =
     assign(DefaultAppState, {
@@ -212,6 +281,8 @@ const MOCK_STATES: MockState[] = (function () {
     loggedInBase2
   )
 
+  // Discovering ------
+
   const discoverBase1: AppState
   = assign(loggedInBase1, {
     Device: {
@@ -222,10 +293,9 @@ const MOCK_STATES: MockState[] = (function () {
       Pod: pod$,
       Matches: <M.PodMatch[]> [
         { Id: 'm-a', Pod: poda, Status: M.PodMatchStatus.NOT_RESPONDED },
-        { Id: 'm-b', Pod: podb, Status: M.PodMatchStatus.ACCEPTED },
-        { Id: 'm-c', Pod: podc, Status: M.PodMatchStatus.REJECTED },
+        { Id: 'm-b', Pod: podb, Status: M.PodMatchStatus.REJECTED },
+        { Id: 'm-c', Pod: podc, Status: M.PodMatchStatus.ACCEPTED },
         { Id: 'm-a1', Pod: poda, Status: M.PodMatchStatus.NOT_RESPONDED },
-        { Id: 'm-b1', Pod: podb, Status: M.PodMatchStatus.NOT_RESPONDED },
         { Id: 'm-c1', Pod: podc, Status: M.PodMatchStatus.NOT_RESPONDED },
       ],
       IsDiscovering: true,
@@ -254,6 +324,83 @@ const MOCK_STATES: MockState[] = (function () {
     'Discover/Show Invitations',
     discoverBase1,
     { Discover: { ShowInvitationOptions: true } }
+  )
+
+  // Lobby ------------
+
+  // set when lobbyBase1 is created
+  let item1: M.LobbyItem = null
+  const lobbyBase1: AppState
+    = ((fn) => fn())(
+  function CreateLobbyBase1Mock() {
+    // locally unique id generator
+    const liid1 = luid('li1')
+    const items: M.LobbyItem[] = []
+    function add_item(item: M.LobbyItem): M.LobbyItem {
+      items.push(item)
+      return item
+    }
+    add_item(nlitext(liid1, pra1, -20,   'Howdy'))
+    const ia12: M.LobbyItem =
+    add_item(nlitext(liid1, pr$1, -19.8, `Good to see you again, ${pra1.FirstName}!`))
+    add_item(nlireac(liid1, pra1, -19.6, ia12, 'smile'))
+    add_item(nlireac(liid1, pr$2, -19.5, ia12, 'agree'))
+
+    add_item(nlitext(liid1, pr$2, -14, `Does anyone know what's for breakfast?`))
+    add_item(nlitext(liid1, pr$0, -10, `Hey ${pra1.FirstName}, how do you know ${pra4.FirstName}?`))
+
+    add_item(nlitext(liid1, pra1, -7, `I met ${pra4.FirstName} in my public speaking class!`))
+
+    item1 =
+    add_item(nlitext(liid1, pr$0, -6,   `I am very excited to meet you guys, I just have an episode of Bobs Burgers to complete.`))
+    add_item(nlitext(liid1, pr$0, -5.7, `So, I'll be away until I see you all at the dining center.`))
+
+    // TODO: add delete item function
+    // TODO: add edit item function
+
+    add_item(nli(liid1, pra3, -5, { type: M.LobbyItemType.USER_STATUS_UPDATE, data: M.GroupUserStatus.ACTIVE }))
+    const ia30: M.LobbyItem = add_item(nlitext(liid1, pra3, -4.7, `Hey guys!`))
+    add_item(nlireac(liid1, pr$0, -4.8, ia30, 'wave'))
+    add_item(nlireac(liid1, pra1, -4.7, ia30, 'wave'))
+    add_item(nli(liid1, pr$1, -5, { type: M.LobbyItemType.USER_STATUS_UPDATE, data: M.GroupUserStatus.AWAY }))
+    add_item(nlireac(liid1, pra3, -4.2, ia30, 'smile'))
+
+    return assign(loggedInBase1, {
+      Device: {
+        URL: '/discovering'
+      },
+      Lobby: {
+        Deleting: null,
+        Editing: null,
+        ItemOptions: null,
+        Group: gr$0,
+        HasGroup: true,
+        LobbyItems: items
+      }
+    })
+  })
+
+  add(//////////////////
+    'Lobby/Base',
+    lobbyBase1
+  )
+
+  add(//////////////////
+    'Lobby/ItemOptions 1',
+    lobbyBase1,
+    { Lobby: { ItemOptions: { LobbyItem: item1 } } }
+  )
+
+  add(//////////////////
+    'Lobby/Editing 1',
+    lobbyBase1,
+    { Lobby: { Editing: item1 } }
+  )
+
+  add(//////////////////
+    'Lobby/Deleting 1',
+    lobbyBase1,
+    { Lobby: { Deleting: item1 } }
   )
 
   // TODO Future mocks please retain comment delimiters,
