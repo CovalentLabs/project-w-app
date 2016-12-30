@@ -1,8 +1,17 @@
 
 export
+enum DeviceState {
+  IDLING,
+  DISCOVERING,
+  IN_GROUP,
+}
+
+export
 type Device = {
   // Current Location URL of the App
   URL: string
+
+  State: DeviceState
 
   // FUTURE: Set up experiments in here as well as device information
   // This would be good for A/B Testing and tracking versions,
@@ -19,6 +28,7 @@ type Device = {
 
 export
 const DefaultDevice: Device = {
-  URL: '/'
+  URL: '/',
+  State: DeviceState.IDLING,
 }
 

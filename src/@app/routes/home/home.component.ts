@@ -5,7 +5,6 @@ import { AppStateService, AppState, DiscoverActions } from '@app/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'pw-home',
   template: require('./home.component.html'),
   styles: [
     require('./home.component.scss'),

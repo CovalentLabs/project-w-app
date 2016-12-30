@@ -3,20 +3,25 @@ import * as S from './shared'
 
 export
 type Discover = {
-  // Discovering connection is set up and active
-  IsDiscovering: boolean
-
-  // ShowDiscover determines whether the top discover navbar shows
-  // if IsDiscovering is false, then bar will show a spinner
-  ShowDiscover: boolean
-
+  // Others are unable to join this pod,
+  // this setting is shared between you and the other peas.
   IsPodLocked: boolean
 
+  // Your pea
   Pea: S.Pea
+
+  // Your pod
   Pod: S.Pod
+
+  // Potential matches for your Pod
   Matches: S.PodMatch[]
+
+  // Display availability configuration options for yourself
   ShowAvailabilityOptions: boolean
+
+  // Display friends list to invite
   ShowInvitationOptions: boolean
+
   InvitationOptions: {
     Friends: S.Friend[]
   }
@@ -24,8 +29,6 @@ type Discover = {
 
 export
 const DefaultDiscover: Discover = {
-  IsDiscovering: false,
-  ShowDiscover: false,
   IsPodLocked: false,
   Pea: null,
   Pod: null,

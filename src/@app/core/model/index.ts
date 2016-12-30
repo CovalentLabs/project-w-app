@@ -1,6 +1,6 @@
 
-import { Device, DefaultDevice } from './device.model'
-export { Device, DefaultDevice }
+import { Device, DefaultDevice, DeviceState } from './device.model'
+export { Device, DefaultDevice, DeviceState }
 import { Login, DefaultLogin } from './login.model'
 export { Login, DefaultLogin }
 export { LoginCredentials } from './login-credentials.model'

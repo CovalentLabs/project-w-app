@@ -5,9 +5,12 @@ import { LobbyItem } from './lobby-item.model'
 
 export
 type Lobby = {
-  HasGroup: boolean
   Group: S.Group
   LobbyItems: LobbyItem[]
+  // tracking data from Phoenix (send since last received)
+  LastReceivedItem: LobbyItem,
+  // For showing unseen notifications
+  UnseenItems: LobbyItem[],
   // If set, show modal for responding.
   ItemOptions: {
     LobbyItem: LobbyItem
@@ -22,9 +25,10 @@ type Lobby = {
 
 export
 const DefaultLobby: Lobby = {
-  HasGroup: false,
   Group: null,
   LobbyItems: null,
+  LastReceivedItem: null,
+  UnseenItems: [],
   ItemOptions: null,
   Editing: null,
   Deleting: null

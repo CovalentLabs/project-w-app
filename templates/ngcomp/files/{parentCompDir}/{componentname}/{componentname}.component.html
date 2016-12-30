@@ -1,7 +1,9 @@
 <!-- <%=ComponentName%>Component Template -->
 
-<%=ComponentName%>
+<div class="<%=componentname%>-container">
+  <%=ComponentName%>
+  <button (click)="onClick()">Click</button>
 
-{{ data | json }}
+  <pre>{{ data | json }}</pre>
 
-<button (click)="onClick()">Click</button>
+</div>

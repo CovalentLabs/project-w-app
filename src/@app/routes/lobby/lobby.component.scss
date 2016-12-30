@@ -1,4 +1,4 @@
-// <%=ComponentName%>Component Styles
+// LobbyComponent Styles
 
 // Gives access to all app wide variables such as for spacing,
 // colors, and typography.
@@ -7,16 +7,16 @@
 :host {
   display: block;
   padding: 4px;
+  background: #b88ef9;
+  overflow: auto;
 }
 
-:host[position=left] {
-  .<%=componentname%>-container {
-
-  }
+.app-state {
+  font-size: .6em;
+  font-weight: bold;
 }
 
-:host[position=right] {
-  .<%=componentname%>-container {
-
-  }
+.title {
+  font-weight: bold;
+  font-size: 18px;
 }

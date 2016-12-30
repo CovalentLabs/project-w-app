@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { AppStateService, ActionUpdate, EffectUpdate } from '@app/core/app-state'
-import { DefaultDiscover } from '@app/core/model'
+import { DefaultDiscover, DeviceState } from '@app/core/model'
 
 import moment = require('moment')
 
@@ -35,13 +35,11 @@ export class DiscoverActions {
     // Kick off showing the DiscoverBar which will have a spinner
     // as IsDiscovering is likely false
     update("Setting Up", {
-      Discover: {
-        // Show Discover Header Bar at top of app
-        ShowDiscover: true
-      },
       Device: {
         // Navigate to discover page
-        URL: '/discovering'
+        URL: '/discovering',
+        // Indicate new state
+        State: DeviceState.DISCOVERING
       }
     })
 
@@ -59,8 +57,6 @@ export class DiscoverActions {
     setTimeout(
       () => server_update("Started", {
         Discover: {
-          IsDiscovering: true,
-          ShowDiscover: true,
           Pea: pea,
           Pod: {
             Id: 'pod0p0',

@@ -5,7 +5,6 @@ import { AppStateService, AppState, LoginActions } from '@app/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'pw-login',
   template: require('./login.component.html'),
   styles: [
     require('@app/style/component/full.scss'),

@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs'
 import { TimeRange } from './input-availability/input-availability.component'
 
 @Component({
-  selector: 'pw-discovering',
   template: require('./discovering.component.html'),
   styles: [
     require('./discovering.component.scss'),

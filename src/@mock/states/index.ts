@@ -17,63 +17,19 @@ function mergeExceptArrays (objValue, srcValue) {
 
 
 // Profiles
-const pr$0: M.Profile = {
-  Id: 'pr0',
-  Tagline: 'Captain Action',
-  FirstName: 'Jackson',
-}
+const pr$0: M.Profile = { FirstName: 'Jackson',  Id: 'pr0',  Tagline: 'Captain Action' }
 // My Pod
-const pr$1: M.Profile = {
-  Id: 'pr$1',
-  Tagline: 'Meep! Meep!',
-  FirstName: 'Road',
-}
-const pr$2: M.Profile = {
-  Id: 'pr$2',
-  Tagline: 'I tawt I taw a puddy-tat!',
-  FirstName: 'Tweety',
-}
+const pr$1: M.Profile = { FirstName: 'Road',     Id: 'pr$1', Tagline: 'Meep! Meep!' }
+const pr$2: M.Profile = { FirstName: 'Tweety',   Id: 'pr$2', Tagline: 'I tawt I taw a puddy-tat!' }
 
-const pra1: M.Profile = {
-  Id: 'pra1',
-  Tagline: 'What a maroon!',
-  FirstName: 'Bugs',
-}
-const pra2: M.Profile = {
-  Id: 'pra2',
-  Tagline: 'You\'re dethpicable',
-  FirstName: 'Daffy',
-}
-const pra3: M.Profile = {
-  Id: 'pra4',
-  Tagline: 'Y-y-you can\'t fool me.',
-  FirstName: 'Porky',
-}
-const pra4: M.Profile = {
-  Id: 'pra3',
-  Tagline: 'Don\'t ever call me doll',
-  FirstName: 'Lola',
-}
-const prb1: M.Profile = {
-  Id: 'prb1',
-  Tagline: 'Great horny toads!',
-  FirstName: 'Yosemite',
-}
-const prb2: M.Profile = {
-  Id: 'prb2',
-  Tagline: 'Gweat gwasshoppers!',
-  FirstName: 'Elmer',
-}
-const prc1: M.Profile = {
-  Id: 'prc1',
-  Tagline: 'Arriba! Arriba!',
-  FirstName: 'Speedy',
-}
-const prc2: M.Profile = {
-  Id: 'prc2',
-  Tagline: 'YEeooooowwwwwwwww!!!',
-  FirstName: 'Wile',
-}
+const pra1: M.Profile = { FirstName: 'Bugs',     Id: 'pra1', Tagline: 'What a maroon!' }
+const pra2: M.Profile = { FirstName: 'Daffy',    Id: 'pra2', Tagline: 'You\'re dethpicable' }
+const pra3: M.Profile = { FirstName: 'Porky',    Id: 'pra3', Tagline: 'Y-y-you can\'t fool me.' }
+const pra4: M.Profile = { FirstName: 'Lola',     Id: 'pra4', Tagline: 'Don\'t ever call me doll' }
+const prb1: M.Profile = { FirstName: 'Yosemite', Id: 'prb1', Tagline: 'Great horny toads!' }
+const prb2: M.Profile = { FirstName: 'Elmer',    Id: 'prb2', Tagline: 'Gweat gwasshoppers!' }
+const prc1: M.Profile = { FirstName: 'Speedy',   Id: 'prc1', Tagline: 'Arriba! Arriba!' }
+const prc2: M.Profile = { FirstName: 'Wile',     Id: 'prc2', Tagline: 'YEeooooowwwwwwwww!!!' }
 
 // Friends --------------------
 const fr1: M.Friend = nfri(pr$1, M.FriendStatus.IN_GROUP)
@@ -245,6 +201,9 @@ const MOCK_STATES: MockState[] = (function () {
 
   const loggedInBase1: AppState
   = assign(notLoggedInBase, {
+    Device: {
+      URL: "/home",
+    },
     Login: {
       Credentials: {
         FirstName: 'Jackson',
@@ -264,6 +223,9 @@ const MOCK_STATES: MockState[] = (function () {
 
   const loggedInBase2: AppState
   = assign(notLoggedInBase, {
+    Device: {
+      URL: "/home",
+    },
     Login: {
       Credentials: {
         FirstName: 'Bugs',
@@ -286,7 +248,8 @@ const MOCK_STATES: MockState[] = (function () {
   const discoverBase1: AppState
   = assign(loggedInBase1, {
     Device: {
-      URL: '/discovering'
+      URL: '/discovering',
+      State: M.DeviceState.DISCOVERING,
     },
     Discover: {
       Pea: pe$0,
@@ -298,8 +261,6 @@ const MOCK_STATES: MockState[] = (function () {
         { Id: 'm-a1', Pod: poda, Status: M.PodMatchStatus.NOT_RESPONDED },
         { Id: 'm-c1', Pod: podc, Status: M.PodMatchStatus.NOT_RESPONDED },
       ],
-      IsDiscovering: true,
-      ShowDiscover: true,
       IsPodLocked: false,
       InvitationOptions: {
         Friends: [ fr1, fr2 ]
@@ -367,14 +328,14 @@ const MOCK_STATES: MockState[] = (function () {
 
     return assign(loggedInBase1, {
       Device: {
-        URL: '/discovering'
+        URL: '/lobby',
+        State: M.DeviceState.IN_GROUP,
       },
       Lobby: {
         Deleting: null,
         Editing: null,
         ItemOptions: null,
         Group: gr$0,
-        HasGroup: true,
         LobbyItems: items
       }
     })

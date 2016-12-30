@@ -8,7 +8,7 @@ export interface Profile {
 export enum FriendStatus {
   ONLINE,
   OFFLINE,
-  SEARCHING,
+  DISCOVER,
   IN_GROUP,
   // JOINABLE,
 }

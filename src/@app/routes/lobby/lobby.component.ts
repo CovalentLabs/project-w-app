@@ -7,14 +7,13 @@ import { AppStateService, AppState } from '@app/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'pw-<%= routename %>',
-  template: require('./<%= routename %>.component.html'),
+  template: require('./lobby.component.html'),
   styles: [
     require('@app/style/component/full.scss'),
-    require('./<%= routename %>.component.scss'),
+    require('./lobby.component.scss'),
   ]
 })
-export class <%= RouteName %>Component implements OnInit, OnDestroy {
+export class LobbyComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
 
@@ -24,9 +23,8 @@ export class <%= RouteName %>Component implements OnInit, OnDestroy {
       private _app: AppStateService,
       private _router: Router) {
     this._stateSub = this._app.state.subscribe(
-        appState => {
-      this.AppState = appState
-    })
+        appState => this.AppState = appState
+    )
   }
 
   ngOnInit() {
