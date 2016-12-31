@@ -6,18 +6,9 @@ import { AppStateService, AppState } from '@app/core'
 
 import { Subscription } from 'rxjs'
 
-const template = require('./styleguide.component.pug')(
-  // local variables for template
-  {
-    checkedradio: "come",
-    radiobuttons: [ "everybody", "come", "together" ],
-  }
-)
-
 @Component({
+  // Nunjucks now available for templating
   template: require('./styleguide.component.nunj'),
-  // replace this template with the following to use the HTML based template.
-  // template: require('./styleguide.component.html'),
   styles: [
     require('@app/style/component/full.scss'),
     // Styles should be minimal and only specific to the Styleguide component.
