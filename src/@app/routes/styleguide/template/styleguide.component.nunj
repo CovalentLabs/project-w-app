@@ -41,6 +41,10 @@
       </button>
     </div>
   </div>
-</div>
-<br>
 
+  <div class="row">
+    <div class="col-xs">
+      {% include "buttons.nunj" %}
+    </div>
+  </div>
+</div>

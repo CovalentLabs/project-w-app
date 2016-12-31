@@ -146,7 +146,13 @@ module.exports = function makeWebpackConfig() {
 
       // support for .nunj as raw text
       // todo: change the loader to something that adds a hash to images
-      {test: /\.nunj$/, loader: 'raw-loader!nunjucks-html-loader',  exclude: root('src/public')},
+      {test: /\.nunj$/, loader: 'raw-loader!nunjucks-html-loader?'
+          + JSON.stringify({
+            'searchPaths': [
+              root('src/@app/routes/styleguide/template')
+            ]
+          }),
+        exclude: root('src/public')},
     ]
   };
 
@@ -230,7 +236,7 @@ module.exports = function makeWebpackConfig() {
           autoprefixer({
             browsers: ['last 2 version']
           })
-        ]
+        ],
       }
     })
   ];
