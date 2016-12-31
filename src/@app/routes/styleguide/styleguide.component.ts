@@ -15,7 +15,7 @@ const template = require('./styleguide.component.pug')(
 )
 
 @Component({
-  template,
+  template: require('./styleguide.component.nunj'),
   // replace this template with the following to use the HTML based template.
   // template: require('./styleguide.component.html'),
   styles: [

@@ -147,6 +147,10 @@ module.exports = function makeWebpackConfig() {
       // support for .pug as raw text
       // todo: change the loader to something that adds a hash to images
       {test: /\.(pug|jade)$/, loader: 'pug-loader',  exclude: root('src/public')},
+
+      // support for .nunj as raw text
+      // todo: change the loader to something that adds a hash to images
+      {test: /\.nunj$/, loader: 'raw-loader!nunjucks-html-loader',  exclude: root('src/public')},
     ]
   };
 
