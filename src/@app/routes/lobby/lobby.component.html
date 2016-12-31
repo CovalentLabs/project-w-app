@@ -1,6 +1,31 @@
 <!-- LobbyComponent Template -->
 
-<span class="title">Lobby</span>
-<br>
-<pre>lobby</pre>
-<pre class="app-state">{{ AppState | json }}</pre>
+<!-- AppState.Lobby: { Group, LobbyItems }-->
+<div class="message-window">
+  <ng-container
+      *ngIf="ItemGroups && ItemGroups.length">
+    <div class="item-group" *ngFor="let itemGroup of ItemGroups">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>{{ itemGroup.Profile | json }}</td>
+            <td>{{ itemGroup.PostedAt }}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><pre>{{ itemGroup.Items | json }}</pre></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</div>
+
+<div class="output">{{ message }}</div>
+
+<div class="message-input">
+  <label>
+    <span>Message</span>
+    <input type="text" placeholder="Write..." [(ngModel)]="message">
+  </label>
+  <button class="btn btn-primary">Send</button>
+</div>

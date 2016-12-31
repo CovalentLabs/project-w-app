@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
 
 import { Router } from '@angular/router'
 
 import { AppStateService, AppState } from '@app/core'
+
+import { LobbyRendererService, RenderedItemGroup } from './lobby-renderer'
 
 import { Subscription } from 'rxjs'
 
@@ -16,15 +18,23 @@ import { Subscription } from 'rxjs'
 export class LobbyComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
+  ItemGroups: RenderedItemGroup
 
   private _stateSub: Subscription
+  private _renderSub: Subscription
 
   constructor(
       private _app: AppStateService,
+      private _render: LobbyRendererService,
+      private _ref: ElementRef,
       private _router: Router) {
     this._stateSub = this._app.state.subscribe(
-        appState => this.AppState = appState
-    )
+        appState => {
+      this.AppState = appState
+      this._render.updateLobby(appState.Lobby)
+    })
+    this._renderSub = this._render.render.subscribe(
+        render => this.ItemGroups = render)
   }
 
   ngOnInit() {
@@ -35,5 +45,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // free up resources by unsubscribing.
     this._stateSub.unsubscribe()
+    this._renderSub.unsubscribe()
   }
 }
