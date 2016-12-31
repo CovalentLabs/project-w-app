@@ -142,7 +142,11 @@ module.exports = function makeWebpackConfig() {
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw-loader',  exclude: root('src/public')}
+      {test: /\.html$/, loader: 'raw-loader',  exclude: root('src/public')},
+
+      // support for .pug as raw text
+      // todo: change the loader to something that adds a hash to images
+      {test: /\.(pug|jade)$/, loader: 'pug-loader',  exclude: root('src/public')},
     ]
   };
 

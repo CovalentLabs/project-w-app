@@ -1,0 +1,35 @@
+//- StyleguideComponent Template
+.container-fluid
+  .row
+    .col-xs
+      h1 Styleguide
+
+  .row
+    .col-xs
+      h2 Radio Buttons
+      .btn-group(data-toggle="buttons")
+        //- from local variables
+        each label in radiobuttons
+          //- the following class=`... uses a ternary, if {checkedradio==label} is true,
+          //- it resolves to the first argument, "active"
+          //- otherwise it resolves to ""
+          label.btn.btn-primary(class=`${checkedradio==label?'active':''}`)
+            input(type="radio" name="radiobuttons"
+                id="rb-"+label autocomplete="off" checked=checkedradio==label)
+            // creates just plain text without container.
+            = label
+
+  .row
+    .col-xs-12
+      //- Equivalent to: <h2>Tooltips</h2>
+      h2 Tooltips
+
+    //- grids are 12 wide
+    .col-xs-3
+      //- comma required before event listeners
+      button.btn.btn-default(title="Tooltip example"
+          data-toggle="tooltip" data-placement="bottom",
+          (click)="clicked=!clicked") Hello
+
+    .col-xs-9
+      .alert.alert-success(*ngIf="clicked") Clicked Hello
