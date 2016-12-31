@@ -13,3 +13,11 @@ import '@angularclass/hmr';
 // You can import js, ts, css, sass, ...
 import './public/global.scss'
 import 'hammerjs'
+import 'jquery'
+
+// Tether, for tooltips etc
+import Tether = require('tether')
+// Required to bind to window for Bootstrap to pick Tether up.
+; (<any> window).Tether = Tether
+
+import 'bootstrap'

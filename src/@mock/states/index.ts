@@ -178,6 +178,12 @@ const MOCK_STATES: MockState[] = (function () {
     })
 
   add(//////////////////
+    'Styleguide',
+    notLoggedInBase,
+    { Device: { URL: '/styleguide' } }
+  )
+
+  add(//////////////////
     'Login/Not logged in/Not logged in',
     notLoggedInBase
   )

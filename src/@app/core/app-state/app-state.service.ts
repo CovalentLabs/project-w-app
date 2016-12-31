@@ -47,8 +47,9 @@ export class AppStateService {
         .filter(event => event instanceof NavigationStart)
         .subscribe(event => {
       const isLoginPath = event.url.startsWith('/login')
+      const isStyleguidePath = event.url.startsWith('/styleguide')
       const isLoggedIn = this._state.Login.IsLoggedIn
-      if (!isLoginPath && !isLoggedIn) {
+      if (!(isLoginPath || isStyleguidePath) && !isLoggedIn) {
         // Not sure if we should log these or not.
         this.note('Not logged in redirect')(`Access: ${event.url}`)
         this._router.navigateByUrl('/login')
