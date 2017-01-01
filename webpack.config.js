@@ -133,12 +133,13 @@ module.exports = function makeWebpackConfig() {
         loader: isTest ? 'null-loader' :
           ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: ['css-loader', 'postcss-loader', 'sass-loader']
+            loader: ['css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']
           })
       },
 
       // all css required in src/@app files will be merged in js files
-      {test: /\.(scss|sass)$/, exclude: root('src/public'), loader: 'raw-loader!postcss-loader!sass-loader'},
+      {test: /\.(scss|sass)$/, exclude: root('src/public'),
+          loaders: ['raw-loader', 'postcss-loader', 'sass-loader?sourceMap'] },
 
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
@@ -227,6 +228,12 @@ module.exports = function makeWebpackConfig() {
             root("src/@app/style"),
           ],
         },
+
+        // We added this when we needed to enable sourceMaps for SASS
+        // https://github.com/jtangelder/sass-loader/issues/285#issuecomment-248382611
+        // https://github.com/bholloway/resolve-url-loader/issues/33#issuecomment-249830601
+        context: root('src'),
+
         /**
          * PostCSS
          * Reference: https://github.com/postcss/autoprefixer-core
