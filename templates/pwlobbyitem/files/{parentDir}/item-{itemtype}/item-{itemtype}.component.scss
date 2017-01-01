@@ -1,4 +1,4 @@
-// LobbyComponent Styles
+// <%=ItemType%>Component Styles
 
 // Gives access to all app wide variables such as for spacing,
 // colors, and typography.
@@ -6,9 +6,7 @@
 
 :host {
   display: block;
-  overflow: auto;
-}
-
-.message-input {
-  background: $ui-background;
+  padding: 4px;
+  border: 2px solid red;
+  border-radius: 4px;
 }

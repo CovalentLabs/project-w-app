@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
 
 import { Router } from '@angular/router'
 
-import { AppStateService, AppState } from '@app/core'
+import { AppStateService, AppState, Profile } from '@app/core'
 
 import { LobbyRendererService, RenderedItemGroup } from './lobby-renderer'
 
@@ -19,6 +19,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
   ItemGroups: RenderedItemGroup[] = []
+  myProfileId: string
 
   private _stateSub: Subscription
   private _renderSub: Subscription
@@ -31,6 +32,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
     this._stateSub = this._app.state.subscribe(
         appState => {
       this.AppState = appState
+      this.myProfileId = appState.Login.Credentials.Profile.Id
       this._render.updateLobby(appState.Lobby)
     })
     this._renderSub = this._render.render.subscribe(

@@ -1,14 +1,9 @@
-// LobbyComponent Styles
+// TextComponent Styles
 
 // Gives access to all app wide variables such as for spacing,
 // colors, and typography.
 @import 'bootstrap/custom';
 
 :host {
-  display: block;
-  overflow: auto;
-}
-
-.message-input {
-  background: $ui-background;
+  display: inline-block;
 }

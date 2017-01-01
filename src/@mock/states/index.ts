@@ -348,17 +348,17 @@ const MOCK_STATES: MockState[] = (function () {
     add_item(nlitext(liid1, pr$2, -14, `Does anyone know what's for breakfast?`))
     add_item(nlidelete(liid1, pr$2, -13.8, to_delete))
 
+    add_item(nli(liid1, pra3, -10.1, { type: M.LobbyItemType.LOCK_UPDATE, data: M.GroupLockStatus.LOCKED }))
     add_item(nlitext(liid1, pr$0, -10, `Hey ${pra1.FirstName}, how do you know ${pra4.FirstName}?`))
 
     const to_edit =
     add_item(nlitext(liid1, pra1, -7, `I met ${pra4.FirstName} in my biology class!`))
     add_item(nlitextedit(liid1, pra1, -6.7, to_edit, `I met ${pra4.FirstName} in my public speaking class!`))
+    add_item(nli(liid1, pra3, -6.2, { type: M.LobbyItemType.LOCK_UPDATE, data: M.GroupLockStatus.UNLOCKED }))
 
     item1 =
     add_item(nlitext(liid1, pr$0, -6,   `I am very excited to meet you guys, I just have an episode of Bobs Burgers to complete.`))
     add_item(nlitext(liid1, pr$0, -5.7, `So, I'll be away until I see you all at the dining center.`))
-
-    // TODO: add edit item function
 
     add_item(nli(liid1, pra3, -5, { type: M.LobbyItemType.USER_STATUS_UPDATE, data: M.GroupUserStatus.ACTIVE }))
     const ia30: M.LobbyItem = add_item(nlitext(liid1, pra3, -4.7, `Hey guys!`))
