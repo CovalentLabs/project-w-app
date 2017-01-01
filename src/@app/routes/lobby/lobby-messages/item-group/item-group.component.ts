@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RenderedItemGroup, RenderedItem } from '../../lobby-renderer'
 
 import * as M from '@app/core/model'
+import * as MLI from '@app/core/model/lobby-item.model'
 
 import moment = require('moment')
 
@@ -37,7 +38,8 @@ export class ItemGroupComponent implements OnInit {
     // interval for updating display date?
     // subscribe to something which calls the update?
     // do we need to be in view?
-    this.items = this.itemGroup.Items.filter((item) => !item.IsDeleted)
+    this.items = this.itemGroup.Items
+      .filter((item) => !item.IsDeleted && item.Type !== MLI.LobbyItemType.USER_STATUS_UPDATE)
 
     // get profile from profile service
     this.profile = {
