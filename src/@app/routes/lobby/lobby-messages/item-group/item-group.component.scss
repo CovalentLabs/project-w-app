@@ -25,6 +25,7 @@
       width: 40px;
       height: 40px;
       line-height: 38px;
+      // Turn over :-) to correct orientation
       transform: rotateZ(90deg);
       color: limegreen;
       background: midnightblue;
@@ -47,6 +48,7 @@
     .avatar  {
       right: 0;
       &::before {
+        // How we flip around the avatar
         transform: rotateZ(90deg) scaleY(-1);
       }
     }
