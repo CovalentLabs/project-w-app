@@ -102,6 +102,31 @@ function nrandgroupuser(podId: string, pea: M.Pea): M.GroupUser {
   }
 }
 
+function nlidelete(id_gen: () => string, profile: M.Profile, mins: number, item: M.LobbyItem) {
+  return {
+    Id: id_gen(),
+    ProfileId: profile.Id,
+    OperationTargetItemId: item.Id,
+    Operation: MLI.LobbyItemOperation.DELETE,
+    CreatedAt: reltime(mins, 'minutes'),
+    Data: null,
+    Type: null,
+  }
+}
+
+function nlitextedit(id_gen: () => string, profile: M.Profile, mins: number, item: M.LobbyItem, text: string) {
+  const data: MLI.DataText = text
+  return {
+    Id: id_gen(),
+    ProfileId: profile.Id,
+    OperationTargetItemId: item.Id,
+    Operation: MLI.LobbyItemOperation.EDIT,
+    CreatedAt: reltime(mins, 'minutes'),
+    Data: data,
+    Type: MLI.LobbyItemType.TEXT,
+  }
+}
+
 function nlitext(id_gen: () => string, profile: M.Profile, mins: number, text: string) {
   const data: MLI.DataText = text
   return nli(id_gen, profile, mins, { type: MLI.LobbyItemType.TEXT, data })
@@ -310,19 +335,29 @@ const MOCK_STATES: MockState[] = (function () {
     add_item(nlitext(liid1, pra1, -20,   'Howdy'))
     const ia12: M.LobbyItem =
     add_item(nlitext(liid1, pr$1, -19.8, `Good to see you again, ${pra1.FirstName}!`))
+    const to_del_smile =
+    add_item(nlireac(liid1, pr$2, -19.7, ia12, 'smile'))
     add_item(nlireac(liid1, pra1, -19.6, ia12, 'smile'))
+    // delete reaction
+    add_item(nlidelete(liid1, pr$2, -19.55, to_del_smile))
     add_item(nlireac(liid1, pr$2, -19.5, ia12, 'agree'))
 
     add_item(nlitext(liid1, pr$2, -14, `Does anyone know what's for breakfast?`))
+    // accidentally duplicate message?
+    const to_delete =
+    add_item(nlitext(liid1, pr$2, -14, `Does anyone know what's for breakfast?`))
+    add_item(nlidelete(liid1, pr$2, -13.8, to_delete))
+
     add_item(nlitext(liid1, pr$0, -10, `Hey ${pra1.FirstName}, how do you know ${pra4.FirstName}?`))
 
-    add_item(nlitext(liid1, pra1, -7, `I met ${pra4.FirstName} in my public speaking class!`))
+    const to_edit =
+    add_item(nlitext(liid1, pra1, -7, `I met ${pra4.FirstName} in my biology class!`))
+    add_item(nlitextedit(liid1, pra1, -6.7, to_edit, `I met ${pra4.FirstName} in my public speaking class!`))
 
     item1 =
     add_item(nlitext(liid1, pr$0, -6,   `I am very excited to meet you guys, I just have an episode of Bobs Burgers to complete.`))
     add_item(nlitext(liid1, pr$0, -5.7, `So, I'll be away until I see you all at the dining center.`))
 
-    // TODO: add delete item function
     // TODO: add edit item function
 
     add_item(nli(liid1, pra3, -5, { type: M.LobbyItemType.USER_STATUS_UPDATE, data: M.GroupUserStatus.ACTIVE }))

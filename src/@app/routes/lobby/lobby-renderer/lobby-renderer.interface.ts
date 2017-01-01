@@ -1,28 +1,32 @@
 
-import * as M from '@app/core/model'
 import * as MLI from '@app/core/model/lobby-item.model'
 
 export
 type RenderedItem = {
   ItemId: string,
-  Data: MLI.LobbyItemTypeAndData,
-  Reactions: {
-    // Unique for Array
-    Reaction: string,
-
-    // All Items with this Reaction.
-    Items: {
-      ItemId: string,
-      Profile: M.Profile
-    }[]
-  }[],
+  Data: MLI.LobbyItemData,
+  Type: MLI.LobbyItemType,
+  Reactions: Reaction[],
   IsEdited: boolean,
   IsDeleted: boolean,
 }
 
+export type Reaction = {
+  // Unique for Array
+  Reaction: string,
+
+  // All Items with this Reaction.
+  Items: ReactionItem[]
+}
+
+export type ReactionItem = {
+  ItemId: string,
+  ProfileId: string,
+}
+
 export
 type RenderedItemGroup = {
-  Profile: M.Profile,
+  ProfileId: string,
   PostedAt: Date,
   Items: RenderedItem[],
 }

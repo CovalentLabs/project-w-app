@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs'
 export class LobbyComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
-  ItemGroups: RenderedItemGroup
+  ItemGroups: RenderedItemGroup[] = []
 
   private _stateSub: Subscription
   private _renderSub: Subscription

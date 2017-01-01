@@ -19,8 +19,8 @@ export enum LobbyItemOperation {
 // Then add a DataMedia type which represents a
 // Media Resource URL, etc
 export enum LobbyItemType {
-  LOCK_UPDATE,
   TEXT, REACTION,
+  LOCK_UPDATE,
   USER_STATUS_UPDATE, USER_DATA_UPDATE, USER_HAS_ARRIVED_UPDATE
 }
 
@@ -45,15 +45,18 @@ export type LobbyItem = {
 
   // Payload of the message
   Type: LobbyItemType
-  Data: DataText
-      | DataReaction
-      | DataUserStatusUpdate
-      | DataLockStatusUpdate
-      // Ex: Configures color they are wearing
-      | DataUserDataUpdate
-      // they arrived at location
-      | DataUserHasArrivedUpdate
+  Data: LobbyItemData
 }
+
+export type LobbyItemData
+  = DataText
+  | DataReaction
+  | DataLockStatusUpdate
+  | DataUserStatusUpdate
+  // Ex: Configures color they are wearing
+  | DataUserDataUpdate
+  // they arrived at location
+  | DataUserHasArrivedUpdate
 
 // Helper for enforcing pairing of type and appropriate data type
 export type LobbyItemTypeAndData
