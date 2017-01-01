@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { DataLockStatusUpdate } from '@app/core/model/lobby-item.model'
 import * as M from '@app/core/model'
@@ -10,20 +10,9 @@ import * as M from '@app/core/model'
     require('../shared/item-md-icon.scss'),
   ]
 })
-export class ItemLockUpdateComponent implements OnInit {
+export class ItemLockUpdateComponent {
   LOCKED = M.GroupLockStatus.LOCKED
   UNLOCKED = M.GroupLockStatus.UNLOCKED
 
-  @Output() options = new EventEmitter()
   @Input() data: DataLockStatusUpdate
-
-  triggerOptions() {
-    this.options.emit()
-  }
-
-  ngOnInit() {
-    console.log(
-      this.data
-    )
-  }
 }

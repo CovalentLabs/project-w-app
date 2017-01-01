@@ -1,6 +1,8 @@
-import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { RenderedItem } from '../../../../lobby-renderer'
+import { RenderedItem } from '@app/core/data'
+
+import { LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-item-reactions',
@@ -9,15 +11,13 @@ import { RenderedItem } from '../../../../lobby-renderer'
     require('./item-reactions.component.scss'),
   ]
 })
-export class ItemReactionsComponent implements OnInit {
-  @Output() options = new EventEmitter()
+export class ItemReactionsComponent {
+  @Output() react = new EventEmitter<string>()
   @Input() renderedItem: RenderedItem
 
-  ngOnInit() {
-    console.log(
-      "reactions",
-      this.renderedItem.Data,
-      this.renderedItem && this.renderedItem.Reactions
-    )
+  constructor(private _lobby: LobbyActions) {}
+
+  onAddReaction(value?: string) {
+    this.react.emit(value)
   }
 }

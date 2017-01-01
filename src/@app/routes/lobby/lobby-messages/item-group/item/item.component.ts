@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component, Input
+} from '@angular/core';
 
-import { RenderedItem } from '../../../lobby-renderer'
+import { LobbyActions } from '@app/core'
+
+import { RenderedItem } from '@app/core/data'
 
 import * as MLI from '@app/core/model/lobby-item.model'
 
@@ -8,11 +12,12 @@ import { ItemLockUpdateComponent } from './item-lock-update/item-lock-update.com
 import { ItemTextComponent } from './item-text/item-text.component'
 import { ItemUserStatusUpdateComponent } from './item-user-status-update/item-user-status-update.component'
 import { ItemReactionsComponent } from './item-reactions/item-reactions.component'
-export const ITEM_COMPONENTS = [
+
+export const ITEM_DECLARATIONS = [
   ItemTextComponent,
   ItemLockUpdateComponent,
   ItemUserStatusUpdateComponent,
-  ItemReactionsComponent,
+  ItemReactionsComponent
 ]
 
 @Component({
@@ -33,5 +38,17 @@ export class ItemComponent {
   // <item [item]="">
   @Input() item: RenderedItem
 
-  constructor() {}
+  constructor(private _lobby: LobbyActions) {}
+
+  onPress(event: HammerInput) {
+    this._lobby.showItemOptions(this.item.ItemId)
+  }
+
+  onReact(reactionValue?: string) {
+    if (reactionValue == null || reactionValue.length === 0) {
+      this._lobby.showReactionOptions(this.item.ItemId)
+    } else {
+      this._lobby.toggleReaction(this.item.ItemId, reactionValue)
+    }
+  }
 }

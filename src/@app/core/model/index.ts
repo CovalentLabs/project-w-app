@@ -7,9 +7,9 @@ export { LoginCredentials } from './login-credentials.model'
 export { UserItem } from './user-item.model'
 import { Discover, DefaultDiscover } from './discover.model'
 export { Discover, DefaultDiscover }
-import { Lobby, DefaultLobby } from './lobby.model'
-export { Lobby, DefaultLobby }
-export { LobbyItem, LobbyItemType, LobbyItemOperation } from './lobby-item.model'
+import { Lobby, DefaultLobby, LobbyItemOption } from './lobby.model'
+export { Lobby, DefaultLobby, LobbyItemOption }
+export { LobbyItem, LobbyItemType, LobbyItemData, LobbyItemOperation } from './lobby-item.model'
 import { Mock, DefaultMock } from './mock.model'
 export { Mock, DefaultMock }
 

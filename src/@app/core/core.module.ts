@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ACTIONS } from './action'
 import { AppStateService, TimelineService } from './app-state'
+import { DataService, LobbyItemReceiverService } from './data'
 
 // import { DeviceStateService }from './device-state.service';
 
@@ -23,6 +24,8 @@ import { AppStateService, TimelineService } from './app-state'
   providers:    [
     AppStateService,
     TimelineService,
+    DataService,
+    LobbyItemReceiverService,
 
     ...ACTIONS,
 

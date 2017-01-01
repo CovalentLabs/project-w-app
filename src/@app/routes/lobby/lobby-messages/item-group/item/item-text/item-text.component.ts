@@ -1,4 +1,4 @@
-import { Component, Output, Input, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { DataText } from '@app/core/model/lobby-item.model'
 
@@ -9,17 +9,6 @@ import { DataText } from '@app/core/model/lobby-item.model'
     require('./item-text.component.scss'),
   ]
 })
-export class ItemTextComponent implements OnInit {
-  @Output() options = new EventEmitter()
+export class ItemTextComponent {
   @Input() data: DataText
-
-  triggerOptions() {
-    this.options.emit()
-  }
-
-  ngOnInit() {
-    console.log(
-      this.data
-    )
-  }
 }

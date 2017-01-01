@@ -5,10 +5,13 @@
 @import 'bootstrap/custom';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
+  height: 100%;
+  align-content: stretch;
 }
 
-.message-input {
-  background: $ui-background;
+pw-lobby-messages {
+  flex: 1;
 }

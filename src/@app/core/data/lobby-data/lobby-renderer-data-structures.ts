@@ -139,9 +139,23 @@ class PostsDictionary {
     reactionSet.remove(reaction)
   }
 
+  // @param reaction: must be the original reaction item
+  getReactionsOf(id: string): MLI.LobbyItem[] {
+    return this.getFlatPost(id).Reac.toArray()
+  }
+
   getOriginal(id: string): MLI.LobbyItem {
     let originals = this._history.getValue(id)
     if (originals) { return originals.first() }
+  }
+
+  getHistory(id: string): MLI.LobbyItem[] {
+    let originals = this._history.getValue(id)
+    if (originals) { return originals.toArray() }
+  }
+
+  getFlatPost(id: string): FlatPost {
+    return this._flatIndex.getValue(id)
   }
 
   // FUTURE: Caching?

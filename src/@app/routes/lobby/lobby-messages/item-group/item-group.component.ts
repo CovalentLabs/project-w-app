@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RenderedItemGroup, RenderedItem } from '../../lobby-renderer'
+import { RenderedItemGroup, RenderedItem } from '@app/core/data'
 
 import * as M from '@app/core/model'
 import * as MLI from '@app/core/model/lobby-item.model'

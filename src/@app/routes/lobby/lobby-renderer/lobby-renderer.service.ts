@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core'
 
 import { Observer, Observable } from 'rxjs'
 
-import { RenderedItemGroup } from './lobby-renderer.interface'
-import { LobbyItemGroupsRendererService } from './lobby-item-groups-renderer.service'
-
-import * as I from './lobby-renderer-data-structures'
+import { RenderedItemGroup, LobbyItemReceiverService } from '@app/core/data/lobby-data'
 
 import * as M from '@app/core/model'
 
@@ -14,14 +11,14 @@ export class LobbyRendererService {
   private _renderObserver: Observer<RenderedItemGroup[]>
   public render: Observable<RenderedItemGroup[]>
 
-  constructor(private _renderer: LobbyItemGroupsRendererService) {
+  constructor(private _renderer: LobbyItemReceiverService) {
     this.render = Observable.create(observer => {
       this._renderObserver = observer
       // Any cleanup logic might go here
       return () => console.log('disposed lobby render subscription')
     })
     this.render.subscribe(noop => noop)
-    this.reset()
+    // this.reset()
   }
 
   updateLobby(lobby: M.Lobby) {
@@ -32,10 +29,12 @@ export class LobbyRendererService {
 
   // Force emit render update
   next() {
-    this._renderObserver.next(this._renderer.render())
+    const rend = this._renderer.posts.getRenderedItemGroups()
+    this._renderObserver.next(rend)
   }
 
-  reset() {
+  // Not implemented yet
+  // reset() {
 
-  }
+  // }
 }

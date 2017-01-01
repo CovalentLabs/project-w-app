@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Data<%=ItemType%> } from '@app/core/model/lobby-item.model'
 
@@ -9,17 +9,6 @@ import { Data<%=ItemType%> } from '@app/core/model/lobby-item.model'
     require('./item-<%=itemtype%>.component.scss'),
   ]
 })
-export class Item<%=ItemType%>Component implements OnInit {
-  @Output() options = new EventEmitter()
+export class Item<%=ItemType%>Component {
   @Input() data: Data<%=ItemType%>
-
-  triggerOptions() {
-    this.options.emit()
-  }
-
-  ngOnInit() {
-    console.log(
-      this.data
-    )
-  }
 }

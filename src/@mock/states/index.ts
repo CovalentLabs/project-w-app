@@ -322,6 +322,7 @@ const MOCK_STATES: MockState[] = (function () {
 
   // set when lobbyBase1 is created
   let item1: M.LobbyItem = null
+  let item2: M.LobbyItem = null
   const lobbyBase1: AppState
     = ((fn) => fn())(
   function CreateLobbyBase1Mock() {
@@ -360,6 +361,7 @@ const MOCK_STATES: MockState[] = (function () {
     add_item(nlitext(liid1, pr$0, -6,   `I am very excited to meet you guys, I just have an episode of Bobs Burgers to complete.`))
     add_item(nlitext(liid1, pr$0, -5.7, `So, I'll be away until I see you all at the dining center.`))
 
+    item2 =
     add_item(nli(liid1, pra3, -5, { type: M.LobbyItemType.USER_STATUS_UPDATE, data: M.GroupUserStatus.ACTIVE }))
     const ia30: M.LobbyItem = add_item(nlitext(liid1, pra3, -4.7, `Hey guys!`))
     add_item(nlireac(liid1, pr$0, -4.8, ia30, 'wave'))
@@ -373,8 +375,7 @@ const MOCK_STATES: MockState[] = (function () {
         State: M.DeviceState.IN_GROUP,
       },
       Lobby: {
-        Deleting: null,
-        Editing: null,
+        ItemOption: null,
         ItemOptions: null,
         Group: gr$0,
         LobbyItems: items
@@ -387,22 +388,38 @@ const MOCK_STATES: MockState[] = (function () {
     lobbyBase1
   )
 
+  const canEditItem1 = item1.ProfileId === lobbyBase1.Login.Credentials.Profile.Id
+  const item1Options = { Post: item1, Data: item1.Data, CanEdit: canEditItem1 }
   add(//////////////////
-    'Lobby/ItemOptions 1',
+    'Lobby/ShowOptions 1 Can Edit',
     lobbyBase1,
-    { Lobby: { ItemOptions: { LobbyItem: item1 } } }
+    { Lobby: { ItemOptions: item1Options, ItemOption: null } }
+  )
+
+  const canEditItem2 = item2.ProfileId === lobbyBase1.Login.Credentials.Profile.Id
+  const item2Options = { Post: item2, Data: item2.Data, CanEdit: canEditItem2 }
+  add(//////////////////
+    'Lobby/ShowOptions 2 Not Edit',
+    lobbyBase1,
+    { Lobby: { ItemOptions: item2Options, ItemOption: null } }
   )
 
   add(//////////////////
     'Lobby/Editing 1',
     lobbyBase1,
-    { Lobby: { Editing: item1 } }
+    { Lobby: { ItemOptions: item1Options, ItemOption: M.LobbyItemOption.EDIT } }
   )
 
   add(//////////////////
     'Lobby/Deleting 1',
     lobbyBase1,
-    { Lobby: { Deleting: item1 } }
+    { Lobby: { ItemOptions: item1Options, ItemOption: M.LobbyItemOption.DELETE } }
+  )
+
+  add(//////////////////
+    'Lobby/Reacting 2',
+    lobbyBase1,
+    { Lobby: { ItemOptions: item2Options, ItemOption: M.LobbyItemOption.REACT } }
   )
 
   // TODO Future mocks please retain comment delimiters,

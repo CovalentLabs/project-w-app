@@ -1,6 +1,6 @@
 <!-- ItemComponent Template -->
 
-<ng-container [ngSwitch]="item.Type">
+<div [ngSwitch]="item.Type" (press)="onPress($event)">
 
   <!-- Group lock or unlocked change -->
   <pw-item-lock-update [data]="item.Data"
@@ -37,6 +37,6 @@
   <div *ngSwitchDefault>
     <h1 class="alert alert-danger">UNKNOWN</h1>
   </div>
-</ng-container>
+</div>
 
-<pw-item-reactions [renderedItem]="item"></pw-item-reactions>
+<pw-item-reactions [renderedItem]="item" (react)="onReact($event)"></pw-item-reactions>

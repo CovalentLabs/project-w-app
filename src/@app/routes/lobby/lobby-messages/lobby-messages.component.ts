@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { RenderedItemGroup } from '../lobby-renderer'
-
-import * as M from '@app/core/model'
+import { RenderedItemGroup } from '@app/core/data'
 
 @Component({
   selector: 'pw-lobby-messages',

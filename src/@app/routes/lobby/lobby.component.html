@@ -4,10 +4,5 @@
 <pw-lobby-messages [myProfileId]="myProfileId"
     [itemGroups]="ItemGroups"></pw-lobby-messages>
 
-<div class="message-input">
-  <label>
-    <span>Message</span>
-    <input type="text" placeholder="Write..." [(ngModel)]="message">
-  </label>
-  <button class="btn btn-primary">Send</button>
-</div>
+<pw-lobby-item-input (send)="sendMessage($event)">
+</pw-lobby-item-input>

@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core'
 
-import { RenderedItemGroup } from './lobby-renderer.interface'
-
 import * as I from './lobby-renderer-data-structures'
 
 import * as MLI from '@app/core/model/lobby-item.model'
 
 function debug(title: string, ...obj) {
-  let args = [`Renderer %c${title}`, 'font-weight: bold', ...obj]
-  console.log.apply(console, args)
+  // let args = [`Renderer %c${title}`, 'font-weight: bold', ...obj]
+  // console.log.apply(console, args)
 }
 
 @Injectable()
-export class LobbyItemGroupsRendererService {
+export class LobbyItemReceiverService {
   private _posts: I.PostsDictionary
+  get posts()  {
+    return this._posts
+  }
+
   // private _updates: I.ItemsDictionary
   private _lastSeen: MLI.LobbyItem
 
@@ -36,10 +38,6 @@ export class LobbyItemGroupsRendererService {
       this._lastSeen = lobbyItems[lobbyItems.length - 1]
       debug('lastseen', this._lastSeen)
     }
-  }
-
-  render(): RenderedItemGroup[] {
-    return this._posts.getRenderedItemGroups()
   }
 
   private add(item: MLI.LobbyItem) {

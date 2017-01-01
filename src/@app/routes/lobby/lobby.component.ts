@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
 
 import { Router } from '@angular/router'
 
-import { AppStateService, AppState, Profile } from '@app/core'
+import { AppStateService, AppState } from '@app/core'
+import { RenderedItemGroup } from '@app/core/data'
 
-import { LobbyRendererService, RenderedItemGroup } from './lobby-renderer'
+import { LobbyRendererService } from './lobby-renderer'
 
 import { Subscription } from 'rxjs'
 
