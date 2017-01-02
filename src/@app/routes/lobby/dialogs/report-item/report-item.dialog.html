@@ -4,7 +4,11 @@
 </ng-container>
 <ng-container *ngIf="!hasReported">
   <h1 md-dialog-title>Report Item</h1>
-  <div md-dialog-content>{{ content }}</div>
+  <div md-dialog-content>
+    <blockquote class="blockquote">
+      <p class="mb-0">{{ content }}</p>
+    </blockquote>
+  </div>
   <br>
   <div class="form-group">
     <textarea class="form-control" [(ngModel)]="reasonString" placeholder="Report reason..."></textarea>

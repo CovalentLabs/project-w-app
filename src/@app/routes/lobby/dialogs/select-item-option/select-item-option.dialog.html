@@ -1,8 +1,11 @@
 <!-- SelectItemOptionComponent Template -->
 
 <h1 md-dialog-title>Options</h1>
-<div md-dialog-content *ngIf="content != null">{{ content }}</div>
-<br>
+<div md-dialog-content *ngIf="content != null">
+  <blockquote class="blockquote">
+    <p class="mb-0">{{ content }}</p>
+  </blockquote>
+</div>
 <div class="list-group" class="text-center">
   <ng-container>
     <button class="list-group-item list-group-item-action" (click)="onSelectOption(OPTION_REACT, 'REACT')">Add Reaction</button>
