@@ -6,6 +6,7 @@ import { AppStateService, AppState } from '@app/core'
 import { RenderedItemGroup } from '@app/core/data'
 
 import { LobbyRendererService } from './lobby-renderer'
+import { LobbyItemOptionsDialogService } from './dialogs'
 
 import { Subscription } from 'rxjs'
 
@@ -29,17 +30,24 @@ export class LobbyComponent implements OnInit, OnDestroy {
       private _app: AppStateService,
       private _render: LobbyRendererService,
       private _ref: ElementRef,
+      private _optionsDialog: LobbyItemOptionsDialogService,
       private _router: Router) {
     this._stateSub = this._app.state.subscribe(
         appState => {
       this.AppState = appState
       this.myProfileId = appState.Login.Credentials.Profile.Id
       this._render.updateLobby(appState.Lobby)
+
+      this.checkItemOptions()
     })
     this._renderSub = this._render.render.subscribe(
         render => this.ItemGroups = render)
   }
 
+  checkItemOptions() {
+    let lobby = this.AppState.Lobby
+    this._optionsDialog.update(lobby.ItemOptions, lobby.ItemOption)
+  }
   ngOnInit() {
     // trigger update so AppState becomes set.
     this._app.next()

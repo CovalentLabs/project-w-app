@@ -5,6 +5,7 @@
 @import 'bootstrap/custom';
 
 .message-input {
+  pointer-events: all;
   display: block;
   padding: 4px;
 

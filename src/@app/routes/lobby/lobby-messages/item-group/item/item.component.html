@@ -1,7 +1,8 @@
 <!-- ItemComponent Template -->
 
-<div [ngSwitch]="item.Type" (press)="onPress($event)">
-
+<div [ngSwitch]="item.Type"
+    (press)="onPress($event)"
+    class="item-container touch-action-auto">
   <!-- Group lock or unlocked change -->
   <pw-item-lock-update [data]="item.Data"
       class="small item"

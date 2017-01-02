@@ -5,7 +5,12 @@
 @import 'bootstrap/custom';
 
 :host {
-  display: block
+  display: block;
+  pointer-events: all;
+}
+
+.item-container {
+  display: inline-block;
 }
 
 .item {

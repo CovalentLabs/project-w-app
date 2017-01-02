@@ -75,6 +75,9 @@ export class AppModule {
     // Save state to hmr
     store.timeline = this._timelineService.getTimeline()
 
+    // remove leftovers
+    $('.cdk-overlay-container').remove()
+
     // remove styles
     removeNgStyles();
   }

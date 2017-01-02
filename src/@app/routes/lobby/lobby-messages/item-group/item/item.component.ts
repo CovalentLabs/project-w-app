@@ -41,6 +41,7 @@ export class ItemComponent {
   constructor(private _lobby: LobbyActions) {}
 
   onPress(event: HammerInput) {
+    catchPressEnd()
     this._lobby.showItemOptions(this.item.ItemId)
   }
 
@@ -51,4 +52,18 @@ export class ItemComponent {
       this._lobby.toggleReaction(this.item.ItemId, reactionValue)
     }
   }
+}
+
+function catchPressEnd() {
+  // create intermediary backdrop to prevent immediately closing dialog
+  // upon the exit of the touch event.
+  $(`<div class="cdk-overlay-backdrop">`)
+    .css({ "z-index": 1001 })
+    .appendTo('body')
+    .on('mouseup touchend contextmenu', (upEvent) => {
+      upEvent.stopPropagation()
+      upEvent.preventDefault()
+      // Remove this element after press completes
+      upEvent.target.remove()
+    })
 }

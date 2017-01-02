@@ -10,3 +10,8 @@ $enable-flex: true;
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+// Helpers required for HammerJS bindings
+.touch-action-auto {
+  touch-action: auto !important;
+}

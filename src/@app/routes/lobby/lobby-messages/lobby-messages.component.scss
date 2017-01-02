@@ -9,4 +9,10 @@
   // padding surrounding message items.
   padding: 8px;
   overflow: auto;
+  pointer-events: all;
+}
+
+pw-item-group {
+  // For performance purposes, only allow explicitly set pointer-events
+  pointer-events: none;
 }
