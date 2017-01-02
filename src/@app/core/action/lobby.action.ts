@@ -78,7 +78,15 @@ export class LobbyActions {
       }
       this.push(message)
     }
+  }
 
+  reportItem(targetItemId: string, reason: string) {
+    const message = {
+      op: 'report',
+      id: targetItemId,
+      reasonString: reason,
+    }
+    this.push(message)
   }
 
   showItemOptions(itemId: string) {
