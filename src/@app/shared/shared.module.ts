@@ -16,13 +16,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // its own copy of the service.
 
 import { CelebrationModalComponent } from './celebration-modal/celebration-modal.component';
-import { HAMMER_DIRECTIVES } from './hammer-directives';
+import { AutoGrowDirective } from './auto-grow.directive';
 
 // import { AwesomePipe }         from './awesome.pipe';
 // import { HighlightDirective }  from './highlight.directive';
 @NgModule({
   imports:      [ CommonModule ],
-  declarations: [ CelebrationModalComponent, ...HAMMER_DIRECTIVES ],
-  exports:      [ CelebrationModalComponent, CommonModule, ReactiveFormsModule, FormsModule ]
+  declarations: [ CelebrationModalComponent, AutoGrowDirective ],
+  exports:      [ CelebrationModalComponent, AutoGrowDirective, CommonModule, ReactiveFormsModule, FormsModule ]
 })
 export class SharedModule { }
