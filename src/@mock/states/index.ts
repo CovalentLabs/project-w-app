@@ -277,28 +277,57 @@ const MOCK_STATES: MockState[] = (function () {
   // Discovering ------
 
   const discoverBase1: AppState
-  = assign(loggedInBase1, {
-    Device: {
-      URL: '/discovering',
-      State: M.DeviceState.DISCOVERING,
-    },
-    Discover: {
-      Pea: pe$0,
-      Pod: pod$,
-      Matches: <M.PodMatch[]> [
-        { Id: 'm-a', Pod: poda, Status: M.PodMatchStatus.NOT_RESPONDED },
-        { Id: 'm-b', Pod: podb, Status: M.PodMatchStatus.REJECTED },
-        { Id: 'm-c', Pod: podc, Status: M.PodMatchStatus.ACCEPTED },
-        { Id: 'm-a1', Pod: poda, Status: M.PodMatchStatus.NOT_RESPONDED },
-        { Id: 'm-c1', Pod: podc, Status: M.PodMatchStatus.NOT_RESPONDED },
-      ],
-      IsPodLocked: false,
-      InvitationOptions: {
-        Friends: [ fr1, fr2 ]
-      },
-      ShowAvailabilityOptions: false,
-      ShowInvitationOptions: false
+  = ((fn) => fn())(
+  function CreateDiscoverBase1Mock() {
+    const podMatches: M.PodMatch[] = []
+    // id generators for mocking
+    const pmid1 = luid('pm1')
+    const pmvid1 = luid('pmv1')
+    // helpers
+    function pea_to_vote(pea: M.Pea): M.PodMatchVote { return { Id: pmvid1(), Pea: pea, Choice: M.PodMatchVoteChoice.ACCEPT } }
+    function add_match(
+        pod: M.Pod,
+        opts: { ourVotes: M.Pea[], theirVotes: M.Pea[] },
+        ruling = M.PodMatchRulingMethod.ONE_FROM_EACH_OVERALL_MAJORITY
+    ): M.PodMatch {
+      let match: M.PodMatch = {
+        Id: pmid1(),
+        Pod: pod,
+        RulingMethod: ruling,
+        OurVotes: opts.ourVotes.map(pea_to_vote),
+        TheirVotes: opts.theirVotes.map(pea_to_vote),
+      }
+      podMatches.push(match)
+      return match
     }
+
+    add_match(poda, { theirVotes: [ pea1, pea3 ], ourVotes: [ pe$0 ] })
+    add_match(poda, { theirVotes: [ pea1 ], ourVotes: [ pe$0 ] })
+    add_match(poda, { theirVotes: [ pea1 ], ourVotes: [ pe$0 ] }, M.PodMatchRulingMethod.HALF_FROM_EACH_OVERALL_MAJORITY)
+    add_match(poda, { theirVotes: [ ], ourVotes: [ pe$0, pe$2 ] })
+    add_match(podb, { theirVotes: [ ], ourVotes: [ pe$0, pe$2, pe$1 ] })
+    add_match(podb, { theirVotes: [ peb1 ], ourVotes: [ pe$0, pe$2, pe$1 ] })
+    add_match(podc, { theirVotes: [ pec1 ], ourVotes: [ pe$0 ] })
+    add_match(podc, { theirVotes: [ pec1 ], ourVotes: [ pe$0 ] }, M.PodMatchRulingMethod.HALF_FROM_EACH_OVERALL_MAJORITY)
+    add_match(podc, { theirVotes: [ pec1 ], ourVotes: [ pe$0, pe$2 ] })
+
+    return assign(loggedInBase1, {
+      Device: {
+        URL: '/discovering',
+        State: M.DeviceState.DISCOVERING,
+      },
+      Discover: {
+        Pea: pe$0,
+        Pod: pod$,
+        Matches: podMatches,
+        IsPodLocked: false,
+        InvitationOptions: {
+          Friends: [ fr1, fr2 ]
+        },
+        ShowAvailabilityOptions: false,
+        ShowInvitationOptions: false
+      }
+    })
   })
 
   add(//////////////////

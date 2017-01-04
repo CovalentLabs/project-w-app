@@ -43,16 +43,60 @@ export type Pod = {
   Peas: Pea[]
 }
 
-export enum PodMatchStatus {
-  ACCEPTED,
-  NOT_RESPONDED,
-  REJECTED,
+export enum PodMatchVoteChoice {
+  // Perhaps if one person denys/blocks, the group becomes locked and cannot be voted for?
+  ACCEPT, DENY
 }
 
+// We separate out ruling method as a parameter, because the server needs to be able to
+// share the same logic, and the server may optimize the match ruling method
+export enum PodMatchRulingMethod {
+  // Each pod must have at least one person accept the match,
+  // and overall, there needs to be more than half total peas
+  // casting ACCEPT
+  // So, |A| = 3, |B| = 2, there must be
+  //    1 vote from A,
+  //    1 vote from B, and
+  //    1 vote from either to reach majority
+  // OR, |A| = 2, |B| = 2, there must be
+  //    1 vote from A,
+  //    1 vote from B, and
+  //    1 vote from either to reach majority.
+  // OR, |A| = 3, |B| = 3, there must be
+  //    1 vote from A,
+  //    1 vote from B, and
+  //    2 votes from either to reach majority
+  ONE_FROM_EACH_OVERALL_MAJORITY,
+
+  // Each pod must have at least half of their peas agreeing
+  // and overall, there must be a majority.
+  // So, |A| = 3, |B| = 2, there must be
+  //    2 votes from A, and
+  //    1 vote from B
+  // OR, |A| = 2, |B| = 2, there must be
+  //    1 vote from A,
+  //    1 vote from B, and
+  //    1 vote from either to reach majority.
+  // OR, |A| = 3, |B| = 3, there must be
+  //    2 votes from A, and
+  //    2 votes from B
+  HALF_FROM_EACH_OVERALL_MAJORITY
+}
+
+export type PodMatchVote = {
+  Id: string
+  Pea: Pea
+  Choice: PodMatchVoteChoice
+}
+
+// TODO: in future these may all be stored as Items and work similarly to the LobbyItem pattern, due to efficiency
+// I'm not so sure how we will be leveraging channels for cx... we'll see!
 export type PodMatch = {
   Id: string
-  Pod: Pod
-  Status: PodMatchStatus
+  Pod: Pod // if their pod size changes, the following will need to be updated!
+  OurVotes: PodMatchVote[]
+  TheirVotes: PodMatchVote[]
+  RulingMethod: PodMatchRulingMethod
 }
 
 export type PodInvitation = {
