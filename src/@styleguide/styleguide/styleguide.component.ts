@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs'
 
 @Component({
   // Nunjucks now available for templating
-  template: require('./template/styleguide.component.nunj'),
+  template: require('./styleguide.component.nunj'),
   styles: [
     require('@app/style/component/full.scss'),
     // Styles should be minimal and only specific to the Styleguide component.

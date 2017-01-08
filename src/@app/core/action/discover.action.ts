@@ -39,7 +39,7 @@ export class DiscoverActions {
         // Navigate to discover page
         URL: '/discovering',
         // Indicate new state
-        State: DeviceState.DISCOVERING
+        State: DeviceState.IN_GROUP
       }
     })
 

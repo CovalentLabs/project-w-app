@@ -121,18 +121,18 @@ module.exports = function makeWebpackConfig() {
       // all css in src/style will be bundled in an external css file
       {
         test: /\.css$/,
-        exclude: [root('src/@app'), root('src/@mock')],
+        include: [ root('src/public') ],
         loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
       },
       // all css required in src/@app files will be merged in js files
-      {test: /\.css$/, include: [root('src/@app'), root('src/@mock')], loader: 'raw-loader!postcss-loader'},
+      {test: /\.css$/, exclude: [ root('src/public') ], loader: 'raw-loader!postcss-loader'},
 
       // support for .scss files
       // use 'null' loader in test mode (https://github.com/webpack/null-loader)
       // all css in src/style will be bundled in an external css file
       {
         test: /\.(scss|sass)$/,
-        exclude: [ root('src/@app'), root('src/@mock') ],
+        include: [ root('src/public') ],
         loader: isTest ? 'null-loader' :
           ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
@@ -153,7 +153,7 @@ module.exports = function makeWebpackConfig() {
       {test: /\.nunj$/, loader: 'raw-loader!nunjucks-html-loader?'
           + JSON.stringify({
             'searchPaths': [
-              root('src/@app/routes/styleguide/template')
+              root('src/@styleguide/template')
             ]
           }),
         exclude: root('src/public')},

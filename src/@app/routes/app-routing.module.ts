@@ -10,8 +10,6 @@ import { HomeModule } from './home/home.module'
 import { DiscoveringModule } from './discovering/discovering.module'
 import { LobbyModule } from './lobby/lobby.module'
 
-import { StyleguideModule } from './styleguide/styleguide.module'
-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' }
 ]
@@ -27,8 +25,6 @@ const routes: Routes = [
     HomeModule,
     DiscoveringModule,
     LobbyModule,
-
-    StyleguideModule
   ],
   declarations: [],
   exports: [RouterModule]

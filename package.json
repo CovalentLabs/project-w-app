@@ -22,7 +22,9 @@
     "ci": "npm run e2e && npm run test",
     "docs": "typedoc --options typedoc.json src/@app/app.component.ts",
     "start": "npm run server",
+    "style": "npm run server -- --config ./webpack.style.config.js",
     "start:hmr": "npm run server -- --hot",
+    "style:hmr": "npm run server -- --hot --config ./webpack.style.config.js",
     "postinstall": "npm run webdriver-update"
   },
   "engines": {
