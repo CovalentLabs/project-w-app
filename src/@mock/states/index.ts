@@ -98,7 +98,6 @@ function nrandgroupuser(podId: string, pea: M.Pea): M.GroupUser {
     Profile: pea.Profile,
     Status: status,
     Data: { WearingColor: color },
-    HasArrived: false,
   }
 }
 
@@ -314,7 +313,6 @@ const MOCK_STATES: MockState[] = (function () {
     return assign(loggedInBase1, {
       Device: {
         URL: '/discovering',
-        State: M.DeviceState.DISCOVERING,
       },
       Discover: {
         Pea: pe$0,

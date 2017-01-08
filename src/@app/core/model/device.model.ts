@@ -2,7 +2,6 @@
 export
 enum DeviceState {
   IDLING,
-  DISCOVERING,
   IN_GROUP,
 }
 

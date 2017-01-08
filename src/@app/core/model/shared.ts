@@ -146,8 +146,5 @@ export type GroupUser = {
   // This is configurable, updatable, data for the user
   Data: GroupUserData
 
-  // Is this user at the location?
-  HasArrived: boolean
-
   Status: GroupUserStatus
 }
