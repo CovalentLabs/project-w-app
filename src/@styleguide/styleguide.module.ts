@@ -1,22 +1,22 @@
-import { NgModule, ApplicationRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { CommonModule }      from '@angular/common';
+import { NgModule, ApplicationRef } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { LocationStrategy, HashLocationStrategy } from '@angular/common'
+import { CommonModule }      from '@angular/common'
 
 /* Shared Modules */
-import { SharedModule } from '@app/shared';
-import { MaterialModule } from '@angular/material';
+import { SharedModule } from '@app/shared'
+import { MaterialModule } from '@angular/material'
 
-import { CoreModule } from '@app/core';
+import { CoreModule } from '@app/core'
 
 /* Routing Module */
-import { StyleguideRoutingModule } from './styleguide-routing.module';
+import { StyleguideRoutingModule } from './styleguide-routing.module'
 
 // Mocks
 import { MockModule } from '@mock/mock.module'
 
 import { AppStateService, TimelineService } from '@app/core/app-state'
-import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+import { removeNgStyles, createNewHosts } from '@angularclass/hmr'
 
 import { Component } from '@angular/core'
 
@@ -34,7 +34,6 @@ import { Component } from '@angular/core'
   ],
 })
 class StyleguideComponent {}
-
 
 @NgModule({
   imports: [
@@ -82,9 +81,9 @@ export class StyleguideModule {
   }
 
   hmrOnDestroy(store) {
-    let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement)
     // recreate elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
+    store.disposeOldHosts = createNewHosts(cmpLocation)
 
     // Save state to hmr
     store.timeline = this._timelineService.getTimeline()
@@ -93,12 +92,12 @@ export class StyleguideModule {
     $('.cdk-overlay-container').remove()
 
     // remove styles
-    removeNgStyles();
+    removeNgStyles()
   }
 
   hmrAfterDestroy(store) {
     // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
+    store.disposeOldHosts()
+    delete store.disposeOldHosts
   }
 }
