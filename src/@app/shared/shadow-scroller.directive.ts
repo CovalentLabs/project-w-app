@@ -5,7 +5,7 @@ import { Directive, HostListener, ElementRef, OnDestroy } from '@angular/core'
 @Directive({
   selector: '[pw-shadow-scroller]'
 })
-export class ShadowScrollerDirective implements OnDestroy{
+export class ShadowScrollerDirective implements OnDestroy {
   @HostListener('scroll') onScroll() {
     autoShade(this._ref.nativeElement)
   }
