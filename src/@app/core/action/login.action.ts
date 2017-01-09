@@ -61,6 +61,7 @@ function createLoggedInUpdate(firstname: string, lastname: string, user_id: stri
         Profile: {
           Id: user_id + 'p',
           Tagline: 'Some tagline',
+          ImageURL: '',
           FirstName: firstname,
         },
         Id: user_id

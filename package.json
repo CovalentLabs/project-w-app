@@ -9,6 +9,7 @@
     "watch": "webpack --watch --progress --profile",
     "build": "rimraf www && webpack --progress --profile --bail",
     "deploy": "npm run build && cordova run android",
+    "style:deploy": "npm run build -- --config ./webpack.style.config.js && cordova run android",
     "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start",

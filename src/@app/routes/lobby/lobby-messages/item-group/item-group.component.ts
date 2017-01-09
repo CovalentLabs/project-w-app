@@ -45,6 +45,7 @@ export class ItemGroupComponent implements OnInit {
     this.profile = {
       FirstName: this.itemGroup.ProfileId,
       Id: this.itemGroup.ProfileId,
+      ImageURL: '',
       Tagline: "Unknown"
     }
 

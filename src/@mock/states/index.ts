@@ -17,19 +17,19 @@ function mergeExceptArrays (objValue, srcValue) {
 
 
 // Profiles
-const pr$0: M.Profile = { FirstName: 'Jackson',  Id: 'pr0',  Tagline: 'Captain Action' }
+const pr$0: M.Profile = { FirstName: 'Jackson',  Id: 'pr0',  ImageURL: '', Tagline: 'Captain Action' }
 // My Pod
-const pr$1: M.Profile = { FirstName: 'Road',     Id: 'pr$1', Tagline: 'Meep! Meep!' }
-const pr$2: M.Profile = { FirstName: 'Tweety',   Id: 'pr$2', Tagline: 'I tawt I taw a puddy-tat!' }
+const pr$1: M.Profile = { FirstName: 'Road',     Id: 'pr$1', ImageURL: '', Tagline: 'Meep! Meep!' }
+const pr$2: M.Profile = { FirstName: 'Tweety',   Id: 'pr$2', ImageURL: '', Tagline: 'I tawt I taw a puddy-tat!' }
 
-const pra1: M.Profile = { FirstName: 'Bugs',     Id: 'pra1', Tagline: 'What a maroon!' }
-const pra2: M.Profile = { FirstName: 'Daffy',    Id: 'pra2', Tagline: 'You\'re dethpicable' }
-const pra3: M.Profile = { FirstName: 'Porky',    Id: 'pra3', Tagline: 'Y-y-you can\'t fool me.' }
-const pra4: M.Profile = { FirstName: 'Lola',     Id: 'pra4', Tagline: 'Don\'t ever call me doll' }
-const prb1: M.Profile = { FirstName: 'Yosemite', Id: 'prb1', Tagline: 'Great horny toads!' }
-const prb2: M.Profile = { FirstName: 'Elmer',    Id: 'prb2', Tagline: 'Gweat gwasshoppers!' }
-const prc1: M.Profile = { FirstName: 'Speedy',   Id: 'prc1', Tagline: 'Arriba! Arriba!' }
-const prc2: M.Profile = { FirstName: 'Wile',     Id: 'prc2', Tagline: 'YEeooooowwwwwwwww!!!' }
+const pra1: M.Profile = { FirstName: 'Bugs',     Id: 'pra1', ImageURL: '', Tagline: 'What a maroon!' }
+const pra2: M.Profile = { FirstName: 'Daffy',    Id: 'pra2', ImageURL: '', Tagline: 'You\'re dethpicable' }
+const pra3: M.Profile = { FirstName: 'Porky',    Id: 'pra3', ImageURL: '', Tagline: 'Y-y-you can\'t fool me.' }
+const pra4: M.Profile = { FirstName: 'Lola',     Id: 'pra4', ImageURL: '', Tagline: 'Don\'t ever call me doll' }
+const prb1: M.Profile = { FirstName: 'Yosemite', Id: 'prb1', ImageURL: '', Tagline: 'Great horny toads!' }
+const prb2: M.Profile = { FirstName: 'Elmer',    Id: 'prb2', ImageURL: '', Tagline: 'Gweat gwasshoppers!' }
+const prc1: M.Profile = { FirstName: 'Speedy',   Id: 'prc1', ImageURL: '', Tagline: 'Arriba! Arriba!' }
+const prc2: M.Profile = { FirstName: 'Wile',     Id: 'prc2', ImageURL: '', Tagline: 'YEeooooowwwwwwwww!!!' }
 
 // Friends --------------------
 const fr1: M.Friend = nfri(pr$1, M.FriendStatus.IN_GROUP)
