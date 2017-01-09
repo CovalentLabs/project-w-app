@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser'
 
 import * as M from '@app/core/model'
@@ -17,7 +17,7 @@ const mockImages = [
     require('./profile-avatar.component.scss'),
   ]
 })
-export class ProfileAvatarComponent implements OnInit {
+export class ProfileAvatarComponent implements OnInit, OnChanges {
   @Input() profile: M.Profile
   hasImage = true
   bgImg: SafeStyle = null
@@ -26,6 +26,14 @@ export class ProfileAvatarComponent implements OnInit {
   constructor(private _d: DomSanitizer) {}
 
   ngOnInit() {
+    this.update()
+  }
+
+  ngOnChanges() {
+    this.update()
+  }
+
+  update() {
     let url: string
     if (this.profile) {
       // this.imageURL = this.profile.ImageURL

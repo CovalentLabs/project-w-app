@@ -22,8 +22,8 @@ export class TestComponent implements OnInit, OnDestroy, AfterViewInit {
   // Test vars
   time = 'Now'
   AppState: AppState = mock
-  pods$ = mock.Lobby.Group.GroupUsers.slice(0, 3)
-  pods1 = mock.Lobby.Group.GroupUsers.slice(3)
+  pod$ = mock.Lobby.Group.GroupUsers.slice(0, 3)
+  pod1 = mock.Lobby.Group.GroupUsers.slice(3)
 
   private _paramsSub: Subscription
 
@@ -176,6 +176,7 @@ function listenForSwipes(
       } else if (meetsLeftThresh(ox)) {
         // LEFT
         startHandler("left", ox, ev.deltaX)
+        console.log(ev.srcEvent)
         setupEndListener()
       }
     } else {

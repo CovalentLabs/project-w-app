@@ -18,8 +18,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { CelebrationModalComponent } from './celebration-modal/celebration-modal.component'
 import { ProfileAvatarComponent } from './profile-avatar/profile-avatar.component'
 import { ProfileMessageComponent } from './profile-message/profile-message.component'
+import { PanelHeaderComponent } from './panel-header/panel-header.component'
+import { PodStackComponent } from './pod-stack/pod-stack.component'
 
 import { AutoGrowDirective } from './auto-grow.directive'
+import { ShadowScrollerDirective } from './shadow-scroller.directive'
 
 // import { AwesomePipe }         from './awesome.pipe'
 // import { HighlightDirective }  from './highlight.directive'
@@ -27,13 +30,21 @@ import { AutoGrowDirective } from './auto-grow.directive'
   imports:      [ CommonModule ],
   declarations: [
     CelebrationModalComponent, AutoGrowDirective,
+    ShadowScrollerDirective,
+
     ProfileAvatarComponent,
     ProfileMessageComponent,
+    PanelHeaderComponent,
+    PodStackComponent,
   ],
   exports:      [
     CelebrationModalComponent, AutoGrowDirective,
+    ShadowScrollerDirective,
+
     ProfileAvatarComponent,
     ProfileMessageComponent,
+    PanelHeaderComponent,
+    PodStackComponent,
     CommonModule, ReactiveFormsModule, FormsModule
   ]
 })

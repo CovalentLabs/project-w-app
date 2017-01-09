@@ -2,6 +2,44 @@
 
 <div class="window h-100
       d-flex flex-column align-content-stretch">
+  <pw-panel-header
+      title="Group"
+      subtitle="What does your group look like?">
+  </pw-panel-header>
+  <div class="px-2">
+    <pw-profile-message
+        *ngIf="currGU"
+        [profile]="currGU.Profile"
+        [action]="currGU.Profile.Tagline"
+        >
+    </pw-profile-message>
+  </div>
+  <div pw-shadow-scroller class="px-2">
+    <div class="touch-action-pan-y">
+      <pw-pod-stack
+          [users]="pod$"
+          (openUser)="currGU = $event"
+          >
+      </pw-pod-stack>
+      <pw-pod-stack
+          [users]="pod1"
+          (openUser)="currGU = $event"
+          >
+      </pw-pod-stack>
+    </div>
+  </div>
+  <div class="container-fluid m-0">
+    <div class="row info-blocks ib-mini">
+      <div class="ib-activity col-6 col-sm-3">Lunch</div>
+      <div class="ib-time col-6 col-sm-3">11:15am <md-icon>mode_edit</md-icon></div>
+      <div class="ib-place col-12 col-sm-6">Garst Dining Hall <md-icon>place</md-icon></div>
+    </div>
+  </div>
+</div>
+
+<!-- hidden for a moment -->
+<div *ngIf="false" class="window h-100
+      d-flex flex-column align-content-stretch">
   <div class="test-elt"></div>
   <div class="container-fluid m-0">
     <div class="row info-blocks">
@@ -10,10 +48,9 @@
       <div class="ib-place col-12 col-sm-6">Garst Dining Hall <md-icon>place</md-icon></div>
     </div>
   </div>
-  <div class="message-scroller px-1">
+  <div pw-shadow-scroller class="px-1">
     <div class="touch-action-pan-y">
       <pw-profile-message
-          class="message d-flex flex-row align-content-stretch"
           *ngFor="let gu of AppState.Lobby.Group.GroupUsers"
           [profile]="gu.Profile"
           [action]="gu.Profile.Tagline"

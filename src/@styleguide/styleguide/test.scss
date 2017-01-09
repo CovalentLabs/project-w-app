@@ -1,5 +1,6 @@
 
 @import 'bootstrap/custom';
+
 .panes {
   position: relative;
   transition: transform .4s;
@@ -31,11 +32,19 @@
 
 .info-blocks {
   [class^=ib-] {
-    padding: 8px 12px;
+    padding: ($spacer-y * .75) ($spacer-x * .5);
+    transition: padding .2s ease-in;
+
     /* Lunch: */
     font-family: SFUIDisplay-Bold;
     font-size: $ui-font-base-size * 1.2;
     color: #272727;
+  }
+
+  &.ib-mini {
+    [class^=ib-] {
+      padding: ($spacer-y * .2) ($spacer-x * .5);
+    }
   }
 
   $activity-bg: #E57373;
@@ -59,8 +68,11 @@ $type-space-x: 16px;
 
 .message-scroller {
   overflow: auto;
-  flex: 1;
   position: relative;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 .curtain {
