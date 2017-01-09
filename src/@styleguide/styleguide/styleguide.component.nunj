@@ -8,6 +8,11 @@
 
   <div class="row">
     <div class="col-xs">
+      <button class="btn btn-warning" routerLink="test">Testing</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs">
       <h2>Radio Buttons</h2>
       {# See nunjucks templating guides to learn loops #}
       <div class="btn-group" data-toggle="buttons">

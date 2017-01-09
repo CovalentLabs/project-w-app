@@ -3,6 +3,7 @@ export interface Profile {
   Id: string
   FirstName: string
   Tagline: string
+  ImageURL: string
 }
 
 export enum FriendStatus {

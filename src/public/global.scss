@@ -15,3 +15,15 @@ $enable-flex: true;
 .touch-action-auto {
   touch-action: auto !important;
 }
+.touch-action-pan-y {
+  touch-action: pan-y !important;
+}
+
+// Global method to insert content before
+[data-content-before]::before {
+  content: attr(data-content-before);
+}
+
+body {
+  font-size: 22px;
+}

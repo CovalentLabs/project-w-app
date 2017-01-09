@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 
 /* Shared Modules */
 import { SharedModule } from '@app/shared/shared.module'
+import { MaterialModule } from '@angular/material';
 
 import { routes as sroutes, DECLARATIONS } from './styleguide/styleguide-routes';
 
@@ -18,8 +19,8 @@ const routes: Routes = [
     component: ParentComponent,
     children: sroutes
   },
-  { path: '', pathMatch: 'full', redirectTo: 'styleguide' },
-  { path: '**', pathMatch: 'full', redirectTo: 'styleguide' }
+  { path: '', pathMatch: 'full', redirectTo: 'styleguide/test' },
+  { path: '**', pathMatch: 'full', redirectTo: 'styleguide/test' }
 ]
 
 @NgModule({
@@ -27,6 +28,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
 
     SharedModule,
+    MaterialModule,
   ],
   declarations: [ ParentComponent, ...DECLARATIONS ],
   exports: [RouterModule]

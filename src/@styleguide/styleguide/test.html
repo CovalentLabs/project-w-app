@@ -1,0 +1,43 @@
+<div class="panes">
+
+<div class="window h-100
+      d-flex flex-column align-content-stretch">
+  <div class="test-elt"></div>
+  <div class="container-fluid m-0">
+    <div class="row info-blocks">
+      <div class="ib-activity col-6 col-sm-3">Lunch</div>
+      <div class="ib-time col-6 col-sm-3">11:15am <md-icon>mode_edit</md-icon></div>
+      <div class="ib-place col-12 col-sm-6">Garst Dining Hall <md-icon>place</md-icon></div>
+    </div>
+  </div>
+  <div class="message-scroller px-1">
+    <div class="touch-action-pan-y">
+      <pw-profile-message
+          class="message d-flex flex-row align-content-stretch"
+          *ngFor="let gu of AppState.Lobby.Group.GroupUsers"
+          [profile]="gu.Profile"
+          [action]="gu.Profile.Tagline"
+          [messageText]="gu.Profile.Tagline"
+          [time]="time"
+          >
+      </pw-profile-message>
+    </div>
+  </div>
+  <div class="px-1 input-bg">
+    <div class="message d-flex flex-row align-content-stretch">
+      <pw-profile-avatar [profile]="AppState.Login.Credentials.Profile">
+      </pw-profile-avatar>
+      <div class="bounds">
+        <textarea type="text" class="form-control message-input"
+            pw-auto-grow
+            placeholder="Write message..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pane p-people h-100 w-100">
+  hello
+</div>
+
+</div>

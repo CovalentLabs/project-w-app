@@ -1,8 +1,8 @@
-import { NgModule }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgModule }            from '@angular/core'
+import { CommonModule }        from '@angular/common'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
-// import { InterestBlockComponent } from './interest-block/interest-block.component';
+// import { InterestBlockComponent } from './interest-block/interest-block.component'
 // import { CtaButtonComponent } from './cta-button/cta-button.component'
 
 // Components that live in multiple places around the app go here.
@@ -15,14 +15,26 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // A lazy loaded module that imports that shared module will make
 // its own copy of the service.
 
-import { CelebrationModalComponent } from './celebration-modal/celebration-modal.component';
-import { AutoGrowDirective } from './auto-grow.directive';
+import { CelebrationModalComponent } from './celebration-modal/celebration-modal.component'
+import { ProfileAvatarComponent } from './profile-avatar/profile-avatar.component'
+import { ProfileMessageComponent } from './profile-message/profile-message.component'
 
-// import { AwesomePipe }         from './awesome.pipe';
-// import { HighlightDirective }  from './highlight.directive';
+import { AutoGrowDirective } from './auto-grow.directive'
+
+// import { AwesomePipe }         from './awesome.pipe'
+// import { HighlightDirective }  from './highlight.directive'
 @NgModule({
   imports:      [ CommonModule ],
-  declarations: [ CelebrationModalComponent, AutoGrowDirective ],
-  exports:      [ CelebrationModalComponent, AutoGrowDirective, CommonModule, ReactiveFormsModule, FormsModule ]
+  declarations: [
+    CelebrationModalComponent, AutoGrowDirective,
+    ProfileAvatarComponent,
+    ProfileMessageComponent,
+  ],
+  exports:      [
+    CelebrationModalComponent, AutoGrowDirective,
+    ProfileAvatarComponent,
+    ProfileMessageComponent,
+    CommonModule, ReactiveFormsModule, FormsModule
+  ]
 })
 export class SharedModule { }

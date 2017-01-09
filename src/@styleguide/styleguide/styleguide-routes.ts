@@ -1,8 +1,14 @@
+import { Component } from '@angular/core'
 import { Routes } from '@angular/router'
 
 import { StyleguideComponent } from './styleguide.component'
-export const DECLARATIONS = [ StyleguideComponent ]
+import { TestComponent } from './test.component'
+
 
 export const routes: Routes = [
+  { path: 'test', component: TestComponent },
   { path: '', component: StyleguideComponent },
 ]
+export const DECLARATIONS = routes
+  .filter(r => !!r.component)
+  .map(r => r.component)

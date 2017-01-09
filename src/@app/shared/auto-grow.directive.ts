@@ -1,7 +1,7 @@
 
 import { Directive, HostListener, ElementRef } from '@angular/core'
 
-// Listens for hammer press events
+// Listens for textarea input events
 @Directive({ selector: 'textarea[pw-auto-grow]' })
 export class AutoGrowDirective {
   @HostListener('input') onInput() {
@@ -13,6 +13,9 @@ export class AutoGrowDirective {
 }
 
 function autoGrow(textarea: HTMLTextAreaElement) {
-  textarea.style.height = "5px";
-  textarea.style.height = (textarea.scrollHeight) + "px";
+  const hasValue = textarea.value.length > 0
+  textarea.style.height = "5px"
+  if (!hasValue) { textarea.value = " " }
+  textarea.style.height = textarea.scrollHeight + "px"
+  if (!hasValue) { textarea.value = "" }
 }

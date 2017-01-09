@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-import { Router } from '@angular/router'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 
 import * as M from '@app/core/model'
 

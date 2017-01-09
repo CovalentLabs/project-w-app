@@ -7,15 +7,11 @@ import { CommonModule }      from '@angular/common'
 import { SharedModule } from '@app/shared'
 import { MaterialModule } from '@angular/material'
 
-import { CoreModule } from '@app/core'
+// import { CoreModule } from '@app/core'
 
 /* Routing Module */
 import { StyleguideRoutingModule } from './styleguide-routing.module'
 
-// Mocks
-import { MockModule } from '@mock/mock.module'
-
-import { AppStateService, TimelineService } from '@app/core/app-state'
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr'
 
 import { Component } from '@angular/core'
@@ -26,7 +22,6 @@ import { Component } from '@angular/core'
 <div class="outlet">
   <router-outlet></router-outlet>
 </div>
-<pw-mock-menu></pw-mock-menu>
 `,
   styles: [
     require('@app/style/component/full.scss'),
@@ -41,12 +36,10 @@ class StyleguideComponent {}
     CommonModule,
     SharedModule,
 
-    MockModule,
-
     // CoreModule defines everything that needs to be imported once,
     // and app-wide singletons such as the DeviceStateService
     MaterialModule.forRoot(),
-    CoreModule.forRoot(),
+    // CoreModule.forRoot(),
 
     StyleguideRoutingModule
   ],
@@ -61,8 +54,8 @@ class StyleguideComponent {}
 export class StyleguideModule {
   constructor(
       public appRef: ApplicationRef,
-      private _appStateService: AppStateService,
-      private _timelineService: TimelineService
+      // private _appStateService: AppStateService,
+      // private _timelineService: TimelineService
   ) {}
 
   hmrOnInit(store) {
@@ -71,13 +64,15 @@ export class StyleguideModule {
 
     console.log("HMR store", store)
 
+    /*
     if (store && store.timeline) {
       this._appStateService.applyTimeline(store.timeline)
 
       // change detection
       this.appRef.tick()
       delete store.timeline
-    }
+    } else {
+    }*/
   }
 
   hmrOnDestroy(store) {
@@ -86,7 +81,7 @@ export class StyleguideModule {
     store.disposeOldHosts = createNewHosts(cmpLocation)
 
     // Save state to hmr
-    store.timeline = this._timelineService.getTimeline()
+    // store.timeline = this._timelineService.getTimeline()
 
     // remove leftovers
     $('.cdk-overlay-container').remove()
