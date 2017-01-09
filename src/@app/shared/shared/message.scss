@@ -2,6 +2,10 @@
 @import 'bootstrap/custom';
 
 :host {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+
   font-size: $ui-font-base-size;
   color: $message-color;
 }

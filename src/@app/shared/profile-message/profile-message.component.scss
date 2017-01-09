@@ -4,12 +4,6 @@
 // colors, and typography.
 @import 'bootstrap/custom';
 
-:host {
-  display: flex;
-  flex-direction: row;
-  align-content: stretch;
-}
-
 .bounds {
   .name {
     /* Name: */

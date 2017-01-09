@@ -1,6 +1,45 @@
 <div class="panes h-100">
 
-<div class="window h-100
+<!-- hidden for a moment -->
+<div *ngIf="true" class="window h-100
+      d-flex flex-column align-content-stretch">
+  <pw-panel-header
+      title="Recent">
+  </pw-panel-header>
+  <div class="px-1 input-bg">
+    <div class="message d-flex flex-row align-content-stretch">
+      <div class="bounds">
+        <textarea type="text" class="form-control message-input"
+            pw-auto-grow
+            placeholder="Add by phone number..."></textarea>
+      </div>
+    </div>
+  </div>
+  <div pw-shadow-scroller class="touch-action-pan-y px-1">
+    <pw-profile-checkbox
+        *ngFor="let gu of AppState.Lobby.Group.GroupUsers"
+        [profile]="gu.Profile"
+        [description]="gu.Profile.Tagline"
+        >
+    </pw-profile-checkbox>
+  </div>
+  <pw-panel-header
+      title="Favorites">
+  </pw-panel-header>
+  <div pw-shadow-scroller class="touch-action-pan-y px-1">
+    <pw-profile-message
+        *ngFor="let gu of AppState.Lobby.Group.GroupUsers"
+        [profile]="gu.Profile"
+        [action]="gu.Profile.Tagline"
+        [messageText]="gu.Profile.Tagline"
+        [time]="time"
+        >
+    </pw-profile-message>
+  </div>
+</div>
+
+<!-- hidden for a moment -->
+<div  *ngIf="false" class="window h-100
       d-flex flex-column align-content-stretch">
   <pw-panel-header
       title="Group"

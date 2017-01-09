@@ -1,6 +1,7 @@
 import { NgModule }            from '@angular/core'
 import { CommonModule }        from '@angular/common'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { MaterialModule } from '@angular/material'
 
 // import { InterestBlockComponent } from './interest-block/interest-block.component'
 // import { CtaButtonComponent } from './cta-button/cta-button.component'
@@ -20,6 +21,7 @@ import { ProfileAvatarComponent } from './profile-avatar/profile-avatar.componen
 import { ProfileMessageComponent } from './profile-message/profile-message.component'
 import { PanelHeaderComponent } from './panel-header/panel-header.component'
 import { PodStackComponent } from './pod-stack/pod-stack.component'
+import { ProfileCheckboxComponent } from './profile-checkbox/profile-checkbox.component'
 
 import { AutoGrowDirective } from './auto-grow.directive'
 import { ShadowScrollerDirective } from './shadow-scroller.directive'
@@ -27,7 +29,7 @@ import { ShadowScrollerDirective } from './shadow-scroller.directive'
 // import { AwesomePipe }         from './awesome.pipe'
 // import { HighlightDirective }  from './highlight.directive'
 @NgModule({
-  imports:      [ CommonModule ],
+  imports:      [ CommonModule, MaterialModule ],
   declarations: [
     CelebrationModalComponent, AutoGrowDirective,
     ShadowScrollerDirective,
@@ -36,6 +38,7 @@ import { ShadowScrollerDirective } from './shadow-scroller.directive'
     ProfileMessageComponent,
     PanelHeaderComponent,
     PodStackComponent,
+    ProfileCheckboxComponent,
   ],
   exports:      [
     CelebrationModalComponent, AutoGrowDirective,
@@ -45,6 +48,8 @@ import { ShadowScrollerDirective } from './shadow-scroller.directive'
     ProfileMessageComponent,
     PanelHeaderComponent,
     PodStackComponent,
+    ProfileCheckboxComponent,
+
     CommonModule, ReactiveFormsModule, FormsModule
   ]
 })
