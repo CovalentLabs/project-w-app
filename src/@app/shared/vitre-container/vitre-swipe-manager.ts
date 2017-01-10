@@ -14,6 +14,7 @@ export class VitreSwipeManager {
   private framesLength: number
   private frameWidth: number
   private detector: VitreSwipeDetector
+  private translateContent = function (dist: number){}
 
   // <vitre-container (open)="">
   // @Output() open = new EventEmitter()
@@ -24,6 +25,7 @@ export class VitreSwipeManager {
       ) {
     let isX = this.orientation === SwipeOrientation.ROW
     this.detector = new VitreSwipeDetector(container, isX)
+    this.translateContent = createTranslateContent(content, isX)
     this.resize()
     this.listen()
   }
@@ -216,8 +218,8 @@ export class VitreSwipeManager {
       : delta > this.translateMax
         ? this.translateMax
         : delta
-    let isRow = this.orientation === SwipeOrientation.ROW
-    translateContent(this.content, this.translateZero + delta, isRow)
+
+    this.translateContent(this.translateZero + delta)
   }
 }
 
@@ -230,6 +232,22 @@ function calcTransitionDur(dist, pxPerSecond) {
   return easeStartAdjust * Math.abs(Math.min(dist / Math.min(Math.abs(pxPerSecond), maxPixelsPerSecond), .8))
 }
 
-function translateContent(content: HTMLElement, dist: number, isRow: boolean) {
-  content.style.transform = `translate${isRow ? 'X' : 'Y'}(${dist}px)`
+function createTranslateContent(content: HTMLElement, isRow: boolean) {
+  const prefix = `translate${isRow ? 'X' : 'Y'}(`
+  let lastKnownDist = 0
+  let ticking = false
+
+  function update () {
+    ticking = false
+    content.style.transform = prefix + lastKnownDist + 'px)'
+  }
+
+  return function translateContent(dist: number) {
+    lastKnownDist = dist
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(update)
+    }
+  }
 }
+
