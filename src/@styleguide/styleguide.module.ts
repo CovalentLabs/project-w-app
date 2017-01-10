@@ -59,9 +59,6 @@ export class StyleguideModule {
   ) {}
 
   hmrOnInit(store) {
-    // Clear console on initiallization
-    if ('clear' in console) { console.clear() }
-
     console.log("HMR store", store)
 
     /*
@@ -88,6 +85,9 @@ export class StyleguideModule {
 
     // remove styles
     removeNgStyles()
+
+    // Clear console on destruction
+    if ('clear' in console) { console.clear() }
   }
 
   hmrAfterDestroy(store) {

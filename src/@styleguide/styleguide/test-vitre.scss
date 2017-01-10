@@ -1,0 +1,43 @@
+
+@import 'bootstrap/custom';
+
+.vitre-lr {
+  position: absolute;
+  outline: 2px solid navy;
+  height: 90vh;
+  top: 5vh;
+  width: 70vw;
+  left: 15vw;
+}
+
+.panes {
+  position: relative;
+  transition: transform .4s;
+}
+.pane {
+  &.p-people {
+    position: absolute;
+    z-index: 1;
+    background: $ui-background;
+    /* ShadowCast: */
+    box-shadow: -3px 0 4px 0 rgba(0,0,0,0.10);
+    top: 0;
+    left: 100vw;
+  }
+}
+
+.curtain {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 1;
+
+  &.c-left {
+    left: 0;
+  }
+
+  &.c-right {
+    right: 0;
+  }
+}

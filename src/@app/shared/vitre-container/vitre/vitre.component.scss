@@ -1,0 +1,14 @@
+// VitreComponent Styles
+
+// Gives access to all app wide variables such as for spacing,
+// colors, and typography.
+@import 'bootstrap/custom';
+
+:host {
+  display: block;
+  border: 4px solid red;
+}
+
+.vitre-content {
+  padding: 2 * $spacer;
+}

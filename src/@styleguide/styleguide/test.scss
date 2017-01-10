@@ -75,23 +75,6 @@ $type-space-x: 16px;
   flex: 1;
 }
 
-.curtain {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 60px;
-  z-index: 1;
-
-  &.c-left {
-    left: 0;
-  }
-
-  &.c-right {
-    right: 0;
-  }
-}
-
-
 
 $message-input-placeholder-color: #607D8B;
 $message-input-caret-color: $message-action-color;
