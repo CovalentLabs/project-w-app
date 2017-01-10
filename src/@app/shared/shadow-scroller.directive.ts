@@ -7,49 +7,73 @@ import { Directive, HostListener, ElementRef, OnDestroy } from '@angular/core'
 })
 export class ShadowScrollerDirective implements OnDestroy {
   @HostListener('scroll') onScroll() {
-    this.fn()
+    this.scroll()
   }
-  fn = () => autoShade(this._ref.nativeElement)
-  constructor(private _ref: ElementRef) {
-    addStyles(this._ref.nativeElement)
-    window.addEventListener("resize", this.fn)
-    setTimeout(this.fn, 0)
+  scroll = function(){}
+  constructor(_ref: ElementRef) {
+    addStyles(_ref.nativeElement)
+    this.scroll = createAutoShader(_ref)
+    window.addEventListener("resize", this.scroll)
+    setTimeout(this.scroll, 0)
   }
 
   ngOnDestroy() {
-    window.removeEventListener("resize", this.fn)
+    window.removeEventListener("resize", this.scroll)
   }
+}
+
+// Yay new mapped types 2017-01-10
+type PartialStyleDeclartion = { [K in keyof CSSStyleDeclaration]?: CSSStyleDeclaration[K] }
+const styles: PartialStyleDeclartion = {
+  overflowY: 'auto',
+  flex: "1",
+  transition: 'box-shadow .4s ease-in'
 }
 
 function addStyles(elt: HTMLElement) {
-  Object.assign(elt.style, {
-    overflowY: 'auto',
-    flex: "1",
-    transition: 'box-shadow .4s ease-in'
-  })
+  Object.assign(elt.style, styles)
 }
 
-const topShadow = `inset 0 13px 10px -10px rgba(0,0,0,0.2)`
-const topShadow0 = `inset 0 13px 10px -10px rgba(0,0,0,0)`
-const btmShadow = `inset 0 -13px 10px -10px rgba(0,0,0,0.2)`
-const btmShadow0 = `inset 0 -13px 10px -10px rgba(0,0,0,0)`
+function createAutoShader(ref: ElementRef) {
+  const topShadow = `inset 0 13px 10px -10px rgba(0,0,0,0.2)`
+  const topShadow0 = `inset 0 13px 10px -10px rgba(0,0,0,0)`
+  const btmShadow = `inset 0 -13px 10px -10px rgba(0,0,0,0.2)`
+  const btmShadow0 = `inset 0 -13px 10px -10px rgba(0,0,0,0)`
 
-function autoShade(elt: HTMLElement) {
-  let height = elt.offsetHeight
-  let scrollHeight = elt.scrollHeight
-  let scrollTop = elt.scrollTop
+  let lastKnownScrollTop = 0
+  let lastKnownScrollHeight = 0
+  let lastKnownHeight = 0
+  let ticking = false
 
-  let shadows = []
-  if (scrollTop > 2) {
-    shadows.push(topShadow)
-  } else {
-    shadows.push(topShadow0)
-  }
-  if (scrollHeight - height - scrollTop > 2) {
-    shadows.push(btmShadow)
-  } else {
-    shadows.push(btmShadow0)
+  function requestTick() {
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(update)
+    }
   }
 
-  elt.style.boxShadow = shadows.join(', ')
+  function update() {
+    ticking = false
+    let shadows = []
+    if (lastKnownScrollTop > 2) {
+      shadows.push(topShadow)
+    } else {
+      shadows.push(topShadow0)
+    }
+    if (lastKnownScrollHeight - lastKnownHeight - lastKnownScrollTop > 2) {
+      shadows.push(btmShadow)
+    } else {
+      shadows.push(btmShadow0)
+    }
+
+    ref.nativeElement.style.boxShadow = shadows.join(', ')
+  }
+
+  return function autoShade() {
+    const elt: HTMLElement = ref.nativeElement
+    lastKnownHeight = elt.offsetHeight
+    lastKnownScrollHeight = elt.scrollHeight
+    lastKnownScrollTop = elt.scrollTop
+    requestTick()
+  }
 }
