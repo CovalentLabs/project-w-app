@@ -9,7 +9,7 @@ import { AppStateService, LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-dialog-delete-item',
-  template: require('./delete-item.dialog.html')
+  templateUrl: './delete-item.dialog.html'
 })
 export class DeleteItemDialogComponent implements ItemDialog {
 

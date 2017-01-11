@@ -4,9 +4,9 @@ import { LoginActions } from '@app/core'
 
 @Component({
   selector: 'pw-celebration-modal',
-  template: require('./celebration-modal.component.html'),
-  styles: [
-    require('./celebration-modal.component.scss'),
+  templateUrl: './celebration-modal.component.html',
+  styleUrls: [
+    './celebration-modal.component.scss',
   ]
 })
 export class CelebrationModalComponent implements OnInit {

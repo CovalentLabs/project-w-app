@@ -9,7 +9,7 @@ import { AppStateService, LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-dialog-react-to-item',
-  template: require('./react-to-item.dialog.html')
+  templateUrl: './react-to-item.dialog.html'
 })
 export class ReactToItemDialogComponent implements ItemDialog {
 

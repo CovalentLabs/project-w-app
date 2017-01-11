@@ -4,10 +4,10 @@ import * as M from '@app/core/model'
 
 @Component({
   selector: 'pw-profile-checkbox',
-  template: require('./profile-checkbox.component.html'),
-  styles: [
-    require('../shared/message.scss'),
-    require('./profile-checkbox.component.scss'),
+  templateUrl: './profile-checkbox.component.html',
+  styleUrls: [
+    '../shared/message.scss',
+    './profile-checkbox.component.scss',
   ]
 })
 export class ProfileCheckboxComponent implements OnInit {

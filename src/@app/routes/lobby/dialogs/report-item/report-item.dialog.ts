@@ -9,7 +9,7 @@ import { AppStateService, LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-dialog-report-item',
-  template: require('./report-item.dialog.html')
+  templateUrl: './report-item.dialog.html'
 })
 export class ReportItemDialogComponent implements ItemDialog {
 

@@ -4,9 +4,9 @@ import * as M from '@app/core/model'
 
 @Component({
   selector: 'pw-profile-item',
-  template: require('./profile-item.component.html'),
-  styles: [
-    require('./profile-item.component.scss'),
+  templateUrl: './profile-item.component.html',
+  styleUrls: [
+    './profile-item.component.scss',
   ]
 })
 export class ProfileItemComponent implements OnInit {

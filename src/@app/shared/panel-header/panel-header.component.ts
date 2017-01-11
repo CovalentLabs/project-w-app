@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'pw-panel-header',
-  template: require('./panel-header.component.html'),
-  styles: [
-    require('./panel-header.component.scss'),
+  templateUrl: './panel-header.component.html',
+  styleUrls: [
+    './panel-header.component.scss',
   ]
 })
 export class PanelHeaderComponent {

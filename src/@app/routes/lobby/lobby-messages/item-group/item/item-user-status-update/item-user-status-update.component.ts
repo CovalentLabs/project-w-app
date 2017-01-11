@@ -4,9 +4,9 @@ import { DataUserStatusUpdate } from '@app/core/model/lobby-item.model'
 
 @Component({
   selector: 'pw-item-user-status-update',
-  template: require('./item-user-status-update.component.html'),
-  styles: [
-    require('../shared/item-md-icon.scss'),
+  templateUrl: './item-user-status-update.component.html',
+  styleUrls: [
+    '../shared/item-md-icon.scss',
   ]
 })
 export class ItemUserStatusUpdateComponent implements OnInit {

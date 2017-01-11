@@ -13,9 +13,9 @@ const mockImages = [
 
 @Component({
   selector: 'pw-profile-avatar',
-  template: require('./profile-avatar.component.html'),
-  styles: [
-    require('./profile-avatar.component.scss'),
+  templateUrl: './profile-avatar.component.html',
+  styleUrls: [
+    './profile-avatar.component.scss',
   ]
 })
 export class ProfileAvatarComponent implements OnInit, OnChanges {

@@ -5,9 +5,9 @@ import * as M from '@app/core/model'
 
 @Component({
   selector: 'pw-item-lock-update',
-  template: require('./item-lock-update.component.html'),
-  styles: [
-    require('../shared/item-md-icon.scss'),
+  templateUrl: './item-lock-update.component.html',
+  styleUrls: [
+    '../shared/item-md-icon.scss',
   ]
 })
 export class ItemLockUpdateComponent {

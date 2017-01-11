@@ -13,9 +13,9 @@ type Folder = { name: string, children: Folder[] } | FolderItem
 
 @Component({
   selector: 'pw-mock-menu',
-  template: require('./mock-menu.component.html'),
-  styles: [
-    require('./mock-menu.component.scss'),
+  templateUrl: './mock-menu.component.html',
+  styleUrls: [
+    './mock-menu.component.scss',
   ]
 })
 export class MockMenuComponent implements OnDestroy, OnInit {

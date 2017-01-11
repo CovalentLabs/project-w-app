@@ -9,9 +9,9 @@ import { Subscription } from 'rxjs'
 import { TimeRange } from './input-availability/input-availability.component'
 
 @Component({
-  template: require('./discovering.component.html'),
-  styles: [
-    require('./discovering.component.scss'),
+  templateUrl: './discovering.component.html',
+  styleUrls: [
+    './discovering.component.scss',
   ]
 })
 export class DiscoverComponent implements OnInit, OnDestroy {

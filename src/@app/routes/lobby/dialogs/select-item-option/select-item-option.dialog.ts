@@ -16,7 +16,7 @@ const EDITABLE_TYPES = [
 
 @Component({
   selector: 'pw-dialog-select-item-option',
-  template: require('./select-item-option.dialog.html'),
+  templateUrl: './select-item-option.dialog.html',
 })
 export class SelectItemOptionDialogComponent implements ItemDialog {
   OPTION_DELETE = M.LobbyItemOption.DELETE

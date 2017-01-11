@@ -12,9 +12,9 @@ const MAX_TIME_FOR_REL_DISPLAY = 1000 * 60 * 10
 
 @Component({
   selector: 'pw-item-group',
-  template: require('./item-group.component.html'),
-  styles: [
-    require('./item-group.component.scss'),
+  templateUrl: './item-group.component.html',
+  styleUrls: [
+    './item-group.component.scss',
   ],
   inputs: [
     // for style

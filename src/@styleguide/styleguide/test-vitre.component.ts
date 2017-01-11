@@ -11,11 +11,11 @@ const mock = getMockState("Lobby/Base").state
 
 @Component({
   // Nunjucks now available for templating
-  template: require('./test-vitre.html'),
-  styles: [
-    require('@app/style/component/full.scss'),
-    // require('@app/shared/shared/message.scss'),
-    require('./test-vitre.scss'),
+  templateUrl: './test-vitre.html',
+  styleUrls: [
+    '@app/style/component/full.scss',
+    // '@app/shared/shared/message.scss',
+    './test-vitre.scss',
   ]
 })
 export class TestVitreComponent implements OnInit, OnDestroy, AfterViewInit {

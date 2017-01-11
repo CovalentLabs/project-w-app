@@ -4,9 +4,9 @@ import { Timeline, TimelineEntry } from '@app/core'
 
 @Component({
   selector: 'pw-timeline-view',
-  template: require('./timeline-view.component.html'),
-  styles: [
-    require('./timeline-view.component.scss'),
+  templateUrl: './timeline-view.component.html',
+  styleUrls: [
+    './timeline-view.component.scss',
   ]
 })
 export class TimelineViewComponent {

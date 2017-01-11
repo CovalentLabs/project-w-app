@@ -24,7 +24,7 @@ export class ShadowScrollerDirective implements OnDestroy {
 
 // Yay new mapped types 2017-01-10
 type PartialStyleDeclartion = { [K in keyof CSSStyleDeclaration]?: CSSStyleDeclaration[K] }
-const styles: PartialStyleDeclartion = {
+const styleUrls: PartialStyleDeclartion = {
   overflowY: 'auto',
   flex: "1",
   transition: 'box-shadow .4s ease-in'

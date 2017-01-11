@@ -11,10 +11,10 @@ import { LobbyItemOptionsDialogService } from './dialogs'
 import { Subscription } from 'rxjs'
 
 @Component({
-  template: require('./lobby.component.html'),
-  styles: [
-    require('@app/style/component/full.scss'),
-    require('./lobby.component.scss'),
+  templateUrl: './lobby.component.html',
+  styleUrls: [
+    '@app/style/component/full.scss',
+    './lobby.component.scss',
   ]
 })
 export class LobbyComponent implements OnInit, OnDestroy {

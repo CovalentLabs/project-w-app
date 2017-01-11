@@ -4,9 +4,9 @@ import { RenderedItemGroup } from '@app/core/data'
 
 @Component({
   selector: 'pw-lobby-messages',
-  template: require('./lobby-messages.component.html'),
-  styles: [
-    require('./lobby-messages.component.scss'),
+  templateUrl: './lobby-messages.component.html',
+  styleUrls: [
+    './lobby-messages.component.scss',
   ]
 })
 export class LobbyMessagesComponent {

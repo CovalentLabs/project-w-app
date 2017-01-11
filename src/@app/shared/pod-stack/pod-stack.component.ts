@@ -4,9 +4,9 @@ import * as M from '@app/core/model'
 
 @Component({
   selector: 'pw-pod-stack',
-  template: require('./pod-stack.component.html'),
-  styles: [
-    require('./pod-stack.component.scss'),
+  templateUrl: './pod-stack.component.html',
+  styleUrls: [
+    './pod-stack.component.scss',
   ]
 })
 export class PodStackComponent {

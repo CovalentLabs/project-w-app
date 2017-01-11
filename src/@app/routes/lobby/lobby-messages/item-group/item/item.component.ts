@@ -22,9 +22,9 @@ export const ITEM_DECLARATIONS = [
 
 @Component({
   selector: 'pw-item',
-  template: require('./item.component.html'),
-  styles: [
-    require('./item.component.scss'),
+  templateUrl: './item.component.html',
+  styleUrls: [
+    './item.component.scss',
   ]
 })
 export class ItemComponent {

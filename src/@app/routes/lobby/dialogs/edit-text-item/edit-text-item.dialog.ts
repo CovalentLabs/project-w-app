@@ -9,8 +9,8 @@ import { AppStateService, LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-dialog-edit-text-item',
-  template: require('./edit-text-item.dialog.html'),
-  styles: [
+  templateUrl: './edit-text-item.dialog.html',
+  styleUrls: [
 `
 textarea {
   resize: none;

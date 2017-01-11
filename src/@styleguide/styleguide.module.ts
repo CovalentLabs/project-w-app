@@ -23,9 +23,9 @@ import { Component } from '@angular/core'
   <router-outlet></router-outlet>
 </div>
 `,
-  styles: [
-    require('@app/style/component/full.scss'),
-    require('./styleguide.component.scss'),
+  styleUrls: [
+    '@app/style/component/full.scss',
+    './styleguide.component.scss',
   ],
 })
 class StyleguideComponent {}

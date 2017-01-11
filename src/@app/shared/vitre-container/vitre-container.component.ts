@@ -47,10 +47,10 @@ const GRID_BREAKPOINTS =
 
 @Component({
   selector: 'pw-vitre-container',
-  template: require('./vitre-container.component.html'),
+  templateUrl: './vitre-container.component.html',
   encapsulation: ViewEncapsulation.None,
-  styles: [
-    require('./vitre-container.component.scss'),
+  styleUrls: [
+    './vitre-container.component.scss',
   ]
 })
 export class VitreContainerComponent implements AfterContentInit, OnChanges, OnDestroy {

@@ -5,10 +5,10 @@ import { AppStateService, AppState, LoginActions } from '@app/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  template: require('./login.component.html'),
-  styles: [
-    require('@app/style/component/full.scss'),
-    require('./login.component.scss'),
+  templateUrl: './login.component.html',
+  styleUrls: [
+    '@app/style/component/full.scss',
+    './login.component.scss',
   ]
 })
 export class LoginComponent implements OnInit, OnDestroy {

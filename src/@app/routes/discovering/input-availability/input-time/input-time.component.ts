@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'pw-input-time',
-  template: require('./input-time.component.html'),
+  templateUrl: './input-time.component.html',
   providers: [
     // This providers stuff is given to us from an article on ThoughtRam:
     // http://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html#registering-the-controlvalueaccessor
@@ -22,8 +22,8 @@ import { Subscription } from 'rxjs'
       multi: true
     }
   ],
-  styles: [
-    require('./input-time.component.scss'),
+  styleUrls: [
+    './input-time.component.scss',
   ]
 })
 export class InputTimeComponent implements OnInit, OnChanges, ControlValueAccessor {

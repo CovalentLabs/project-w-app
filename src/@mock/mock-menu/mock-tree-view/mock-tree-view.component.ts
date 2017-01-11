@@ -4,9 +4,9 @@ import { Folder } from '../mock-menu.component'
 
 @Component({
   selector: 'pw-mock-tree-view',
-  template: require('./mock-tree-view.component.html'),
-  styles: [
-    require('./mock-tree-view.component.scss'),
+  templateUrl: './mock-tree-view.component.html',
+  styleUrls: [
+    './mock-tree-view.component.scss',
   ]
 })
 export class MockTreeViewComponent implements OnInit {

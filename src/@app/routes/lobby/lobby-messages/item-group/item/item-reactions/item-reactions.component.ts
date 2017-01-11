@@ -6,9 +6,9 @@ import { LobbyActions } from '@app/core'
 
 @Component({
   selector: 'pw-item-reactions',
-  template: require('./item-reactions.component.html'),
-  styles: [
-    require('./item-reactions.component.scss'),
+  templateUrl: './item-reactions.component.html',
+  styleUrls: [
+    './item-reactions.component.scss',
   ]
 })
 export class ItemReactionsComponent {

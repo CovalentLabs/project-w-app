@@ -4,9 +4,9 @@ import * as MLI from '@app/core/model/lobby-item.model'
 
 @Component({
   selector: 'pw-lobby-item-input',
-  template: require('./lobby-item-input.component.html'),
-  styles: [
-    require('./lobby-item-input.component.scss'),
+  templateUrl: './lobby-item-input.component.html',
+  styleUrls: [
+    './lobby-item-input.component.scss',
   ]
 })
 export class LobbyItemInputComponent implements OnChanges {

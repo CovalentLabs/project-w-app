@@ -8,13 +8,13 @@ import { Subscription } from 'rxjs'
 
 @Component({
   // Nunjucks now available for templating
-  template: require('./styleguide.component.html'),
-  styles: [
-    require('@app/style/component/full.scss'),
+  templateUrl: './styleguide.component.html',
+  styleUrls: [
+    '@app/style/component/full.scss',
     // Styles should be minimal and only specific to the Styleguide component.
     // But for now, while developing put styles in here until we know how to
     // integrate those changes into bootstrap custom.
-    require('./styleguide.component.scss'),
+    './styleguide.component.scss',
   ]
 })
 export class StyleguideComponent implements OnInit, OnDestroy {

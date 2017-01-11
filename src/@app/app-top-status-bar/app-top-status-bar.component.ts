@@ -6,9 +6,9 @@ import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'pw-app-top-status-bar',
-  template: require('./app-top-status-bar.component.html'),
-  styles: [
-    require('./app-top-status-bar.component.scss'),
+  templateUrl: './app-top-status-bar.component.html',
+  styleUrls: [
+    './app-top-status-bar.component.scss',
   ]
 })
 export class AppTopStatusBarComponent implements OnInit, OnDestroy {
