@@ -6,7 +6,7 @@ import * as MLI from '@app/core/model/lobby-item.model'
   selector: 'pw-lobby-item-input',
   templateUrl: './lobby-item-input.component.html',
   styleUrls: [
-    './lobby-item-input.component.scss',
+    './lobby-item-input.component.css',
   ]
 })
 export class LobbyItemInputComponent implements OnChanges {
@@ -28,7 +28,7 @@ export class LobbyItemInputComponent implements OnChanges {
   data: MLI.LobbyItemData = ""
   type: MLI.LobbyItemType = MLI.LobbyItemType.TEXT
 
-  ngOnChanges() {
+  onChanges(changes) {
     // on changes
     console.log('onChanges', this.editItem)
     if (this.editItem != null) {

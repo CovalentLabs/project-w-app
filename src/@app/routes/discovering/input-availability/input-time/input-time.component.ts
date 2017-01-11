@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs'
     }
   ],
   styleUrls: [
-    './input-time.component.scss',
+    './input-time.component.css',
   ]
 })
 export class InputTimeComponent implements OnInit, OnChanges, ControlValueAccessor {
@@ -60,7 +60,7 @@ export class InputTimeComponent implements OnInit, OnChanges, ControlValueAccess
       let val = moment(obj)
       val = val.subtract(val.minutes() % 5, 'minutes')
       this.value = val.toDate()
-      this.ngOnChanges()
+      this.onChanges()
     }
   }
 
@@ -80,10 +80,14 @@ export class InputTimeComponent implements OnInit, OnChanges, ControlValueAccess
 
   ngOnInit() {
     // on init
-    this.ngOnChanges()
+    this.onChanges()
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes) {
+    this.onChanges()
+  }
+
+  onChanges() {
     if (!this.value) {
       return
     }

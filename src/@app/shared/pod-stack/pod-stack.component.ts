@@ -6,7 +6,7 @@ import * as M from '@app/core/model'
   selector: 'pw-pod-stack',
   templateUrl: './pod-stack.component.html',
   styleUrls: [
-    './pod-stack.component.scss',
+    './pod-stack.component.css',
   ]
 })
 export class PodStackComponent {

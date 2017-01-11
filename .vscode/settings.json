@@ -9,6 +9,8 @@
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
+    "**/*.css": true,
+    "src/*.css": true,
     "**/.DS_Store": true
   },
   "files.eol": "\n"

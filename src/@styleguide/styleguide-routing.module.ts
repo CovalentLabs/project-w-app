@@ -10,7 +10,7 @@ import { routes as sroutes, DECLARATIONS } from './styleguide/styleguide-routes'
 @Component({
   selector: 'pw-parent', // <pw-app></pw-app>
   template: `<router-outlet></router-outlet>`,
-  styleUrls: ['@app/style/component/full.scss'],
+  styleUrls: ['../@app/style/component/full.css'],
 })
 export
 class ParentComponent {}

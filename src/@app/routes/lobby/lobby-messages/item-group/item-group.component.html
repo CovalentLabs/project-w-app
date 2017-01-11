@@ -1,11 +1,10 @@
 <!-- ItemGroupComponent Template -->
-<div class="item-group-container" [attr.data-position]="position">
+<div class="item-group-container">
   <div class="avatar">
     {{ profile.FirstName }}
   </div>
   <div class="items">
     <pw-item *ngFor="let item of items"
-        [attr.data-position]="position"
         [item]="item">
     </pw-item>
     <div class="display-date">{{ displayDate }}</div>

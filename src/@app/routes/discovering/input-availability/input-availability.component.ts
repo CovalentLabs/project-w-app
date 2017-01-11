@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   selector: 'pw-input-availability',
   templateUrl: './input-availability.component.html',
   styleUrls: [
-    './input-availability.component.scss',
+    './input-availability.component.css',
   ]
 })
 export class InputAvailabilityComponent implements OnInit {

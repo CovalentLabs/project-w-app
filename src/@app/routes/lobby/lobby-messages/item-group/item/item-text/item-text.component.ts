@@ -6,7 +6,7 @@ import { DataText } from '@app/core/model/lobby-item.model'
   selector: 'pw-item-text',
   templateUrl: './item-text.component.html',
   styleUrls: [
-    './item-text.component.scss',
+    './item-text.component.css',
   ]
 })
 export class ItemTextComponent {

@@ -13,14 +13,15 @@ const mock = getMockState("Lobby/Base").state
   // Nunjucks now available for templating
   templateUrl: './test-vitre.html',
   styleUrls: [
-    '@app/style/component/full.scss',
-    // '@app/shared/shared/message.scss',
-    './test-vitre.scss',
+    '../../@app/style/component/full.css',
+    // '@app/shared/shared/message.css',
+    './test-vitre.css',
   ]
 })
 export class TestVitreComponent implements OnInit, OnDestroy, AfterViewInit {
   // Test vars
   time = 'Now'
+  vitreView = null
   AppState: AppState = mock
   pod$ = mock.Lobby.Group.GroupUsers.slice(0, 3)
   pod1 = mock.Lobby.Group.GroupUsers.slice(3)

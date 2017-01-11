@@ -14,11 +14,7 @@ const MAX_TIME_FOR_REL_DISPLAY = 1000 * 60 * 10
   selector: 'pw-item-group',
   templateUrl: './item-group.component.html',
   styleUrls: [
-    './item-group.component.scss',
-  ],
-  inputs: [
-    // for style
-    "position"
+    './item-group.component.css',
   ]
 })
 export class ItemGroupComponent implements OnInit {

@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs'
 @Component({
   templateUrl: './home.component.html',
   styleUrls: [
-    './home.component.scss',
+    './home.component.css',
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {

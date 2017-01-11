@@ -7,7 +7,7 @@ import * as M from '@app/core/model'
   selector: 'pw-item-lock-update',
   templateUrl: './item-lock-update.component.html',
   styleUrls: [
-    '../shared/item-md-icon.scss',
+    '../shared/item-md-icon.css',
   ]
 })
 export class ItemLockUpdateComponent {

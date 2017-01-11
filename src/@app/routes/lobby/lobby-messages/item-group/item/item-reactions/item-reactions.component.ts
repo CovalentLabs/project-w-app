@@ -8,7 +8,7 @@ import { LobbyActions } from '@app/core'
   selector: 'pw-item-reactions',
   templateUrl: './item-reactions.component.html',
   styleUrls: [
-    './item-reactions.component.scss',
+    './item-reactions.component.css',
   ]
 })
 export class ItemReactionsComponent {

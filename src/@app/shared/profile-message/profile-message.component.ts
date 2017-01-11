@@ -6,8 +6,8 @@ import * as M from '@app/core/model'
   selector: 'pw-profile-message',
   templateUrl: './profile-message.component.html',
   styleUrls: [
-    './profile-message.component.scss',
-    '../shared/message.scss',
+    './profile-message.component.css',
+    '../shared/message.css',
   ]
 })
 export class ProfileMessageComponent {

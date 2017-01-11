@@ -10,8 +10,8 @@ import { Subscription } from 'rxjs'
   selector: 'pw-<%= routename %>',
   template: require('./<%= routename %>.component.html'),
   styles: [
-    require('@app/style/component/full.scss'),
-    require('./<%= routename %>.component.scss'),
+    require('@app/style/component/full.css'),
+    require('./<%= routename %>.component.css'),
   ]
 })
 export class <%= RouteName %>Component implements OnInit, OnDestroy {

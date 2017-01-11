@@ -6,8 +6,8 @@ import * as M from '@app/core/model'
   selector: 'pw-profile-checkbox',
   templateUrl: './profile-checkbox.component.html',
   styleUrls: [
-    '../shared/message.scss',
-    './profile-checkbox.component.scss',
+    '../shared/message.css',
+    './profile-checkbox.component.css',
   ]
 })
 export class ProfileCheckboxComponent implements OnInit {

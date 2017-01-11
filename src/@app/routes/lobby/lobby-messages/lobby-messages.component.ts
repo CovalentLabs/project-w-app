@@ -6,7 +6,7 @@ import { RenderedItemGroup } from '@app/core/data'
   selector: 'pw-lobby-messages',
   templateUrl: './lobby-messages.component.html',
   styleUrls: [
-    './lobby-messages.component.scss',
+    './lobby-messages.component.css',
   ]
 })
 export class LobbyMessagesComponent {

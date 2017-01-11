@@ -6,7 +6,7 @@ import * as M from '@app/core/model'
   selector: 'pw-<%= componentname %>',
   template: require('./<%= componentname %>.component.html'),
   styles: [
-    require('./<%= componentname %>.component.scss'),
+    require('./<%= componentname %>.component.css'),
   ]
 })
 export class <%= ComponentName %>Component implements OnInit {

@@ -6,7 +6,7 @@ import { LoginActions } from '@app/core'
   selector: 'pw-celebration-modal',
   templateUrl: './celebration-modal.component.html',
   styleUrls: [
-    './celebration-modal.component.scss',
+    './celebration-modal.component.css',
   ]
 })
 export class CelebrationModalComponent implements OnInit {

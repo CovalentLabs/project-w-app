@@ -6,7 +6,7 @@ import { Folder } from '../mock-menu.component'
   selector: 'pw-mock-tree-view',
   templateUrl: './mock-tree-view.component.html',
   styleUrls: [
-    './mock-tree-view.component.scss',
+    './mock-tree-view.component.css',
   ]
 })
 export class MockTreeViewComponent implements OnInit {

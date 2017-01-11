@@ -5,6 +5,15 @@ logs
 
 platforms/
 plugins/
+aot/
+
+src/**/*.css
+src/**/*.js
+src/**/*.json
+!src/public/**/*.css
+!src/public/**/*.js
+!src/public/**/*.json
+
 
 # Runtime data
 pids

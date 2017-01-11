@@ -6,7 +6,7 @@ import { DataUserStatusUpdate } from '@app/core/model/lobby-item.model'
   selector: 'pw-item-user-status-update',
   templateUrl: './item-user-status-update.component.html',
   styleUrls: [
-    '../shared/item-md-icon.scss',
+    '../shared/item-md-icon.css',
   ]
 })
 export class ItemUserStatusUpdateComponent implements OnInit {

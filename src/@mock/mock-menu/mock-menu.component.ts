@@ -7,15 +7,14 @@ import { getMockState, MOCK_STATE_KEYS, MockState } from '@mock/states'
 import { AppStateService, AppState, Timeline, TimelineService } from '@app/core'
 import { Subscription } from 'rxjs'
 
-type FolderItem = { name: string, key: string }
 export
-type Folder = { name: string, children: Folder[] } | FolderItem
+type Folder = { name: string, children?: Folder[], key?: string }
 
 @Component({
   selector: 'pw-mock-menu',
   templateUrl: './mock-menu.component.html',
   styleUrls: [
-    './mock-menu.component.scss',
+    './mock-menu.component.css',
   ]
 })
 export class MockMenuComponent implements OnDestroy, OnInit {

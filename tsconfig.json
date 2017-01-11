@@ -19,7 +19,8 @@
     "**/_*",
     "./_*/**",
     "./node_modules",
-    "./templates"
+    "./templates",
+    "./aot"
   ],
   "angularCompilerOptions": {
    "genDir": "./aot",

@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs'
 @Component({
   templateUrl: './lobby.component.html',
   styleUrls: [
-    '@app/style/component/full.scss',
-    './lobby.component.scss',
+    '../../../@app/style/component/full.css',
+    './lobby.component.css',
   ]
 })
 export class LobbyComponent implements OnInit, OnDestroy {

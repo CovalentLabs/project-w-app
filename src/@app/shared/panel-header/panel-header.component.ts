@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core'
   selector: 'pw-panel-header',
   templateUrl: './panel-header.component.html',
   styleUrls: [
-    './panel-header.component.scss',
+    './panel-header.component.css',
   ]
 })
 export class PanelHeaderComponent {

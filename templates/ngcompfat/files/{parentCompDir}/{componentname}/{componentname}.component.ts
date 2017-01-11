@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs'
   template: require('./<%= componentname %>.component.html'),
   styles: [
     // This sheet makes the component host absolute full width and height.
-    require('@app/style/component/full.scss'),
-    require('./<%= componentname %>.component.scss'),
+    require('@app/style/component/full.css'),
+    require('./<%= componentname %>.component.css'),
   ]
 })
 export class <%= ComponentName %>Component implements OnInit, OnDestroy {

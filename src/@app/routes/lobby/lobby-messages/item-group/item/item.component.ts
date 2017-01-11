@@ -24,7 +24,7 @@ export const ITEM_DECLARATIONS = [
   selector: 'pw-item',
   templateUrl: './item.component.html',
   styleUrls: [
-    './item.component.scss',
+    './item.component.css',
   ]
 })
 export class ItemComponent {

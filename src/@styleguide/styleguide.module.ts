@@ -24,8 +24,8 @@ import { Component } from '@angular/core'
 </div>
 `,
   styleUrls: [
-    '@app/style/component/full.scss',
-    './styleguide.component.scss',
+    '../@app/style/component/full.css',
+    './styleguide.component.css',
   ],
 })
 export

@@ -21,16 +21,16 @@ export class VitreComponent {
     this.styleHeight = heightValue
   }
 
-  @Input('vitre-col')    protected _col: string
-  @Input('vitre-col-sm') protected _colSm: string
-  @Input('vitre-col-md') protected _colMd: string
-  @Input('vitre-col-lg') protected _colLg: string
-  @Input('vitre-col-xl') protected _colXl: string
-  @Input('vitre-row')    protected _row: string
-  @Input('vitre-row-sm') protected _rowSm: string
-  @Input('vitre-row-md') protected _rowMd: string
-  @Input('vitre-row-lg') protected _rowLg: string
-  @Input('vitre-row-xl') protected _rowXl: string
+  @Input('vitre-col')    _col: string
+  @Input('vitre-col-sm') _colSm: string
+  @Input('vitre-col-md') _colMd: string
+  @Input('vitre-col-lg') _colLg: string
+  @Input('vitre-col-xl') _colXl: string
+  @Input('vitre-row')    _row: string
+  @Input('vitre-row-sm') _rowSm: string
+  @Input('vitre-row-md') _rowMd: string
+  @Input('vitre-row-lg') _rowLg: string
+  @Input('vitre-row-xl') _rowXl: string
 
   get col(): number { return parseFloat(this._col) || this.DEFAULT_COL_SIZE }
   get colSm(): number { return parseFloat(this._colSm || this._col) || this.DEFAULT_COL_SIZE  }

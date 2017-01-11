@@ -6,7 +6,7 @@ import { Router } from '@angular/router'
   selector: 'pw-<%=buttonname%>',
   template: require('./<%=buttonname%>.component.html'),
   styles: [
-    require('./<%=buttonname%>.component.scss'),
+    require('./<%=buttonname%>.component.css'),
   ]
 })
 export class <%=ButtonName%>Component implements OnInit {

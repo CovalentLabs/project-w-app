@@ -11,7 +11,7 @@ import { TimeRange } from './input-availability/input-availability.component'
 @Component({
   templateUrl: './discovering.component.html',
   styleUrls: [
-    './discovering.component.scss',
+    './discovering.component.css',
   ]
 })
 export class DiscoverComponent implements OnInit, OnDestroy {

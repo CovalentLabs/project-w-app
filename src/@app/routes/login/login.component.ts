@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs'
 @Component({
   templateUrl: './login.component.html',
   styleUrls: [
-    '@app/style/component/full.scss',
-    './login.component.scss',
+    '../../../@app/style/component/full.css',
+    './login.component.css',
   ]
 })
 export class LoginComponent implements OnInit, OnDestroy {

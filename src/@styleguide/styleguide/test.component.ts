@@ -13,9 +13,9 @@ const mock = getMockState("Lobby/Base").state
   // Nunjucks now available for templating
   templateUrl: './test.html',
   styleUrls: [
-    '@app/style/component/full.scss',
-    '@app/shared/shared/message.scss',
-    './test.scss',
+    '../../@app/style/component/full.css',
+    '../../@app/shared/shared/message.css',
+    './test.css',
   ]
 })
 export class TestComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -24,6 +24,7 @@ export class TestComponent implements OnInit, OnDestroy, AfterViewInit {
   AppState: AppState = mock
   pod$ = mock.Lobby.Group.GroupUsers.slice(0, 3)
   pod1 = mock.Lobby.Group.GroupUsers.slice(3)
+  currGU = null
 
   private _paramsSub: Subscription
 

@@ -15,7 +15,7 @@ const mockImages = [
   selector: 'pw-profile-avatar',
   templateUrl: './profile-avatar.component.html',
   styleUrls: [
-    './profile-avatar.component.scss',
+    './profile-avatar.component.css',
   ]
 })
 export class ProfileAvatarComponent implements OnInit, OnChanges {
@@ -30,7 +30,7 @@ export class ProfileAvatarComponent implements OnInit, OnChanges {
     this.update()
   }
 
-  ngOnChanges() {
+  onChanges() {
     this.update()
   }
 

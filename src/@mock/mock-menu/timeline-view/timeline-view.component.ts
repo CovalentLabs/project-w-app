@@ -6,7 +6,7 @@ import { Timeline, TimelineEntry } from '@app/core'
   selector: 'pw-timeline-view',
   templateUrl: './timeline-view.component.html',
   styleUrls: [
-    './timeline-view.component.scss',
+    './timeline-view.component.css',
   ]
 })
 export class TimelineViewComponent {

@@ -10,16 +10,17 @@ import { Subscription } from 'rxjs'
   // Nunjucks now available for templating
   templateUrl: './styleguide.component.html',
   styleUrls: [
-    '@app/style/component/full.scss',
+    '../../@app/style/component/full.css',
     // Styles should be minimal and only specific to the Styleguide component.
     // But for now, while developing put styles in here until we know how to
     // integrate those changes into bootstrap custom.
-    './styleguide.component.scss',
+    './styleguide.component.css',
   ]
 })
 export class StyleguideComponent implements OnInit, OnDestroy {
   // Overall AppState
   AppState: AppState
+  helloClicked = null
 
   private _stateSub: Subscription
   private _paramsSub: Subscription

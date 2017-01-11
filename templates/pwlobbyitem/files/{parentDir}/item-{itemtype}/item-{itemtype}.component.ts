@@ -6,7 +6,7 @@ import { Data<%=ItemType%> } from '@app/core/model/lobby-item.model'
   selector: 'pw-item-<%=itemtype%>',
   template: require('./item-<%=itemtype%>.component.html'),
   styles: [
-    require('./item-<%=itemtype%>.component.scss'),
+    require('./item-<%=itemtype%>.component.css'),
   ]
 })
 export class Item<%=ItemType%>Component {

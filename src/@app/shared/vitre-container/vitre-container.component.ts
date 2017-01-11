@@ -31,7 +31,7 @@ const AMBER_COLORS =
 const AMBER_COLORS_LEN = AMBER_COLORS.length
 
 type ViewType = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-// Borrowed from _custom.scss
+// Borrowed from _custom.css
 const GRID_BREAKPOINTS =
 `  xs: 0,
   sm: 576px,
@@ -50,7 +50,7 @@ const GRID_BREAKPOINTS =
   templateUrl: './vitre-container.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './vitre-container.component.scss',
+    './vitre-container.component.css',
   ]
 })
 export class VitreContainerComponent implements AfterContentInit, OnChanges, OnDestroy {
@@ -85,7 +85,7 @@ export class VitreContainerComponent implements AfterContentInit, OnChanges, OnD
     window.addEventListener('resize', this.onresize)
   }
 
-  ngOnChanges() {
+  onChanges() {
     this.reset()
   }
 
