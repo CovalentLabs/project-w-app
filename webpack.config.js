@@ -45,7 +45,7 @@ module.exports = function makeWebpackConfig() {
     config.devtool = 'inline-source-map';
   }
   else {
-    config.devtool = 'eval-source-map';
+    config.devtool = 'cheap-module-eval-source-map';
   }
 
   /**
@@ -147,18 +147,8 @@ module.exports = function makeWebpackConfig() {
       // support for .html as raw text
       // todo: change the loader to something that adds a hash to images
       {test: /\.html$/, loader: 'raw-loader',  exclude: root('src/public')},
-
-      // support for .nunj as raw text
-      // todo: change the loader to something that adds a hash to images
-      {test: /\.nunj$/, loader: 'raw-loader!nunjucks-html-loader?'
-          + JSON.stringify({
-            'searchPaths': [
-              root('src/@styleguide/template')
-            ]
-          }),
-        exclude: root('src/public')},
     ]
-  };
+  }
 
   if (isTest && !isTestWatch) {
     // instrument only testing sources with Istanbul, covers ts files
@@ -290,7 +280,10 @@ module.exports = function makeWebpackConfig() {
 
         // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
         // Minify all javascript, switch loaders to minimizing mode
-        new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }})
+        new webpack.optimize.UglifyJsPlugin({
+          sourceMap: true,
+          mangle: { keep_fnames: true }
+        })
       )
     }
 
@@ -316,7 +309,7 @@ module.exports = function makeWebpackConfig() {
   }
 
   config.performance = {
-    hints: isProd
+    hints: isProd // 2.1.0-beta.25 ? 'warnings' : false
   }
 
   return config;

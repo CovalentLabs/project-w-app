@@ -16,13 +16,15 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "exclude": [
-    "**/_*/**",
     "**/_*",
     "./_*/**",
-    "**/node_modules/**",
     "./node_modules",
     "./templates"
   ],
+  "angularCompilerOptions": {
+   "genDir": "./aot",
+   "debug": true
+  },
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
