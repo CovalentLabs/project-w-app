@@ -229,11 +229,20 @@ export class VitreSwipeManager {
 
 // ensures that we don't jerk too much
 const maxPixelsPerSecond = 1000
+// ensures that we don't jerk too much
+const minPixelsPerSecond = 500
 // since we use ease-out, we are going to need the animation to be a little longer for
 // our velocities to match up correctly
 const easeStartAdjust = 1.2
 function calcTransitionDur(dist, pxPerSecond) {
-  return easeStartAdjust * Math.abs(Math.min(dist / Math.min(Math.abs(pxPerSecond), maxPixelsPerSecond), .8))
+  pxPerSecond = Math.abs(pxPerSecond)
+  pxPerSecond =
+    pxPerSecond > maxPixelsPerSecond
+      ? maxPixelsPerSecond
+      : pxPerSecond < minPixelsPerSecond
+        ? minPixelsPerSecond
+        : pxPerSecond
+  return easeStartAdjust * Math.abs(dist) / pxPerSecond
 }
 
 function createTranslateContent(content: HTMLElement, isRow: boolean) {
