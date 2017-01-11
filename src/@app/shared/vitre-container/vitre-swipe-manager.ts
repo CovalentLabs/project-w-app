@@ -1,6 +1,6 @@
 /* tslint:disable:member-ordering */
 
-import { VitreSwipeDetector, SwipeDirection } from './listen-for-swipes'
+import { VitreSwipeDetector, SwipeDirection } from './vitre-swipe-detector'
 
 export enum SwipeOrientation {
   ROW = 0, COLUMN = 1
@@ -144,6 +144,10 @@ export class VitreSwipeManager {
 
     // just in case
     this.detector.resize()
+  }
+
+  public gotoFrame(index: number) {
+    return this.setIndex(index)
   }
 
   public destroy() {

@@ -1,22 +1,6 @@
 
 @import 'bootstrap/custom';
 
-.panes {
-  position: relative;
-  transition: transform .4s;
-}
-.pane {
-  &.p-people {
-    position: absolute;
-    z-index: 1;
-    background: $ui-background;
-    /* ShadowCast: */
-    box-shadow: -3px 0 4px 0 rgba(0,0,0,0.10);
-    top: 0;
-    left: 100vw;
-  }
-}
-
 .test-elt {
   position: absolute;
   z-index: 2;

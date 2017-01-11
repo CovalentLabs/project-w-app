@@ -12,11 +12,15 @@ pw-vitre-container {
 
   > .vitre-container-content {
     display: flex;
-    transition: width .2s cubic-bezier(0.55, 0.085, 0.68, 0.53), transform .3s ease-out;
+    transition:
+      height .2s cubic-bezier(0.55, 0.085, 0.68, 0.53),
+      width .2s cubic-bezier(0.55, 0.085, 0.68, 0.53),
+      transform .5s ease-out;
 
     > pw-vitre {
-      transition: width .2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-      position: relative;
+      transition:
+        height .2s cubic-bezier(0.55, 0.085, 0.68, 0.53),
+        width .2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
     }
   }
 }
@@ -31,51 +35,13 @@ $vitre-columns: 12;
   // do not appear to require this.
   max-width: percentage($size / $columns);
 }
-
-pw-vitre-container {
-  @for $i from 1 through $vitre-columns {
-    pw-vitre[vitre-col="#{$i}"] {
-      @include make-col($i, $vitre-columns);
-    }
-  }
-}
-
-pw-vitre-container[vitre-view="xl"],
-pw-vitre-container[vitre-view="lg"],
-pw-vitre-container[vitre-view="md"],
-pw-vitre-container[vitre-view="sm"] {
-  @for $i from 1 through $vitre-columns {
-    pw-vitre[vitre-col-sm="#{$i}"] {
-      @include make-col($i, $vitre-columns);
-    }
-  }
-}
-
-pw-vitre-container[vitre-view="xl"],
-pw-vitre-container[vitre-view="lg"],
-pw-vitre-container[vitre-view="md"] {
-  @for $i from 1 through $vitre-columns {
-    pw-vitre[vitre-col-md="#{$i}"] {
-      @include make-col($i, $vitre-columns);
-    }
-  }
-}
-
-pw-vitre-container[vitre-view="xl"],
-pw-vitre-container[vitre-view="lg"] {
-  @for $i from 1 through $vitre-columns {
-    pw-vitre[vitre-col-lg="#{$i}"] {
-      @include make-col($i, $vitre-columns);
-    }
-  }
-}
-
-pw-vitre-container[vitre-view="xl"] {
-  @for $i from 1 through $vitre-columns {
-    pw-vitre[vitre-col-lg="#{$i}"] {
-      @include make-col($i, $vitre-columns);
-    }
-  }
+@mixin make-row($size, $columns: $vitre-columns) {
+  // flex: 0 0 percentage($size / $columns);
+  height: percentage($size / $columns);
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-height: percentage($size / $columns);
 }
 
 //<div class="vitre-container-content">
@@ -87,16 +53,12 @@ pw-vitre-container[vitre-direction=row] {
   > .vitre-container-content {
     flex-direction: row;
     height: 100%;
-    align-items: stretch;
   }
 }
 
 pw-vitre-container[vitre-direction=column] {
   > .vitre-container-content {
     flex-direction: column;
-
-    > pw-vitre {
-
-    }
+    width: 100%;
   }
 }

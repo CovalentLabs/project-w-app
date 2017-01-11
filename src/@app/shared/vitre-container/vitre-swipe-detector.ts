@@ -3,18 +3,6 @@ export enum SwipeDirection {
   START = 0, END = 1
 }
 
-function dirToSwipeDir(dir: Direction): SwipeDirection {
-  return dir % 2
-}
-
-function isXDir(dir: Direction): boolean {
-  return dir > Direction.BOTTOM
-}
-
-enum Direction {
-  TOP = 0, BOTTOM = 1, LEFT = 2, RIGHT = 3
-}
-
 export type SwipeStartInput = {
   direction: SwipeDirection,
   delta: number,
@@ -34,14 +22,13 @@ class VitreSwipeDetector {
   endSwipe: (input: SwipeEndInput) => any
   private offsetLeft: number
   private offsetWidth: number
-  private offsetTop: number
-  private offsetHeight: number
+  private curtainWidth: number
 
   constructor(
       private host: HTMLElement,
       private isX: boolean,
-      public curtainWidth: number = 100,
-      public curtainHeight: number = 100) {
+      public curtainWidthPx: number = 100,
+      public curtainWidthRatio: number = .5) {
     let noop = function(_){}
     this.startSwipe = noop
     this.moveSwipe = noop
@@ -57,10 +44,17 @@ class VitreSwipeDetector {
   }
 
   resize() {
-    this.offsetLeft = this.host.offsetLeft
-    this.offsetWidth = this.host.offsetWidth
-    this.offsetTop = this.host.offsetTop
-    this.offsetHeight = this.host.offsetHeight
+    if (this.isX) {
+      this.offsetLeft = this.host.offsetLeft
+      this.offsetWidth = this.host.offsetWidth
+    } else {
+      this.offsetLeft = this.host.offsetTop
+      this.offsetWidth = this.host.offsetHeight
+    }
+
+    let maxCurtainWidth = Math.max(this.offsetWidth * this.curtainWidthRatio, this.curtainWidthPx)
+    // ensure our curtains are not too big for our width
+    this.curtainWidth = Math.min(maxCurtainWidth, this.offsetWidth * .5)
   }
 
   moveHandler (dX: number) {
@@ -72,41 +66,30 @@ class VitreSwipeDetector {
   }
 
   startHandler(
-      direction: Direction,
+      direction: SwipeDirection,
       origin: number,
       delta: number
   ) {
     // Change direction to emit to
-    if (this.isX !== isXDir(direction)) { return }
     this.startSwipe({
-      direction: dirToSwipeDir(direction),
+      direction: direction,
       delta: delta,
       origin: origin
     })
   }
-  inRightCurtain(ox) {
+
+  inStartCurtain(ox) {
     let localX = ox - this.offsetLeft
     // console.log({localX})
     return (localX + this.curtainWidth) > this.offsetWidth
         && localX < this.offsetWidth
   }
-  inLeftCurtain(ox) {
+
+  inEndCurtain(ox) {
     let localX = ox - this.offsetLeft
     // console.log({localX})
     return 0 < (this.curtainWidth - localX)
         && localX > 0
-  }
-  inBottomCurtain(oy) {
-    let localY = oy - this.offsetTop
-    // console.log({localY})
-    return (localY + this.curtainHeight) > this.offsetHeight
-        && localY < this.offsetHeight
-  }
-  inTopCurtain(oy) {
-    let localY = oy - this.offsetTop
-    // console.log({localY})
-    return 0 < (this.curtainHeight - localY)
-        && localY > 0
   }
 
   destroy() {
@@ -161,17 +144,11 @@ function listenForSwipes(
     if (direction == null) { return }
 
     switch (direction) {
-      case Direction.LEFT:
-        if (!detector.inRightCurtain(origin)) { return }
+      case SwipeDirection.START:
+        if (!detector.inStartCurtain(origin)) { return }
         break
-      case Direction.RIGHT:
-        if (!detector.inLeftCurtain(origin)) { return }
-        break
-      case Direction.TOP:
-        if (!detector.inBottomCurtain(origin)) { return }
-        break
-      case Direction.BOTTOM:
-        if (!detector.inTopCurtain(origin)) { return }
+      case SwipeDirection.END:
+        if (!detector.inEndCurtain(origin)) { return }
         break
     }
     detector.startHandler(direction, origin, delta)
@@ -210,11 +187,11 @@ function avg(n: number[]) {
 
 // I'm sorry.
 // This is essentially a way for us to find numbers in ranges quickly.
-function getAngleThreshold(): (ang: number) => Direction {
+function getAngleThreshold(): (ang: number) => SwipeDirection {
   const degs = 360
   const degs2 = degs * .5
   // 'LEFT - TOP - RIGHT - BOTTOM - LEFT'.split(' ')
-  const directions = [Direction.LEFT, null, Direction.TOP, null, Direction.RIGHT, null, Direction.BOTTOM, null]
+  const directions = [SwipeDirection.START, null, SwipeDirection.START, null, SwipeDirection.END, null, SwipeDirection.END, null]
   const len = 8
   const rec  = len / degs
   const centering = degs / len * .5
