@@ -12,8 +12,10 @@ import { routes as sroutes, DECLARATIONS } from './styleguide/styleguide-routes'
   template: `<router-outlet></router-outlet>`,
   styleUrls: ['@app/style/component/full.scss'],
 })
+export
 class ParentComponent {}
 
+export
 const routes: Routes = [
   { path: 'styleguide',
     component: ParentComponent,

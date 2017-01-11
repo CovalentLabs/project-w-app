@@ -28,6 +28,7 @@ import { Component } from '@angular/core'
     './styleguide.component.scss',
   ],
 })
+export
 class StyleguideComponent {}
 
 @NgModule({

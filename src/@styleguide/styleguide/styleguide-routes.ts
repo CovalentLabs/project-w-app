@@ -10,6 +10,4 @@ export const routes: Routes = [
   { path: 'vitre', component: TestVitreComponent },
   { path: '', component: StyleguideComponent },
 ]
-export const DECLARATIONS = routes
-  .filter(r => !!r.component)
-  .map(r => r.component)
+export const DECLARATIONS = [TestComponent, TestVitreComponent, StyleguideComponent]
